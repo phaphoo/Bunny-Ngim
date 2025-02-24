@@ -1,0 +1,31 @@
+import 'package:flutter/material.dart';
+
+ThemeData light({Color color = const Color(0xFF005b7a)}) => ThemeData(
+  fontFamily: 'Poppins',
+  // scaffoldBackgroundColor: const Color(0xFFF3F3F3),
+  secondaryHeaderColor: const Color(0xFF29C1DC),
+  brightness: Brightness.light,
+  primaryColor: color,
+  highlightColor: Colors.white,
+  cardColor: Colors.white,
+  textSelectionTheme: const TextSelectionThemeData(cursorColor: Colors.white),
+  disabledColor: const Color(0xFFBABFC4),
+  colorScheme: ColorScheme.light(
+    primary: const Color(0xFF1455AC),
+    secondary: const Color(0xFF004C8E),
+    tertiary: const Color(0xFFF9D4A8),
+    tertiaryContainer: const Color(0xFFADC9F3),
+    onTertiaryContainer: const Color(0xFF33AF74),
+    onPrimary: const Color(0xFF7FBBFF),
+    surface: const Color(0xFFF4F8FF),
+    onSecondary: const Color(0xFFF88030),
+    error: const Color(0xFFE90000),
+    // error: const Color(0xFFFF5555),
+    onSecondaryContainer: const Color(0xFFF3F9FF),
+    outline: const Color(0xff2C66B4),
+    onTertiary: const Color(0xFFE9F3FF),
+    primaryContainer: const Color(0xFF9AECC6),
+    secondaryContainer: const Color(0xFFF2F2F2),
+  ),
+  hintColor: const Color(0xFFA4ABB6),
+);
