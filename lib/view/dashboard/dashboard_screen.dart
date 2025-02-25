@@ -2,7 +2,6 @@ import 'package:bunny_ngim_app/helper/responsive_helper.dart';
 import 'package:bunny_ngim_app/util/dimensions.dart';
 import 'package:bunny_ngim_app/util/images.dart';
 import 'package:bunny_ngim_app/util/text_styles.dart';
-import 'package:bunny_ngim_app/view/dashboard/bottomnavigation_menu_screen.dart';
 import 'package:bunny_ngim_app/view/screen/account/account_screen.dart';
 import 'package:bunny_ngim_app/view/screen/favorite/favorite_screen.dart';
 import 'package:bunny_ngim_app/view/screen/home/home_screen.dart';

@@ -22,6 +22,7 @@ Future<void> main() async {
   }
 
   Map<String, Map<String, String>> _languages = await di.init();
+  Get.find<LocalizationController>().loadCurrentLanguage();
   FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
       FlutterLocalNotificationsPlugin();
   MyNotification.initialize(flutterLocalNotificationsPlugin);
@@ -71,6 +72,11 @@ class _MyAppState extends State<MyApp> {
               AppConstants.languages[0].languageCode!,
               AppConstants.languages[0].countryCode,
             ),
+
+            supportedLocales: [
+              Locale(AppConstants.languages[0].languageCode!),
+              Locale(AppConstants.languages[1].languageCode!),
+            ],
             home: const SplashScreen(),
             locale: kocalization.locale,
           ),
