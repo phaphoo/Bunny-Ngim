@@ -34,9 +34,10 @@ class ApiClient extends GetxService {
 
   void updateHeader(String? token, String languageCode) {
     _mainHeaders = {
+      "Accept": "application/json",
       'Content-Type': 'application/json; charset=UTF-8',
       AppConstants.LOCALIZATION_KEY: languageCode,
-      'Authorization': 'Bearer $token',
+      'Authorization': 'Bearer 1|4ddXojpcjWOY1a5jsCqyaP18vB7ABovg4mlo8UOQ',
     };
   }
 

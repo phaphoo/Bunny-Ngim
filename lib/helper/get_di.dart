@@ -1,7 +1,12 @@
 import 'dart:convert';
 import 'package:bunny_ngim_app/api/api_client.dart';
+import 'package:bunny_ngim_app/config/config_controller.dart';
 import 'package:bunny_ngim_app/config/localization_provider.dart';
+import 'package:bunny_ngim_app/controller/banner_controller.dart';
+import 'package:bunny_ngim_app/controller/category_controller.dart';
 import 'package:bunny_ngim_app/model/response/language_model.dart';
+import 'package:bunny_ngim_app/repository/category_repo.dart';
+import 'package:bunny_ngim_app/repository/config_repo.dart';
 import 'package:bunny_ngim_app/util/app_constants.dart';
 import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -28,8 +33,12 @@ Future<Map<String, Map<String, String>>> init() async {
   // //Get.lazyPut(() => ProfileRepo(apiClient: Get.find()));
   // Get.lazyPut(() => CurrentRepo(apiClient: Get.find()));
   // Get.lazyPut(() => InvoiceRepo(apiClient: Get.find()));
-  // Get.lazyPut(() => DocumentRepo(apiClient: Get.find()));
+  Get.lazyPut(() => ConfigRepo(apiClient: Get.find()));
+  Get.lazyPut(() => CategoryRepo(apiClient: Get.find()));
   Get.lazyPut(() => LocalizationController());
+  Get.lazyPut(() => BannerController());
+  Get.lazyPut(() => ConfigController(configRepo: Get.find<ConfigRepo>()));
+  Get.lazyPut(() => CategoryController(categoryRepo: Get.find<CategoryRepo>()));
 
   // //Controller lazyput
   // Get.lazyPut(

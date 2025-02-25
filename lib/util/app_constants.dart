@@ -2,12 +2,12 @@ import 'package:bunny_ngim_app/model/response/language_model.dart';
 import 'package:bunny_ngim_app/util/images.dart';
 
 class AppConstants {
-  static const String BaseUrl = "https://eocontent.com";
+  static const String BaseUrl = "https://airlyo.com/";
   static const String GET_CONFIG = "/api/v1/config";
   static const String APP_VERSION = '1.0.0';
   static const String USER_ID = 'userId';
   static const String GET_USER_INFO = '/api/v1/profile';
-  static const String NAME = 'name';
+  static const String NAME = 'PFK';
   static const String LOCALIZATION_KEY = 'X-localization';
   static const String MAP_KEY = '/data';
   static const String MAP_URL = '/data';
@@ -23,6 +23,7 @@ class AppConstants {
   static const String USER_ADDRESS = '/data';
   static const String countryCode = '/data';
   static const String PHONE_URI = '/api/v1/auth/phone/login';
+  static const String configUri = "frontend/pfk/pfk/";
 
   static const String abaStorePurchase =
       "https://eocontent.com/api/v1/store-aba";
@@ -68,15 +69,15 @@ class AppConstants {
   static List<LanguageModel> languages = [
     LanguageModel(
       imageUrl: Images.abapay,
-      languageName: 'ភាសាខ្មែរ',
-      countryCode: 'KH',
-      languageCode: 'km',
-    ),
-    LanguageModel(
-      imageUrl: Images.abapay,
       languageName: 'English',
       countryCode: 'US',
       languageCode: 'en',
+    ),
+    LanguageModel(
+      imageUrl: Images.abapay,
+      languageName: 'ភាសាខ្មែរ',
+      countryCode: 'KH',
+      languageCode: 'km',
     ),
     LanguageModel(
       imageUrl: Images.abapay,

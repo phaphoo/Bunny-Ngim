@@ -1,4 +1,6 @@
 import 'dart:async';
+import 'package:bunny_ngim_app/config/config_controller.dart';
+import 'package:bunny_ngim_app/controller/category_controller.dart';
 import 'package:bunny_ngim_app/util/dimensions.dart';
 import 'package:bunny_ngim_app/util/images.dart';
 import 'package:bunny_ngim_app/util/text_styles.dart';
@@ -36,7 +38,8 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   Future loaddata() async {
-    // await Get.find<TemplateController>().getTemplate();
+    await Get.find<ConfigController>().getConfigData();
+    await Get.find<CategoryController>().getCategoryList();
     // Get.find<AccountController>().getAccount();
   }
 

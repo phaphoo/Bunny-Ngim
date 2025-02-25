@@ -5,6 +5,7 @@ import 'package:bunny_ngim_app/util/text_styles.dart';
 import 'package:bunny_ngim_app/view/dashboard/bottomnavigation_menu_screen.dart';
 import 'package:bunny_ngim_app/view/screen/home/home_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_utils/get_utils.dart';
 
 class DashboardScreen extends StatefulWidget {
   final int? index;
@@ -105,7 +106,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                             ? Dimensions.paddingSizeThirty
                             : Dimensions.paddingSizeExtraLarge,
                     child: Image.asset(
-                      Images.home,
+                      Images.homeIcon,
                       color:
                           _isSelected0
                               ? Theme.of(context).primaryColor
@@ -120,7 +121,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   ),
                 ],
               ),
-              label: 'Home',
+              label: 'home'.tr,
             ),
             BottomNavigationBarItem(
               icon: Column(
@@ -150,7 +151,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   ),
                 ],
               ),
-              label: 'History',
+              label: 'history'.tr,
             ),
             BottomNavigationBarItem(
               icon: Column(
@@ -165,7 +166,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                             ? Dimensions.paddingSizeThirty
                             : Dimensions.paddingSizeExtraLarge,
                     child: Image.asset(
-                      Images.billing1,
+                      Images.heart,
                       color:
                           _isSelected2
                               ? Theme.of(context).primaryColor
@@ -180,7 +181,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   ),
                 ],
               ),
-              label: 'Billing',
+              label: 'favorite'.tr,
             ),
             BottomNavigationBarItem(
               icon: Column(
@@ -195,7 +196,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                             ? Dimensions.paddingSizeThirty
                             : Dimensions.paddingSizeExtraLarge,
                     child: Image.asset(
-                      Images.account,
+                      Images.profile,
                       color:
                           _isSelected3
                               ? Theme.of(context).primaryColor
@@ -210,7 +211,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   ),
                 ],
               ),
-              label: 'Account',
+              label: 'account'.tr,
             ),
           ],
         ),

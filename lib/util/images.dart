@@ -9,6 +9,12 @@ class Images {
   static const String billing = 'assets/images/billing_image.png';
   static const String checkcircle = 'assets/images/check_circle_image.png';
   static const String abapay = 'assets/images/abapay_image.png';
+  static const String profileIcon = 'assets/images/profile_icon.png';
+  static const String shoppingCart = 'assets/images/shopping-cart.png';
+  static const String orderHistory = 'assets/images/order-history.png';
+  static const String heart = 'assets/images/heart.png';
+  static const String search = 'assets/images/search.png';
+  static const String homeIcon = 'assets/images/home_icon.png';
   static const String creditcard = 'assets/images/credit_card_image.png';
   static const String emptyData = 'assets/images/empty_data.png';
   static const String arrowUp = 'assets/images/arrow_up.png';

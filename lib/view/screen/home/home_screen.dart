@@ -1,11 +1,15 @@
+import 'package:bunny_ngim_app/controller/category_controller.dart';
 import 'package:bunny_ngim_app/helper/responsive_helper.dart';
+import 'package:bunny_ngim_app/util/app_constants.dart';
 import 'package:bunny_ngim_app/util/color_resources.dart';
 import 'package:bunny_ngim_app/util/dimensions.dart';
 import 'package:bunny_ngim_app/util/images.dart';
 import 'package:bunny_ngim_app/util/text_styles.dart';
+import 'package:bunny_ngim_app/view/screen/category/widgets/category_list_widget.dart';
 import 'package:bunny_ngim_app/view/screen/home/widgets/banners_widget.dart';
 import 'package:bunny_ngim_app/view/screen/search/search_home_page_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -23,6 +27,7 @@ class _HomeScreenState extends State<HomeScreen> {
       body: SafeArea(
         child: RefreshIndicator(
           onRefresh: () async {
+            await Get.find<CategoryController>().getCategoryList();
             // await HomePage.loadData(true);
           },
           child: CustomScrollView(
@@ -36,12 +41,18 @@ class _HomeScreenState extends State<HomeScreen> {
                 title: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Image.asset(Images.logo, height: 45),
+                    Row(
+                      children: [
+                        Image.asset(Images.logo, height: 45),
+                        const SizedBox(width: Dimensions.paddingSizeSmall),
+                        Text(AppConstants.NAME),
+                      ],
+                    ),
                     const Spacer(),
                     Stack(
                       children: [
                         Image.asset(
-                          Images.cart,
+                          Images.shoppingCart,
                           color: Theme.of(context).primaryColor,
 
                           width: Dimensions.iconSizeExtraLarge,
@@ -98,7 +109,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const BannersWidget(),
-                    const SizedBox(height: Dimensions.paddingSizeDefault),
+                    const SizedBox(height: Dimensions.paddingSizeSmall),
+                    const CategoryListWidget(isHomePage: true),
+                    const SizedBox(height: Dimensions.paddingSizeSmall),
                   ],
                 ),
               ),

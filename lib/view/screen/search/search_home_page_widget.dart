@@ -1,4 +1,5 @@
 import 'package:bunny_ngim_app/util/dimensions.dart';
+import 'package:bunny_ngim_app/util/images.dart';
 import 'package:bunny_ngim_app/util/text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_utils/get_utils.dart';
@@ -44,25 +45,19 @@ class SearchHomePageWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                'search'.tr,
+                'Search'.tr,
                 style: titilliumRegular.copyWith(
                   color: Theme.of(context).hintColor,
                 ),
               ),
 
-              Container(
-                width: 40,
-                height: 40,
-                decoration: BoxDecoration(
+              Padding(
+                padding: const EdgeInsets.all(Dimensions.paddingSizeSmall),
+                child: Image.asset(
+                  Images.search,
                   color: Theme.of(context).primaryColor,
-                  borderRadius: const BorderRadius.all(
-                    Radius.circular(Dimensions.paddingSizeExtraSmall),
-                  ),
-                ),
-                child: Icon(
-                  Icons.search,
-                  color: Theme.of(context).cardColor,
-                  size: Dimensions.iconSizeLarge,
+                  width: Dimensions.iconSizeLarge,
+                  height: Dimensions.iconSizeLarge,
                 ),
               ),
             ],
