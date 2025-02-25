@@ -1,11 +1,9 @@
-import 'dart:io';
 import 'package:bunny_ngim_app/config/localization_controller.dart';
 import 'package:bunny_ngim_app/theme/light_theme.dart';
 import 'package:bunny_ngim_app/util/app_constants.dart';
 import 'package:bunny_ngim_app/util/messages.dart';
 import 'package:bunny_ngim_app/view/base/splash/splash_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/foundation.dart';
 import 'package:bunny_ngim_app/helper/get_di.dart' as di;
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
