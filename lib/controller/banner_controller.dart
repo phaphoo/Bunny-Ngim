@@ -7,9 +7,9 @@ class BannerController extends GetxController implements GetxService {
   int? get currentIndex => _currentIndex;
 
   List<String>? mainBannerList = [
-    Images.afterslash,
-    Images.afterslash,
-    Images.afterslash,
+    Images.slider1,
+    Images.slider2,
+    Images.slider3,
   ];
 
   void setCurrentIndex(int index, bool notify) {

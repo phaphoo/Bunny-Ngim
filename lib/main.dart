@@ -1,5 +1,5 @@
 import 'dart:io';
-import 'package:bunny_ngim_app/config/localization_provider.dart';
+import 'package:bunny_ngim_app/config/localization_controller.dart';
 import 'package:bunny_ngim_app/theme/light_theme.dart';
 import 'package:bunny_ngim_app/util/app_constants.dart';
 import 'package:bunny_ngim_app/util/messages.dart';

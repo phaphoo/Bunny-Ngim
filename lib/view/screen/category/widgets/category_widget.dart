@@ -35,7 +35,7 @@ class CategoryWidget extends StatelessWidget {
             ),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(Dimensions.paddingSizeSmall),
-              child: CustomImage(image: '${category.categories[index]}'),
+              child: CustomImage(image: '${category.title}'),
             ),
           ),
 
@@ -44,7 +44,7 @@ class CategoryWidget extends StatelessWidget {
             child: SizedBox(
               width: MediaQuery.of(context).size.width / 6.5,
               child: Text(
-                category.categories[index] ?? '',
+                category.title ?? '',
                 textAlign: TextAlign.center,
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,

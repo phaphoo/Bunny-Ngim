@@ -28,7 +28,7 @@ class Dimensions {
           ? 26
           : (Get.context?.width ?? 0) >= 1300
           ? 20
-          : 16;
+          : 17;
 
   static double get fontSizeExtraLarge =>
       ResponsiveHelper.isTab()

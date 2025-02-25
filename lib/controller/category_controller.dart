@@ -7,26 +7,21 @@ class CategoryController extends GetxController implements GetxService {
   final CategoryRepo categoryRepo;
   CategoryController({required this.categoryRepo});
 
-  CategoryModel? _categoryModel;
-  CategoryModel? get categoryModel => _categoryModel;
-  List<String>? _categoryList;
-  List<String>? get categoryList => _categoryList;
+  List<CategoryModel>? _categoryList;
+  List<CategoryModel>? get categoryList => _categoryList;
 
-  Future<bool> getCategoryList() async {
+  Future<void> getCategoryList() async {
     Response response = await categoryRepo.getCategoryList();
-    bool _isSuccess = false;
-    if (response.statusCode == 200) {
-      _categoryModel = CategoryModel.fromJson(response.body['category_list']);
-      print('_categoryModel ${_categoryModel!.toJson()}');
 
-      _isSuccess = true;
+    if (response.statusCode == 200) {
+      _categoryList = [];
+      response.body['cat_tree'].forEach((v) {
+        _categoryList!.add(CategoryModel.fromJson(v));
+      });
     } else {
       ApiChecker.checkApi(response);
-
-      _isSuccess = false;
     }
     update();
-    return _isSuccess;
   }
 
   int _currentIndex = 0;

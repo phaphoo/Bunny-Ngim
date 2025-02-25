@@ -4,12 +4,11 @@ import 'package:bunny_ngim_app/controller/category_controller.dart';
 import 'package:bunny_ngim_app/util/dimensions.dart';
 import 'package:bunny_ngim_app/util/images.dart';
 import 'package:bunny_ngim_app/util/text_styles.dart';
-import 'package:bunny_ngim_app/view/base/painter/custom_image.dart';
+import 'package:bunny_ngim_app/view/base/no_internet_screen_widget.dart';
 import 'package:bunny_ngim_app/view/dashboard/dashboard_screen.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 
 class SplashScreen extends StatefulWidget {
   final int? index;
@@ -31,7 +30,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
     Future.delayed(const Duration(seconds: 3), () {
       Navigator.pushReplacement(
-        context,
+        Get.context!,
         MaterialPageRoute(builder: (context) => const DashboardScreen()),
       );
     });
@@ -55,46 +54,52 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).primaryColor,
-      body: Stack(
-        // alignment: Alignment.bottomCenter,
-        children: [
-          Center(
-            child: Image.asset(
-              Images.slash,
-              fit: BoxFit.contain,
-              height: MediaQuery.of(context).size.height / 4,
-              width: double.infinity,
-            ),
-          ),
+      body:
+          Get.find<ConfigController>().hasConnection
+              ? Stack(
+                // alignment: Alignment.bottomCenter,
+                children: [
+                  Center(
+                    child: Image.asset(
+                      Images.slash,
+                      fit: BoxFit.contain,
+                      height: MediaQuery.of(context).size.height / 4,
+                      width: double.infinity,
+                    ),
+                  ),
 
-          // const Spacer(),
-          Positioned(
-            right: 0,
-            left: 0,
-            bottom: Dimensions.paddingSizeExtraLarge,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Text(
-                  "Phsar Farm Khmer - copy right.",
-                  style: titleRegular.copyWith(
-                    color: Theme.of(context).hintColor,
-                    fontSize: Dimensions.fontSizeDefault,
+                  // const Spacer(),
+                  Positioned(
+                    right: 0,
+                    left: 0,
+                    bottom: Dimensions.paddingSizeExtraLarge,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text(
+                          "Phsar Farm Khmer - copy right.",
+                          style: titleRegular.copyWith(
+                            color: Theme.of(context).hintColor,
+                            fontSize: Dimensions.fontSizeDefault,
+                          ),
+                        ),
+                        Text(
+                          "Version 1.0",
+                          style: titleRegular.copyWith(
+                            color: Theme.of(context).hintColor,
+                            fontSize: Dimensions.fontSizeDefault,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-                Text(
-                  "Version 1.0",
-                  style: titleRegular.copyWith(
-                    color: Theme.of(context).hintColor,
-                    fontSize: Dimensions.fontSizeDefault,
-                  ),
-                ),
-              ],
-            ),
-          ),
-          const SizedBox(height: 70),
-        ],
-      ),
+                  const SizedBox(height: 70),
+                ],
+              )
+              : NoInternetOrDataScreenWidget(
+                isNoInternet: true,
+                child: SplashScreen(),
+              ),
     );
   }
 

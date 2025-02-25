@@ -1,18 +1,24 @@
-import 'dart:convert';
-
 class CategoryModel {
-  Map<int, String> categories;
+  int? id;
+  int? parentId;
+  String? display;
+  String? title;
 
-  CategoryModel({required this.categories});
+  CategoryModel({this.id, this.parentId, this.display, this.title});
 
-  factory CategoryModel.fromJson(Map<String, dynamic> json) => CategoryModel(
-    categories: json.map((key, value) => MapEntry(int.parse(key), value)),
-  );
+  CategoryModel.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    parentId = json['parent_id'];
+    display = json['display'];
+    title = json['title'];
+  }
 
-  Map<String, dynamic> toJson() =>
-      categories.map((key, value) => MapEntry(key.toString(), value));
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['parent_id'] = this.parentId;
+    data['display'] = this.display;
+    data['title'] = this.title;
+    return data;
+  }
 }
-
-// Example usage:
-// final category = CategoryModel.fromJson(jsonDecode(jsonString));
-// print(jsonEncode(category.toJson()));

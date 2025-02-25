@@ -20,9 +20,9 @@ class TitleWidget extends StatelessWidget {
         children: [
           Text(
             title!,
-            style: titleHeader.copyWith(
+            style: titilliumBold.copyWith(
               fontSize: Dimensions.fontSizeLarge,
-              color: Theme.of(context).primaryColor,
+              color: Colors.black,
             ),
           ),
           (onTap != null && !ResponsiveHelper.isDesktop())

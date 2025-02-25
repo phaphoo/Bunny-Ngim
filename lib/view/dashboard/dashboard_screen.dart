@@ -3,7 +3,10 @@ import 'package:bunny_ngim_app/util/dimensions.dart';
 import 'package:bunny_ngim_app/util/images.dart';
 import 'package:bunny_ngim_app/util/text_styles.dart';
 import 'package:bunny_ngim_app/view/dashboard/bottomnavigation_menu_screen.dart';
+import 'package:bunny_ngim_app/view/screen/account/account_screen.dart';
+import 'package:bunny_ngim_app/view/screen/favorite/favorite_screen.dart';
 import 'package:bunny_ngim_app/view/screen/home/home_screen.dart';
+import 'package:bunny_ngim_app/view/screen/order/order_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_utils/get_utils.dart';
 
@@ -59,9 +62,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
     super.didChangeDependencies();
     _screens = [
       HomeScreen(),
-      const BottomNavigationBarMenu(),
-      const BottomNavigationBarMenu(),
-      const BottomNavigationBarMenu(),
+      const OrderScreen(),
+      const FavoriteScreen(),
+      const AccountScreen(),
     ];
   }
 
@@ -70,7 +73,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
     return Scaffold(
       body: _screens[_currentIndex],
       bottomNavigationBar: SizedBox(
-        height: ResponsiveHelper.isTab() ? 100 : 80,
+        height: ResponsiveHelper.isTab() ? 100 : 100,
         child: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
           currentIndex: _currentIndex,
@@ -95,6 +98,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
           items: [
             BottomNavigationBarItem(
               icon: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   SizedBox(
                     width:

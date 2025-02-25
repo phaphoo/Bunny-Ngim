@@ -8,6 +8,7 @@ import 'package:bunny_ngim_app/util/text_styles.dart';
 import 'package:bunny_ngim_app/view/screen/category/widgets/category_list_widget.dart';
 import 'package:bunny_ngim_app/view/screen/home/widgets/banners_widget.dart';
 import 'package:bunny_ngim_app/view/screen/search/search_home_page_widget.dart';
+import 'package:bunny_ngim_app/view/screen/search/search_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -88,6 +89,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 delegate: SliverDelegate(
                   child: InkWell(
                     onTap: () {
+                      Get.to(() => SearchScreen());
                       // Navigator.push(
                       //   context,
                       //   MaterialPageRoute(builder: (_) => const SearchScreen()),
@@ -109,7 +111,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const BannersWidget(),
-                    const SizedBox(height: Dimensions.paddingSizeSmall),
+                    // const SizedBox(height: Dimensions.paddingSizeSmall),
                     const CategoryListWidget(isHomePage: true),
                     const SizedBox(height: Dimensions.paddingSizeSmall),
                   ],

@@ -14,6 +14,9 @@ class Images {
   static const String orderHistory = 'assets/images/order-history.png';
   static const String heart = 'assets/images/heart.png';
   static const String search = 'assets/images/search.png';
+  static const String slider1 = 'assets/images/slider_1.jpg';
+  static const String slider3 = 'assets/images/slider_3.png';
+  static const String slider2 = 'assets/images/slider_2.jpg';
   static const String homeIcon = 'assets/images/home_icon.png';
   static const String creditcard = 'assets/images/credit_card_image.png';
   static const String emptyData = 'assets/images/empty_data.png';
@@ -36,6 +39,8 @@ class Images {
   static const String google1 = "assets/images/google.png";
   static const String eoLogo = "assets/images/eocontent_logo.png";
   static const String profile = "assets/images/gift.png";
+  static const String noInternet = "assets/images/opps_internet.png";
+  static const String noData = "assets/images/no_data.png";
   static const String Terms = "assets/images/mingcute_paper-fill.png";
   static const String Privacy =
       "assets/images/material-symbols_privacy-tip.png";

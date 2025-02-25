@@ -45,7 +45,7 @@ class SearchHomePageWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                'Search'.tr,
+                'search'.tr,
                 style: titilliumRegular.copyWith(
                   color: Theme.of(context).hintColor,
                 ),
@@ -55,7 +55,7 @@ class SearchHomePageWidget extends StatelessWidget {
                 padding: const EdgeInsets.all(Dimensions.paddingSizeSmall),
                 child: Image.asset(
                   Images.search,
-                  color: Theme.of(context).primaryColor,
+                  color: Colors.black,
                   width: Dimensions.iconSizeLarge,
                   height: Dimensions.iconSizeLarge,
                 ),
