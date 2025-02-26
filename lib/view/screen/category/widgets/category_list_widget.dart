@@ -34,7 +34,7 @@ class CategoryListWidget extends StatelessWidget {
 
             categoryProvider.categoryList!.isNotEmpty
                 ? SizedBox(
-                  height: MediaQuery.of(context).size.width / 3,
+                  height: MediaQuery.of(context).size.width / 3.3,
                   child: ListView.builder(
                     padding: EdgeInsets.symmetric(
                       horizontal: Dimensions.paddingSizeSmall,

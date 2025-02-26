@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 class ProductModel {
   Productsource? productsource;
   Productrecordinfo? productrecordinfo;
@@ -29,7 +31,7 @@ class ProductModel {
 
 class Productsource {
   int? currentPage;
-  List<Data>? data;
+  List<Product>? data;
   String? firstPageUrl;
   int? from;
   int? lastPage;
@@ -61,9 +63,9 @@ class Productsource {
   Productsource.fromJson(Map<String, dynamic> json) {
     currentPage = json['current_page'];
     if (json['data'] != null) {
-      data = <Data>[];
+      data = <Product>[];
       json['data'].forEach((v) {
-        data!.add(new Data.fromJson(v));
+        data!.add(new Product.fromJson(v));
       });
     }
     firstPageUrl = json['first_page_url'];
@@ -107,7 +109,7 @@ class Productsource {
   }
 }
 
-class Data {
+class Product {
   int? id;
   int? categoryId;
   String? barcode;
@@ -125,7 +127,7 @@ class Data {
   String? madewith;
   String? productType;
   String? isservice;
-  String? imginfo;
+  ImageInfo? imginfo;
   String? display;
   String? title;
   String? category;
@@ -134,7 +136,7 @@ class Data {
   String? dfpricing;
   String? priceformat;
 
-  Data({
+  Product({
     this.id,
     this.categoryId,
     this.barcode,
@@ -162,7 +164,7 @@ class Data {
     this.priceformat,
   });
 
-  Data.fromJson(Map<String, dynamic> json) {
+  Product.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     categoryId = json['category_id'];
     barcode = json['barcode'];
@@ -180,13 +182,19 @@ class Data {
     madewith = json['madewith'];
     productType = json['product_type'];
     isservice = json['isservice'];
-    imginfo = json['imginfo'];
+    // imginfo = json['imginfo'];
+    imginfo =
+        json['imginfo'] != null && json['imginfo'].isNotEmpty
+            ? (jsonDecode(json['imginfo']) as List).isNotEmpty
+                ? ImageInfo.fromJson(jsonDecode(json['imginfo'])[0])
+                : null
+            : null;
     display = json['display'];
     title = json['title'];
     category = json['category'];
     unit = json['unit'];
     expireddate = json['expireddate'];
-    dfpricing = json['dfpricing'];
+    dfpricing = json['dfpricing'].toString();
     priceformat = json['priceformat'];
   }
 
@@ -209,7 +217,10 @@ class Data {
     data['madewith'] = this.madewith;
     data['product_type'] = this.productType;
     data['isservice'] = this.isservice;
-    data['imginfo'] = this.imginfo;
+    // data['imginfo'] = this.imginfo;
+    if (this.imginfo != null) {
+      data['imginfo'] = this.imginfo!.toJson();
+    }
     data['display'] = this.display;
     data['title'] = this.title;
     data['category'] = this.category;
@@ -275,4 +286,130 @@ class Productrecordinfo {
     data['lastpage'] = this.lastpage;
     return data;
   }
+}
+
+class ImageInfo {
+  final int id;
+  final String productId;
+  final int fileCategoryId;
+  final String fileName;
+  final String filepath;
+  final String fType;
+  final int fWidth;
+  final int fHeight;
+  final String scrName;
+  final bool asCover;
+  final bool asBg;
+  final String title;
+  final int ordering;
+  final String picColor;
+  final String tag;
+  final int blongTo;
+
+  ImageInfo({
+    required this.id,
+    required this.productId,
+    required this.fileCategoryId,
+    required this.fileName,
+    required this.filepath,
+    required this.fType,
+    required this.fWidth,
+    required this.fHeight,
+    required this.scrName,
+    required this.asCover,
+    required this.asBg,
+    required this.title,
+    required this.ordering,
+    required this.picColor,
+    required this.tag,
+    required this.blongTo,
+  });
+
+  factory ImageInfo.fromJson(Map<String, dynamic> json) {
+    return ImageInfo(
+      id: json['id'],
+      productId: json['product_id'],
+      fileCategoryId: json['filecategory_id'],
+      fileName: json['file_name'],
+      filepath: json['filepath'],
+      fType: json['f_type'],
+      fWidth: json['fwidth'],
+      fHeight: json['fheight'],
+      scrName: json['scr_name'],
+      asCover: json['as_cover'] == "1",
+      asBg: json['as_bg'] == "0",
+      title: json['title'],
+      ordering: json['ordering'],
+      picColor: json['piccolor'],
+      tag: json['tag'],
+      blongTo: json['blongto'],
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'product_id': productId,
+      'filecategory_id': fileCategoryId,
+      'file_name': fileName,
+      'filepath': filepath,
+      'f_type': fType,
+      'fwidth': fWidth,
+      'fheight': fHeight,
+      'scr_name': scrName,
+      'as_cover': asCover ? "1" : "0",
+      'as_bg': asBg ? "0" : "1",
+      'title': title,
+      'ordering': ordering,
+      'piccolor': picColor,
+      'tag': tag,
+      'blongto': blongTo,
+    };
+  }
+}
+
+class MyData {
+  final bool isService;
+  final List<ImageInfo> imgInfo;
+  final String display;
+
+  MyData({
+    required this.isService,
+    required this.imgInfo,
+    required this.display,
+  });
+
+  factory MyData.fromJson(Map<String, dynamic> json) {
+    return MyData(
+      isService: json['isservice'] == "yes",
+      imgInfo:
+          (jsonDecode(json['imginfo']) as List)
+              .map((e) => ImageInfo.fromJson(e))
+              .toList(),
+      display: json['display'],
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'isservice': isService ? "yes" : "no",
+      'imginfo': jsonEncode(imgInfo.map((e) => e.toJson()).toList()),
+      'display': display,
+    };
+  }
+}
+
+void main() {
+  String jsonString = '''
+  {
+    "isservice": "yes",
+    "imginfo": "[{\\"id\\":271,\\"product_id\\":\\"441\\",\\"filecategory_id\\":0,\\"file_name\\":\\"1686646303_AR-104.jpg\\",\\"filepath\\":\\"https:\\/\\/airlyo.com\\/storage\\/app\\/public\\/pfk\\/1686646303_AR-104.jpg\\",\\"f_type\\":\\"\\",\\"fwidth\\":0,\\"fheight\\":0,\\"scr_name\\":\\"\\",\\"as_cover\\":\\"1\\",\\"as_bg\\":\\"0\\",\\"title\\":\\"\\",\\"ordering\\":0,\\"piccolor\\":\\"\\",\\"tag\\":\\"\\",\\"blongto\\":1}]",
+    "display": ""
+  }
+  ''';
+
+  Map<String, dynamic> jsonData = jsonDecode(jsonString);
+  MyData myData = MyData.fromJson(jsonData);
+
+  print(myData.imgInfo[0].fileName); // Output: 1686646303_AR-104.jpg
 }

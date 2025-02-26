@@ -71,10 +71,10 @@ class _MyAppState extends State<MyApp> {
               AppConstants.languages[0].countryCode,
             ),
 
-            supportedLocales: [
-              Locale(AppConstants.languages[0].languageCode!),
-              Locale(AppConstants.languages[1].languageCode!),
-            ],
+            // supportedLocales: [
+            //   Locale(AppConstants.languages[0].languageCode!),
+            //   Locale(AppConstants.languages[1].languageCode!),
+            // ],
             home: const SplashScreen(),
             locale: kocalization.locale,
           ),

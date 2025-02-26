@@ -53,7 +53,6 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).primaryColor,
       body:
           Get.find<ConfigController>().hasConnection
               ? Stack(
@@ -61,9 +60,9 @@ class _SplashScreenState extends State<SplashScreen> {
                 children: [
                   Center(
                     child: Image.asset(
-                      Images.slash,
+                      Images.logo,
                       fit: BoxFit.contain,
-                      height: MediaQuery.of(context).size.height / 4,
+                      height: MediaQuery.of(context).size.height / 6,
                       width: double.infinity,
                     ),
                   ),

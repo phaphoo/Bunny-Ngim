@@ -2,7 +2,7 @@ import 'package:bunny_ngim_app/model/response/language_model.dart';
 import 'package:bunny_ngim_app/util/images.dart';
 
 class AppConstants {
-  static const String BaseUrl = "https://airlyo.com/";
+  static const String BaseUrl = "https://airlyo.com";
   static const String GET_CONFIG = "/api/v1/config";
   static const String APP_VERSION = '1.0.0';
   static const String USER_ID = 'userId';
@@ -23,7 +23,8 @@ class AppConstants {
   static const String USER_ADDRESS = '/data';
   static const String countryCode = '/data';
   static const String PHONE_URI = '/api/v1/auth/phone/login';
-  static const String configUri = "frontend/pfk/pfk/";
+  static const String configUri = "/frontend/pfk/pfk/";
+  static const String productUri = "/frontend/pfk/pfk/productlisting";
 
   static const String abaStorePurchase =
       "https://eocontent.com/api/v1/store-aba";

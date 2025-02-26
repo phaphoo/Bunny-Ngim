@@ -290,7 +290,7 @@ class ApiClient extends GetxService {
     }
     if (Foundation.kDebugMode) {
       log('====> API URI: [${_response.statusCode}] $uri');
-      log('====> API Data: ${jsonEncode(_body)}');
+      // log('====> API Data: ${jsonEncode(_body)}');
     }
     return _response;
   }

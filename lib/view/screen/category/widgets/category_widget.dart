@@ -22,19 +22,18 @@ class CategoryWidget extends StatelessWidget {
       padding: EdgeInsets.all(Dimensions.paddingSizeExtraSmall + 3),
       child: Column(
         children: [
-          Container(
-            height: MediaQuery.of(context).size.width / 6.5,
-            width: MediaQuery.of(context).size.width / 6.5,
-            decoration: BoxDecoration(
-              border: Border.all(
+          ClipOval(
+            child: Container(
+              height: MediaQuery.of(context).size.width / 6.5,
+              width: MediaQuery.of(context).size.width / 6.5,
+              decoration: BoxDecoration(
+                border: Border.all(
+                  color: Theme.of(context).primaryColor.withValues(alpha: .125),
+                  width: .25,
+                ),
+
                 color: Theme.of(context).primaryColor.withValues(alpha: .125),
-                width: .25,
               ),
-              borderRadius: BorderRadius.circular(Dimensions.paddingSizeSmall),
-              color: Theme.of(context).primaryColor.withValues(alpha: .125),
-            ),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(Dimensions.paddingSizeSmall),
               child: CustomImage(image: '${category.title}'),
             ),
           ),
