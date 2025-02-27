@@ -40,8 +40,11 @@ class Images {
   static const String eoLogo = "assets/images/eocontent_logo.png";
   static const String profile = "assets/images/gift.png";
   static const String noInternet = "assets/images/opps_internet.png";
+  static const String exitIcon = 'assets/images/exit_icon.png';
   static const String noData = "assets/images/no_data.png";
   static const String Terms = "assets/images/mingcute_paper-fill.png";
+  static const String english = "assets/images/en.png";
+  static const String khmer = "assets/images/khmer.png";
   static const String Privacy =
       "assets/images/material-symbols_privacy-tip.png";
   static const String Logout = "assets/images/carbon_warning-filled.png";

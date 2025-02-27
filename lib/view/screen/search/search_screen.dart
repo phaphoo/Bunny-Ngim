@@ -3,6 +3,7 @@ import 'package:bunny_ngim_app/util/custom_textfiled.dart';
 import 'package:bunny_ngim_app/util/dimensions.dart';
 import 'package:bunny_ngim_app/util/images.dart';
 import 'package:bunny_ngim_app/util/text_styles.dart';
+import 'package:bunny_ngim_app/view/screen/cart/cart_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -47,7 +48,6 @@ class _SearchScreenState extends State<SearchScreen> {
         leading: BackButton(
           color: Get.isDarkMode ? Colors.white : Colors.black,
           onPressed: () {
-            // Get.find<SearchProvider>().clearSearch();
             Get.back();
           },
         ),
@@ -67,17 +67,13 @@ class _SearchScreenState extends State<SearchScreen> {
                 right: Dimensions.paddingSizeSmall,
               ),
               onPressed: () {
-                // Get.to(CartScreen());
+                Get.to(CartScreen());
               },
               icon: Stack(
                 fit: StackFit.expand,
                 children: [
-                  // Icon(
-                  //   Icons.shopping_cart,
-                  //   color: Theme.of(context).cardColor,
-                  // ),
                   Image.asset(
-                    Images.shoppingCart,
+                    Images.cart,
                     width: Dimensions.iconSizeDefault,
                     height: Dimensions.iconSizeDefault,
                     color: Get.isDarkMode ? Colors.white : Colors.black,

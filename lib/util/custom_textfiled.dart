@@ -20,6 +20,7 @@ class CustomTextField extends StatefulWidget {
   final IconData? surfixIcon;
   final BoxDecoration? decoration;
   CustomTextField({
+    super.key,
     this.title,
     this.decoration,
     this.hinttext,
@@ -75,14 +76,13 @@ class _CustomTextFieldState extends State<CustomTextField> {
               controller: widget.controller,
               keyboardType: widget.textInputType,
               style: TextStyle(color: Theme.of(context).hintColor),
+              cursorColor: Colors.blue,
               decoration: InputDecoration(
                 enabledBorder: OutlineInputBorder(
                   borderRadius: const BorderRadius.all(
                     Radius.circular(Dimensions.radiusSizeSmall),
                   ),
-                  borderSide: BorderSide(
-                    color: Theme.of(context).secondaryHeaderColor,
-                  ),
+                  borderSide: BorderSide(color: Theme.of(context).hintColor),
                 ),
                 focusedBorder: OutlineInputBorder(
                   borderRadius: const BorderRadius.all(

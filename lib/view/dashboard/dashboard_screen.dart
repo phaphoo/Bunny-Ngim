@@ -1,7 +1,8 @@
-import 'package:bunny_ngim_app/helper/responsive_helper.dart';
+import 'package:bunny_ngim_app/helper/network_info.dart';
 import 'package:bunny_ngim_app/util/dimensions.dart';
 import 'package:bunny_ngim_app/util/images.dart';
 import 'package:bunny_ngim_app/util/text_styles.dart';
+import 'package:bunny_ngim_app/view/base/custom_exit_card.dart';
 import 'package:bunny_ngim_app/view/screen/account/account_screen.dart';
 import 'package:bunny_ngim_app/view/screen/favorite/favorite_screen.dart';
 import 'package:bunny_ngim_app/view/screen/home/home_screen.dart';
@@ -9,216 +10,206 @@ import 'package:bunny_ngim_app/view/screen/order/order_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_utils/get_utils.dart';
 
-class DashboardScreen extends StatefulWidget {
-  final int? index;
-  final int? groupId;
-  final String? selectedCategoryName;
-  final String? selectedTemplateName;
-  final String? selectedTemplateImage;
-  final int? cateIndex;
-  final int? tempIndex;
-  final bool isResultgenerate;
-
-  final String? inputText;
-
-  const DashboardScreen({
-    super.key,
-    this.isResultgenerate = true,
-    this.selectedCategoryName,
-    this.selectedTemplateName,
-    this.selectedTemplateImage,
-    this.cateIndex,
-    this.inputText,
-    this.index,
-    this.groupId,
-    this.tempIndex,
-  });
+class DashBoardScreen extends StatefulWidget {
+  const DashBoardScreen({super.key});
 
   @override
-  State<DashboardScreen> createState() => _DashboardScreenState();
+  DashBoardScreenState createState() => DashBoardScreenState();
 }
 
-class _DashboardScreenState extends State<DashboardScreen> {
-  int _currentIndex = 0;
-  late TextEditingController _textEditingController;
+class DashBoardScreenState extends State<DashBoardScreen> {
+  int _pageIndex = 0;
+  late List<NavigationModel> _screens;
+  final GlobalKey<ScaffoldMessengerState> _scaffoldKey = GlobalKey();
+  final PageStorageBucket bucket = PageStorageBucket();
+
+  bool singleVendor = false;
   @override
   void initState() {
-    _textEditingController = TextEditingController(
-      text: widget.inputText ?? '',
-    );
     super.initState();
-  }
+    singleVendor = false;
 
-  late List<Widget> _screens;
-
-  bool _isSelected0 = true;
-  bool _isSelected1 = false;
-  bool _isSelected2 = false;
-  bool _isSelected3 = false;
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
     _screens = [
-      HomeScreen(),
-      const OrderScreen(),
-      const FavoriteScreen(),
-      const AccountScreen(),
+      NavigationModel(
+        name: 'home',
+        icon: Images.homeIcon,
+        screen: const HomeScreen(),
+      ),
+
+      NavigationModel(
+        name: 'history',
+        icon: Images.orderHistory,
+        screen: OrderScreen(isBackToExit: false),
+      ),
+
+      NavigationModel(
+        name: 'favorite',
+        icon: Images.heart,
+        screen: const FavoriteScreen(isBackToExit: false),
+      ),
+
+      NavigationModel(
+        name: 'profile',
+        icon: Images.profileIcon,
+        screen: const AccountScreen(isBackToExit: false),
+      ),
     ];
+
+    NetworkInfo.checkConnectivity(context);
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: _screens[_currentIndex],
-      bottomNavigationBar: SizedBox(
-        height: ResponsiveHelper.isTab() ? 100 : 100,
-        child: BottomNavigationBar(
-          type: BottomNavigationBarType.fixed,
-          currentIndex: _currentIndex,
-          onTap: (index) {
-            setState(() {
-              _currentIndex = index;
-              _isSelected0 = index == 0;
-              _isSelected1 = index == 1;
-              _isSelected2 = index == 2;
-              _isSelected3 = index == 3;
-            });
-          },
-          selectedItemColor: Theme.of(context).primaryColor,
-          unselectedItemColor: Theme.of(context).hintColor,
-          backgroundColor: Theme.of(context).cardColor,
-          selectedLabelStyle: titilliumRegular.copyWith(
-            fontSize: Dimensions.fontSizeSmall,
+    // ignore: deprecated_member_use
+    return WillPopScope(
+      onWillPop: () async {
+        if (_pageIndex != 0) {
+          _setPage(0);
+          return false;
+        } else {
+          showModalBottomSheet(
+            backgroundColor: Colors.transparent,
+            context: context,
+            builder: (_) => const CustomExitCard(),
+          );
+        }
+        return false;
+      },
+      child: Scaffold(
+        key: _scaffoldKey,
+        body: PageStorage(bucket: bucket, child: _screens[_pageIndex].screen),
+        bottomNavigationBar: Container(
+          height: 80,
+          decoration: BoxDecoration(
+            borderRadius: const BorderRadius.vertical(
+              top: Radius.circular(Dimensions.paddingSizeLarge),
+            ),
+            color: Theme.of(context).cardColor,
+            boxShadow: [
+              BoxShadow(
+                offset: const Offset(1, 1),
+                blurRadius: 2,
+                spreadRadius: 1,
+                color: Theme.of(context).primaryColor.withOpacity(.125),
+              ),
+            ],
           ),
-          unselectedLabelStyle: titleHeader.copyWith(
-            fontSize: Dimensions.fontSizeExtraSmall,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: _getBottomWidget(singleVendor),
           ),
-          items: [
-            BottomNavigationBarItem(
-              icon: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SizedBox(
-                    width:
-                        ResponsiveHelper.isTab()
-                            ? Dimensions.paddingSizeThirty
-                            : Dimensions.paddingSizeExtraLarge,
-                    height:
-                        ResponsiveHelper.isTab()
-                            ? Dimensions.paddingSizeThirty
-                            : Dimensions.paddingSizeExtraLarge,
-                    child: Image.asset(
-                      Images.homeIcon,
-                      color:
-                          _isSelected0
-                              ? Theme.of(context).primaryColor
-                              : Theme.of(context).hintColor,
-                    ),
-                  ),
-                  SizedBox(
-                    height:
-                        ResponsiveHelper.isTab()
-                            ? Dimensions.paddingSizeSmall
-                            : Dimensions.paddingSizeExtraSmall,
-                  ),
-                ],
-              ),
-              label: 'home'.tr,
-            ),
-            BottomNavigationBarItem(
-              icon: Column(
-                children: [
-                  SizedBox(
-                    width:
-                        ResponsiveHelper.isTab()
-                            ? Dimensions.paddingSizeThirty
-                            : Dimensions.paddingSizeExtraLarge,
-                    height:
-                        ResponsiveHelper.isTab()
-                            ? Dimensions.paddingSizeThirty
-                            : Dimensions.paddingSizeExtraLarge,
-                    child: Image.asset(
-                      Images.history,
-                      color:
-                          _isSelected1
-                              ? Theme.of(context).primaryColor
-                              : Theme.of(context).hintColor,
-                    ),
-                  ),
-                  SizedBox(
-                    height:
-                        ResponsiveHelper.isTab()
-                            ? Dimensions.paddingSizeSmall
-                            : Dimensions.paddingSizeExtraSmall,
-                  ),
-                ],
-              ),
-              label: 'history'.tr,
-            ),
-            BottomNavigationBarItem(
-              icon: Column(
-                children: [
-                  SizedBox(
-                    width:
-                        ResponsiveHelper.isTab()
-                            ? Dimensions.paddingSizeThirty
-                            : Dimensions.paddingSizeExtraLarge,
-                    height:
-                        ResponsiveHelper.isTab()
-                            ? Dimensions.paddingSizeThirty
-                            : Dimensions.paddingSizeExtraLarge,
-                    child: Image.asset(
-                      Images.heart,
-                      color:
-                          _isSelected2
-                              ? Theme.of(context).primaryColor
-                              : Theme.of(context).hintColor,
-                    ),
-                  ),
-                  SizedBox(
-                    height:
-                        ResponsiveHelper.isTab()
-                            ? Dimensions.paddingSizeSmall
-                            : Dimensions.paddingSizeExtraSmall,
-                  ),
-                ],
-              ),
-              label: 'favorite'.tr,
-            ),
-            BottomNavigationBarItem(
-              icon: Column(
-                children: [
-                  SizedBox(
-                    width:
-                        ResponsiveHelper.isTab()
-                            ? Dimensions.paddingSizeThirty
-                            : Dimensions.paddingSizeExtraLarge,
-                    height:
-                        ResponsiveHelper.isTab()
-                            ? Dimensions.paddingSizeThirty
-                            : Dimensions.paddingSizeExtraLarge,
-                    child: Image.asset(
-                      Images.profile,
-                      color:
-                          _isSelected3
-                              ? Theme.of(context).primaryColor
-                              : Theme.of(context).hintColor,
-                    ),
-                  ),
-                  SizedBox(
-                    height:
-                        ResponsiveHelper.isTab()
-                            ? Dimensions.paddingSizeSmall
-                            : Dimensions.paddingSizeExtraSmall,
-                  ),
-                ],
-              ),
-              label: 'account'.tr,
-            ),
-          ],
         ),
       ),
     );
   }
+
+  void _setPage(int pageIndex) {
+    setState(() {
+      _pageIndex = pageIndex;
+    });
+  }
+
+  List<Widget> _getBottomWidget(bool isSingleVendor) {
+    List<Widget> list = [];
+    for (int index = 0; index < _screens.length; index++) {
+      list.add(
+        Expanded(
+          child: CustomMenuItem(
+            isSelected: _pageIndex == index,
+            name: _screens[index].name,
+            icon: _screens[index].icon,
+            onTap: () => _setPage(index),
+          ),
+        ),
+      );
+    }
+    return list;
+  }
+}
+
+class CustomMenuItem extends StatelessWidget {
+  final bool isSelected;
+  final String name;
+  final String icon;
+  final VoidCallback onTap;
+
+  const CustomMenuItem({
+    super.key,
+    required this.isSelected,
+    required this.name,
+    required this.icon,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      highlightColor: Colors.transparent,
+      hoverColor: Colors.transparent,
+      onTap: onTap,
+      child: Container(
+        padding: const EdgeInsets.all(2),
+        child: SizedBox(
+          width: isSelected ? 90 : 50,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Image.asset(
+                icon,
+                color:
+                    isSelected
+                        ? Theme.of(context).primaryColor
+                        : Theme.of(context).hintColor,
+                width: Dimensions.paddingSizeLarge,
+                height: Dimensions.paddingSizeLarge,
+              ),
+              isSelected
+                  ? Text(
+                    name.tr,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: titilliumBold.copyWith(
+                      color: Theme.of(context).primaryColor,
+                    ),
+                    strutStyle: const StrutStyle(forceStrutHeight: true),
+                  )
+                  : Text(
+                    name.tr,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: titilliumRegular.copyWith(
+                      color: Theme.of(context).hintColor,
+                    ),
+                    strutStyle: const StrutStyle(forceStrutHeight: true),
+                  ),
+              if (isSelected)
+                Container(
+                  width: 5,
+                  height: 3,
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).primaryColor,
+                    borderRadius: BorderRadius.circular(
+                      Dimensions.paddingSizeDefault,
+                    ),
+                  ),
+                ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class NavigationModel {
+  String name;
+  String icon;
+  Widget screen;
+  NavigationModel({
+    required this.name,
+    required this.icon,
+    required this.screen,
+  });
 }

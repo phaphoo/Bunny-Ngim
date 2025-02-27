@@ -6,7 +6,6 @@ import 'package:bunny_ngim_app/view/dashboard/dashboard_screen.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_utils/get_utils.dart';
 
 class NoInternetOrDataScreenWidget extends StatelessWidget {
   final bool isNoInternet;
@@ -100,7 +99,7 @@ class NoInternetOrDataScreenWidget extends StatelessWidget {
                       () => Navigator.pushAndRemoveUntil(
                         context,
                         MaterialPageRoute(
-                          builder: (_) => const DashboardScreen(),
+                          builder: (_) => const DashBoardScreen(),
                         ),
                         (route) => false,
                       ),

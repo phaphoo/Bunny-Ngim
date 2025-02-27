@@ -25,7 +25,7 @@ class _LanguageScreenState extends State<LanguageScreen> {
           builder: (localizationProvider) {
             return Column(
               children: [
-                const SizedBox(height: 15),
+                const SizedBox(height: Dimensions.paddingSizeLarge),
                 ...localizationProvider.languages.map((language) {
                   bool isSelected =
                       localizationProvider.languages.indexOf(language) ==
@@ -53,7 +53,10 @@ class _LanguageScreenState extends State<LanguageScreen> {
                           title: Text(
                             language.languageName.toString(),
                             style: TextStyle(
-                              color: Theme.of(context).colorScheme.onPrimary,
+                              color:
+                                  isSelected
+                                      ? Theme.of(context).primaryColor
+                                      : Theme.of(context).hintColor,
                             ),
                           ),
                         ),
@@ -72,6 +75,9 @@ class _LanguageScreenState extends State<LanguageScreen> {
                         localizationProvider
                             .languages[localizationProvider.selectedIndex]
                             .languageCode!,
+                        localizationProvider
+                            .languages[localizationProvider.selectedIndex]
+                            .countryCode!,
                       ),
                     );
                     Get.back();

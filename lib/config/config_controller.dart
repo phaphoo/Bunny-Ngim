@@ -25,10 +25,17 @@ class ConfigController extends GetxController implements GetxService {
   String? _publicPath;
   String? get publicPath => _publicPath;
 
+  bool _firstTimeConnectionCheck = true;
+  bool get firstTimeConnectionCheck => _firstTimeConnectionCheck;
+
   List<MainMenu>? _mainMenusList;
   List<MainMenu>? get mainMenusList => _mainMenusList;
   bool _hasConnection = true;
   bool get hasConnection => _hasConnection;
+
+  void setFirstTimeConnectionCheck(bool isChecked) {
+    _firstTimeConnectionCheck = isChecked;
+  }
 
   Future<bool> getConfigData() async {
     _hasConnection = true;

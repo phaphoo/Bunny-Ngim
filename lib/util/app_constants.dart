@@ -69,22 +69,22 @@ class AppConstants {
 
   static List<LanguageModel> languages = [
     LanguageModel(
-      imageUrl: Images.abapay,
+      imageUrl: Images.english,
       languageName: 'English',
       countryCode: 'US',
       languageCode: 'en',
     ),
     LanguageModel(
-      imageUrl: Images.abapay,
+      imageUrl: Images.khmer,
       languageName: 'ភាសាខ្មែរ',
       countryCode: 'KH',
       languageCode: 'km',
     ),
-    LanguageModel(
-      imageUrl: Images.abapay,
-      languageName: '中文',
-      countryCode: 'CN',
-      languageCode: 'zh',
-    ),
+    // LanguageModel(
+    //   imageUrl: Images.abapay,
+    //   languageName: '中文',
+    //   countryCode: 'CN',
+    //   languageCode: 'zh',
+    // ),
   ];
 }

@@ -33,6 +33,7 @@ class BannersWidget extends StatelessWidget {
                                     aspectRatio: 4 / 1,
                                     viewportFraction: 0.8,
                                     autoPlay: true,
+                                    autoPlayInterval: Duration(seconds: 10),
                                     pauseAutoPlayOnTouch: true,
                                     pauseAutoPlayOnManualNavigate: true,
                                     pauseAutoPlayInFiniteScroll: true,
@@ -44,10 +45,6 @@ class BannersWidget extends StatelessWidget {
                                         index,
                                         true,
                                       );
-                                      // Provider.of<BannerController>(
-                                      //   context,
-                                      //   listen: false,
-                                      // ).setCurrentIndex(index);
                                     },
                                   ),
                                   itemCount:
@@ -88,74 +85,32 @@ class BannersWidget extends StatelessWidget {
                         : const SizedBox()
                     : const BannerShimmer(),
 
-                // if (bannerController.mainBannerList != null &&
-                //     bannerController.mainBannerList!.isNotEmpty)
-                //   Positioned(
-                //     bottom: 0,
-                //     left: 0,
-                //     right: 0,
-                //     child: Row(
-                //       mainAxisAlignment: MainAxisAlignment.center,
-                //       children: [
-                //         Container(
-                //           height: 7,
-                //           width: 7,
-                //           margin: const EdgeInsets.symmetric(horizontal: 5.0),
-                //           decoration: BoxDecoration(
-                //             color: Theme.of(
-                //               context,
-                //             ).primaryColor.withValues(alpha: 0.2),
-                //             shape: BoxShape.circle,
-                //           ),
-                //         ),
-                //         Row(
-                //           mainAxisAlignment: MainAxisAlignment.center,
-                //           children:
-                //               bannerController.mainBannerList!.map((banner) {
-                //                 int index = bannerController.mainBannerList!
-                //                     .indexOf(banner);
-                //                 return index == bannerController.currentIndex
-                //                     ? Container(
-                //                       padding: const EdgeInsets.symmetric(
-                //                         horizontal: 10,
-                //                         vertical: 3,
-                //                       ),
-                //                       margin: const EdgeInsets.symmetric(
-                //                         horizontal: 6.0,
-                //                       ),
-                //                       decoration: BoxDecoration(
-                //                         color: Theme.of(context).primaryColor,
-                //                         borderRadius: BorderRadius.circular(50),
-                //                       ),
-                //                       child: Text(
-                //                         "${bannerController.mainBannerList!.indexOf(banner) + 1}/ ${bannerController.mainBannerList!.length}",
-                //                         style: const TextStyle(
-                //                           color: Colors.white,
-                //                           fontSize: 12,
-                //                         ),
-                //                       ),
-                //                     )
-                //                     : const SizedBox();
-                //               }).toList(),
-                //         ),
-                //         Container(
-                //           height: 7,
-                //           width: 7,
-                //           margin: const EdgeInsets.symmetric(horizontal: 5.0),
-                //           decoration: BoxDecoration(
-                //             color: Theme.of(
-                //               context,
-                //             ).primaryColor.withValues(alpha: 0.2),
-                //             shape: BoxShape.circle,
-                //           ),
-                //         ),
-                //       ],
-                //     ),
-                //   ),
+                Positioned(
+                  bottom: 0,
+                  left: 0,
+                  right: 0,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: List.generate(
+                      bannerController.mainBannerList!.length,
+                      (index) => Container(
+                        width: Dimensions.iconSizeSmall - 2,
+                        height: Dimensions.iconSizeSmall - 2,
+                        margin: EdgeInsets.symmetric(horizontal: 2),
+                        decoration: BoxDecoration(
+                          color:
+                              bannerController.currentIndex == index
+                                  ? Theme.of(context).primaryColor
+                                  : Theme.of(context).hintColor,
+                          borderRadius: BorderRadius.circular(100),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
               ],
             ),
-
-            const SizedBox(height: 5),
+            const SizedBox(height: Dimensions.paddingSizeExtraSmall),
           ],
         );
       },
