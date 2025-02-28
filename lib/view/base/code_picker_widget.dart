@@ -77,7 +77,7 @@ class CodePickerWidget extends StatefulWidget {
   /// with customized codes.
   final List<Map<String, String>> countryList;
 
-  CodePickerWidget({
+  const CodePickerWidget({
     this.onChanged,
     this.onInit,
     this.initialSelection,
@@ -111,10 +111,11 @@ class CodePickerWidget extends StatefulWidget {
     this.dialogBackgroundColor,
     this.closeIcon = const Icon(Icons.close),
     this.countryList = codes,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
+  // ignore: no_logic_in_create_state
   State<StatefulWidget> createState() {
     List<Map<String, String>> jsonList = countryList;
 
@@ -157,21 +158,19 @@ class CodePickerWidgetState extends State<CodePickerWidget> {
   @override
   Widget build(BuildContext context) {
     Widget _widget;
-    if (widget.builder != null)
+    if (widget.builder != null) {
       _widget = InkWell(
         onTap: showCountryCodePickerDialog,
         child: widget.builder!(selectedItem!),
       );
-    else {
+    } else {
       _widget = TextButton(
         onPressed: widget.enabled ? showCountryCodePickerDialog : null,
         child: Flex(
           direction: Axis.horizontal,
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            if (widget.showFlagMain! != null
-                ? widget.showFlagMain!
-                : widget.showFlag)
+            if (widget.showFlagMain!)
               Flexible(
                 flex: 0,
                 fit: widget.alignLeft ? FlexFit.tight : FlexFit.loose,
@@ -218,7 +217,7 @@ class CodePickerWidgetState extends State<CodePickerWidget> {
   void didChangeDependencies() {
     super.didChangeDependencies();
 
-    this.elements = elements.map((e) => e.localize(context)).toList();
+    elements = elements.map((e) => e.localize(context)).toList();
     _onInit(selectedItem!);
   }
 
@@ -277,6 +276,7 @@ class CodePickerWidgetState extends State<CodePickerWidget> {
   void showCountryCodePickerDialog() {
     if (!UniversalPlatform.isAndroid && !UniversalPlatform.isIOS) {
       showDialog(
+        // ignore: deprecated_member_use
         barrierColor: widget.barrierColor ?? Colors.grey.withOpacity(0.5),
         context: context,
         builder:
@@ -297,10 +297,7 @@ class CodePickerWidgetState extends State<CodePickerWidget> {
                     searchStyle: widget.searchStyle,
                     textStyle: widget.dialogTextStyle,
                     boxDecoration: widget.boxDecoration,
-                    showFlag:
-                        widget.showFlagDialog != null
-                            ? widget.showFlagDialog
-                            : widget.showFlag,
+                    showFlag: widget.showFlagDialog ?? widget.showFlag,
                     flagWidth: widget.flagWidth,
                     size: widget.dialogSize,
                     backgroundColor: widget.dialogBackgroundColor,
@@ -323,6 +320,7 @@ class CodePickerWidgetState extends State<CodePickerWidget> {
       });
     } else {
       showMaterialModalBottomSheet(
+        // ignore: deprecated_member_use
         barrierColor: widget.barrierColor ?? Colors.grey.withOpacity(0.5),
         backgroundColor: widget.backgroundColor ?? Colors.transparent,
         context: context,
@@ -341,10 +339,7 @@ class CodePickerWidgetState extends State<CodePickerWidget> {
                 searchStyle: widget.searchStyle,
                 textStyle: widget.dialogTextStyle,
                 boxDecoration: widget.boxDecoration,
-                showFlag:
-                    widget.showFlagDialog != null
-                        ? widget.showFlagDialog
-                        : widget.showFlag,
+                showFlag: widget.showFlagDialog ?? widget.showFlag,
                 flagWidth: widget.flagWidth,
                 flagDecoration: widget.flagDecoration,
                 size: widget.dialogSize,

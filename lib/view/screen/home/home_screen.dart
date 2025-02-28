@@ -12,7 +12,6 @@ import 'package:bunny_ngim_app/view/base/title_widget.dart';
 import 'package:bunny_ngim_app/view/screen/cart/cart_screen.dart';
 import 'package:bunny_ngim_app/view/screen/category/widgets/category_list_widget.dart';
 import 'package:bunny_ngim_app/view/screen/home/widgets/banners_widget.dart';
-import 'package:bunny_ngim_app/view/screen/language/language_screen.dart';
 import 'package:bunny_ngim_app/view/screen/products/products_view.dart';
 import 'package:bunny_ngim_app/view/screen/search/search_home_page_widget.dart';
 import 'package:bunny_ngim_app/view/screen/search/search_screen.dart';
@@ -82,7 +81,6 @@ class _HomeScreenState extends State<HomeScreen> {
                                     context: context,
                                     builder: (_) => const PopupLanguage(),
                                   ),
-                              //onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const CartScreen())),
                               child:
                                   locale.locale.countryCode == "KH"
                                       ? CustomImage(
@@ -157,7 +155,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           Get.to(() => SearchScreen());
                         },
                         child: Hero(
-                          tag: 'search',
+                          tag: 'search_item',
 
                           child: Material(
                             color: Theme.of(context).scaffoldBackgroundColor,

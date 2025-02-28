@@ -5,7 +5,8 @@ class Images {
   static const String afterslash = 'assets/images/after_slash_image.png';
   static const String phone = 'assets/images/phone_image.png';
   static const String google = 'assets/images/google_image.png';
-  static const String facebook = 'assets/images/facebook_image.png';
+  static const String facebook = 'assets/images/facebook_icon.png';
+  static const String facebook1 = 'assets/images/facebook_image.png';
   static const String billing = 'assets/images/billing_image.png';
   static const String checkcircle = 'assets/images/check_circle_image.png';
   static const String abapay = 'assets/images/abapay_image.png';

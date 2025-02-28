@@ -7,7 +7,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get_utils/get_utils.dart';
 
 class CustomExitCard extends StatelessWidget {
-  const CustomExitCard({Key? key}) : super(key: key);
+  const CustomExitCard({super.key});
 
   @override
   Widget build(BuildContext context) {

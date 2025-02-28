@@ -33,7 +33,7 @@ class BannersWidget extends StatelessWidget {
                                     aspectRatio: 4 / 1,
                                     viewportFraction: 0.8,
                                     autoPlay: true,
-                                    autoPlayInterval: Duration(seconds: 10),
+                                    autoPlayInterval: Duration(seconds: 5),
                                     pauseAutoPlayOnTouch: true,
                                     pauseAutoPlayOnManualNavigate: true,
                                     pauseAutoPlayInFiniteScroll: true,

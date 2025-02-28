@@ -49,7 +49,7 @@ class DashBoardScreenState extends State<DashBoardScreen> {
       ),
 
       NavigationModel(
-        name: 'profile',
+        name: 'account',
         icon: Images.profileIcon,
         screen: const AccountScreen(isBackToExit: false),
       ),

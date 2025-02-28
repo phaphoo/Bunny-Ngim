@@ -56,7 +56,7 @@ class _SearchScreenState extends State<SearchScreen> {
                 ? Theme.of(context).scaffoldBackgroundColor
                 : Colors.white,
         title: CustomTextField(
-          hinttext: 'search_product'.tr,
+          hinttext: 'search_item'.tr,
           controller: _queryTextController,
         ),
         actions: [

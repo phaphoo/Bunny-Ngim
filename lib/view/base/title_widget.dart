@@ -31,10 +31,10 @@ class TitleWidget extends StatelessWidget {
                 child: Padding(
                   padding: EdgeInsets.fromLTRB(10, 5, 0, 5),
                   child: Text(
-                    'view_all'.tr,
+                    'see_more'.tr,
                     style: titilliumRegular.copyWith(
                       fontSize: Dimensions.fontSizeDefault,
-                      color: Theme.of(context).primaryColor,
+                      color: Theme.of(context).hintColor,
                     ),
                   ),
                 ),

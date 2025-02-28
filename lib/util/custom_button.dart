@@ -11,13 +11,13 @@ class CustomButton extends StatelessWidget {
   final Color? borderColor; // Optional: Border color
   final double? borderWidth; // Optional: Border width
 
-  CustomButton({
-    Key? key,
+  const CustomButton({
+    super.key,
     required this.text,
     this.onTap,
     this.color,
-    this.borderColor, // Border color is optional
-    this.borderWidth, // Border width is optional
+    this.borderColor,
+    this.borderWidth,
   });
 
   @override
@@ -30,24 +30,20 @@ class CustomButton extends StatelessWidget {
         height: ResponsiveHelper.isTab() ? 60 : 50,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(Dimensions.paddingSizeSmall),
-          color: color ?? Theme.of(context).secondaryHeaderColor,
-          // Apply the border only if borderColor or borderWidth is provided
+          color: color ?? Theme.of(context).primaryColor,
           border:
               (borderColor != null || borderWidth != null)
                   ? Border.all(
                     color: borderColor ?? Theme.of(context).hintColor,
-                    width: borderWidth ?? 1.0, // Use default width if null
+                    width: borderWidth ?? 1.0,
                   )
-                  : null, // No border if neither property is provided
+                  : null,
         ),
         child: Text(
           text,
-          style: titilliumRegular.copyWith(
+          style: titilliumBold.copyWith(
             color: color != null ? Theme.of(context).hintColor : Colors.white,
           ),
-          // style: titilliumRegular.copyWith(
-          //   color: Theme.of(context).hintColor,
-          // ),
           textScaleFactor: 1.2,
         ),
       ),

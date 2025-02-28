@@ -19,7 +19,7 @@ class ProductShimmer extends StatelessWidget {
       ),
       child: GridView.builder(
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 3,
+          crossAxisCount: 2,
           childAspectRatio: (1 / 1.7),
         ),
         itemCount: 12,

@@ -1,5 +1,6 @@
 import 'package:bunny_ngim_app/util/custom_button.dart';
 import 'package:bunny_ngim_app/view/base/custom_app_bar_widget.dart';
+import 'package:bunny_ngim_app/view/screen/auth/login_screen.dart';
 import 'package:bunny_ngim_app/view/screen/language/language_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -24,8 +25,8 @@ class _AccountScreenState extends State<AccountScreen> {
       body: Column(
         children: [
           CustomButton(
-            text: 'language'.tr,
-            onTap: () => Get.to(() => LanguageScreen()),
+            text: 'login'.tr,
+            onTap: () => Get.to(() => LoginScreen()),
           ),
         ],
       ),

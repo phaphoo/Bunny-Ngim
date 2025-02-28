@@ -63,6 +63,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
           decoration:
               widget.decoration ??
               BoxDecoration(
+                color: Theme.of(context).cardColor,
                 borderRadius: BorderRadius.circular(
                   Dimensions.paddingSizeSmall,
                 ),
@@ -75,7 +76,6 @@ class _CustomTextFieldState extends State<CustomTextField> {
               readOnly: widget.isTap || widget.isReadOnly ? true : false,
               controller: widget.controller,
               keyboardType: widget.textInputType,
-              style: TextStyle(color: Theme.of(context).hintColor),
               cursorColor: Colors.blue,
               decoration: InputDecoration(
                 enabledBorder: OutlineInputBorder(

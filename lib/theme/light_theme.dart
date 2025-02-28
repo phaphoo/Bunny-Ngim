@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 ThemeData light({Color color = const Color(0xFF4CAF50)}) => ThemeData(
-  fontFamily: 'Poppins',
+  fontFamily: 'Urbanist',
   // scaffoldBackgroundColor: const Color(0xFFF3F3F3),
   secondaryHeaderColor: const Color(0xFF005b7a),
   brightness: Brightness.light,

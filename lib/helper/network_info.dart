@@ -8,8 +8,8 @@ class NetworkInfo {
   NetworkInfo(this.connectivity);
 
   Future<bool> get isConnected async {
-    ConnectivityResult _result = await connectivity.checkConnectivity();
-    return _result != ConnectivityResult.none;
+    ConnectivityResult result = await connectivity.checkConnectivity();
+    return result != ConnectivityResult.none;
   }
 
   static void checkConnectivity(BuildContext context) {
@@ -20,13 +20,13 @@ class NetworkInfo {
         bool isNotConnected = result == ConnectivityResult.none;
         isNotConnected
             ? const SizedBox()
-            : ScaffoldMessenger.of(context).hideCurrentSnackBar();
-        ScaffoldMessenger.of(context).showSnackBar(
+            : ScaffoldMessenger.of(Get.context!).hideCurrentSnackBar();
+        ScaffoldMessenger.of(Get.context!).showSnackBar(
           SnackBar(
             backgroundColor: isNotConnected ? Colors.red : Colors.green,
             duration: Duration(seconds: isNotConnected ? 6000 : 3),
             content: Text(
-              isNotConnected ? 'no_connection' : 'connected',
+              isNotConnected ? 'no_connection'.tr : 'connected'.tr,
               textAlign: TextAlign.center,
             ),
           ),

@@ -9,7 +9,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>Bunny Ngim App</string>
+	<string>Phsar Farm Khmer</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -62,5 +62,10 @@
 	<true/>
 	<key>FirebaseAppDelegateProxyEnabled</key>
     <false/>
+	<key>NSAppTransportSecurity</key>
+    <dict>
+    <key>NSAllowsLocalNetworking</key>
+    <true/>
+</dict>
 </dict>
 </plist>
