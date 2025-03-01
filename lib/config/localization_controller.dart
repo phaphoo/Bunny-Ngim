@@ -27,6 +27,9 @@ class LocalizationController extends GetxController implements GetxService {
     update();
   }
 
+  String _currentLanguageCode = 'en';
+  String get currentLanguageCode => _currentLanguageCode;
+
   void loadCurrentLanguage() async {
     _locale = Locale(
       await cache.load(
@@ -46,6 +49,9 @@ class LocalizationController extends GetxController implements GetxService {
     }
     _languages = [];
     _languages.addAll(AppConstants.languages);
+    _currentLanguageCode = _languages[_selectedIndex].languageCode!;
+    print('_currentLanguageCode ${_currentLanguageCode}');
+
     update();
   }
 

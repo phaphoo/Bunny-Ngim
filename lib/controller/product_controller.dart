@@ -25,10 +25,10 @@ class ProductController extends GetxController implements GetxService {
   int _productTotalPage = 0;
   int get productTotalPage => _productTotalPage;
 
-  int _currentOffset = 0;
+  final int _currentOffset = 0;
   int get currentOffset => _currentOffset;
 
-  List<int> _offsetList = [];
+  final List<int> _offsetList = [];
   List<int> get offsetList => _offsetList;
 
   Future<void> getAllProductList({
@@ -36,7 +36,6 @@ class ProductController extends GetxController implements GetxService {
     int offset = 1,
     bool reload = false,
   }) async {
-    print("offset==> $offset");
     if (offset == 1 || reload) {
       _productModel = null;
       _productList = [];
@@ -44,44 +43,37 @@ class ProductController extends GetxController implements GetxService {
       _filterFirstLoading = true;
       _firstLoading = true;
     }
-    // try {
+    try {
+      Response response = await productRepo.getAllProductData(
+        limit: limit,
+        offset: offset,
+      );
+      if (response.statusCode == 200) {
+        _productModel = ProductModel.fromJson(response.body);
+        if (ProductModel.fromJson(response.body).productsource!.data != null) {
+          _productList!.addAll(
+            ProductModel.fromJson(response.body).productsource!.data!,
+          );
+          _productTotalPage = _productModel!.productsource!.lastPage!;
+        }
 
-    Response response = await productRepo.getAllProductData(
-      limit: limit,
-      offset: offset,
-    );
-    // _currentOffset = offset;
-    // if (!_offsetList.contains(offset)) {
-    //   _offsetList.add(offset);
-
-    if (response.statusCode == 200) {
-      _productModel = ProductModel.fromJson(response.body);
-      // _productList = _productModel!.productsource!.data!;
-      if (ProductModel.fromJson(response.body).productsource!.data != null) {
-        _productList!.addAll(
-          ProductModel.fromJson(response.body).productsource!.data!,
-        );
-        _productTotalPage = _productModel!.productsource!.lastPage!;
+        _filterFirstLoading = false;
+        _filterIsLoading = false;
+        _firstLoading = false;
+      } else {
+        ApiChecker.checkApi(response);
+        _filterFirstLoading = false;
+        _filterIsLoading = false;
+        _firstLoading = false;
       }
-      print('_productTotalPage $_productTotalPage');
-      _filterFirstLoading = false;
-      _filterIsLoading = false;
-      _firstLoading = false;
-    } else {
-      ApiChecker.checkApi(response);
+      update();
+    } catch (e) {
+      _productList = [];
+      _productTotalPage = 0;
       _filterFirstLoading = false;
       _filterIsLoading = false;
       _firstLoading = false;
     }
-    // } else {}
-    update();
-    // } catch (e) {
-    //   _productList = [];
-    //   _productTotalPage = 0;
-    //   _filterFirstLoading = false;
-    //   _filterIsLoading = false;
-    //   _firstLoading = false;
-    // }
   }
 
   int _currentIndex = 0;

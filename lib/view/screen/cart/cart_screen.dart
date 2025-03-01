@@ -4,7 +4,7 @@ import 'package:get/get_utils/get_utils.dart';
 
 class CartScreen extends StatefulWidget {
   final bool isBackToExit;
-  const CartScreen({super.key, this.isBackToExit = false});
+  const CartScreen({super.key, this.isBackToExit = true});
 
   @override
   State<CartScreen> createState() => _CartScreenState();

@@ -23,7 +23,8 @@ class AppConstants {
   static const String USER_ADDRESS = '/data';
   static const String countryCode = '/data';
   static const String PHONE_URI = '/api/v1/auth/phone/login';
-  static const String configUri = "/frontend/pfk/pfk/";
+  static const String configUri = "/frontend/pfk/pfk";
+  static const String cateUri = "/frontend/pfk/pfk";
   static const String productUri = "/frontend/pfk/pfk/productlisting";
 
   static const String abaStorePurchase =

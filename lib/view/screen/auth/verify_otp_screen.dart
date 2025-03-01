@@ -9,6 +9,7 @@ import 'package:bunny_ngim_app/util/dimensions.dart';
 import 'package:bunny_ngim_app/util/images.dart';
 import 'package:bunny_ngim_app/util/text_styles.dart';
 import 'package:bunny_ngim_app/view/base/show_custom_snackbar_widget.dart';
+import 'package:bunny_ngim_app/view/dashboard/dashboard_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -203,6 +204,7 @@ class _VerifyScreenState extends State<VerifyScreen> {
                           authModel.uid = widget.fullnumber
                               .replaceAll('+', '')
                               .replaceAll(' ', '');
+                          Get.offAll(() => DashBoardScreen());
                           // await Get.find<AuthProvider>().getUser(
                           //   authModel.uid!,
                           // );

@@ -3,6 +3,8 @@ import 'package:bunny_ngim_app/model/response/product_model.dart';
 import 'package:bunny_ngim_app/util/dimensions.dart';
 import 'package:bunny_ngim_app/util/text_styles.dart';
 import 'package:bunny_ngim_app/view/base/painter/custom_image.dart';
+import 'package:bunny_ngim_app/view/screen/products/widget/add_to_cart_button_widget.dart';
+import 'package:bunny_ngim_app/view/screen/products/widget/favourite_button_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -17,8 +19,6 @@ class ProductWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bool isLtr = false;
-
     return GetBuilder<ConfigController>(
       builder: (configController) {
         return InkWell(
@@ -107,48 +107,6 @@ class ProductWidget extends StatelessWidget {
                                       ),
                                     ),
                                   ),
-                                  // if (productModel.currentStock! == 0 &&
-                                  //     productModel.productType == 'item') ...[
-                                  //   Container(
-                                  //     height: boxConstraint.maxWidth * 0.82,
-                                  //     width: boxConstraint.maxWidth,
-                                  //     color: Colors.black.withValues(alpha: 0.4),
-                                  //   ),
-                                  //   Positioned.fill(
-                                  //     child: Align(
-                                  //       alignment: Alignment.bottomCenter,
-                                  //       child: Container(
-                                  //         width: boxConstraint.maxWidth,
-                                  //         decoration: BoxDecoration(
-                                  //           color: Theme.of(context)
-                                  //               .colorScheme
-                                  //               .error
-                                  //               .withValues(alpha: 0.4),
-                                  //           borderRadius: const BorderRadius.only(
-                                  //             topLeft: Radius.circular(
-                                  //               Dimensions.radiusSizeSmall,
-                                  //             ),
-                                  //             topRight: Radius.circular(
-                                  //               Dimensions.radiusSizeSmall,
-                                  //             ),
-                                  //           ),
-                                  //         ),
-                                  //         child: Text(
-                                  //           getTranslated(
-                                  //                 'out_of_stock',
-                                  //                 context,
-                                  //               ) ??
-                                  //               '',
-                                  //           style: textBold.copyWith(
-                                  //             color: Colors.white,
-                                  //             fontSize: Dimensions.fontSizeSmall,
-                                  //           ),
-                                  //           textAlign: TextAlign.center,
-                                  //         ),
-                                  //       ),
-                                  //     ),
-                                  //   ),
-                                  // ],
                                 ],
                               ),
                             ),
@@ -163,35 +121,7 @@ class ProductWidget extends StatelessWidget {
                             const SizedBox(
                               height: Dimensions.paddingSizeExtraSmall,
                             ),
-                            // if (ratting > 0)
-                            //   Row(
-                            //     mainAxisAlignment: MainAxisAlignment.center,
-                            //     children: [
-                            //       const Icon(
-                            //         Icons.star_rate_rounded,
-                            //         color: Colors.orange,
-                            //         size: 20,
-                            //       ),
-                            //       Padding(
-                            //         padding: const EdgeInsets.symmetric(
-                            //           horizontal: 2.0,
-                            //         ),
-                            //         child: Text(
-                            //           ratting.toStringAsFixed(1),
-                            //           style: textRegular.copyWith(
-                            //             fontSize: Dimensions.fontSizeDefault,
-                            //           ),
-                            //         ),
-                            //       ),
-                            //       Text(
-                            //         '(${productModel.reviewCount.toString()})',
-                            //         style: textRegular.copyWith(
-                            //           fontSize: Dimensions.fontSizeSmall,
-                            //           color: Theme.of(context).hintColor,
-                            //         ),
-                            //       ),
-                            //     ],
-                            //   ),
+
                             Padding(
                               padding: const EdgeInsets.symmetric(
                                 vertical: 5.0,
@@ -207,23 +137,7 @@ class ProductWidget extends StatelessWidget {
                                 overflow: TextOverflow.ellipsis,
                               ),
                             ),
-                            // ((productModel.discount != null &&
-                            //             productModel.discount! > 0) ||
-                            //         (productModel.clearanceSale?.discountAmount ??
-                            //                 0) >
-                            //             0)
-                            //     ? Text(
-                            //       PriceConverter.convertPrice(
-                            //         context,
-                            //         productModel.unitPrice,
-                            //       ),
-                            //       style: titleRegular.copyWith(
-                            //         color: Theme.of(context).hintColor,
-                            //         decoration: TextDecoration.lineThrough,
-                            //         fontSize: Dimensions.fontSizeSmall,
-                            //       ),
-                            //     )
-                            //     : const SizedBox.shrink(),
+
                             Padding(
                               padding: const EdgeInsets.all(
                                 Dimensions.paddingSizeExtraSmall,
@@ -246,20 +160,23 @@ class ProductWidget extends StatelessWidget {
                   ),
                 ),
 
-                // Off
-                // ((productModel.discount! > 0) ||
-                //         (productModel.clearanceSale != null))
-                //     ? DiscountTagWidget(productModel: productModel)
-                //     : const SizedBox.shrink(),
-                // Positioned(
-                //   top: 18,
-                //   right: isLtr ? 16 : null,
-                //   left: !isLtr ? 16 : null,
-                //   child: FavouriteButtonWidget(
-                //     backgroundColor: ColorResources.getImageBg(context),
-                //     productId: productModel.id,
-                //   ),
-                // ),
+                Positioned(
+                  top: 18,
+                  right: 16,
+                  child: FavouriteButtonWidget(
+                    backgroundColor: Theme.of(context).hintColor,
+                    productId: productModel.id,
+                  ),
+                ),
+
+                Positioned(
+                  top: 50,
+                  right: 16,
+                  child: AddToCartButtonWidget(
+                    backgroundColor: Theme.of(context).hintColor,
+                    productId: productModel.id,
+                  ),
+                ),
               ],
             ),
           ),

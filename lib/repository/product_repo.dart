@@ -7,10 +7,10 @@ class ProductRepo {
   final ApiClient apiClient;
   ProductRepo({required this.apiClient});
   final localization = Get.find<LocalizationController>();
-  String lang = '';
+  String lang = 'en';
 
   Future<Response> getAllProductData({int limit = 10, int offset = 1}) async {
-    lang = Get.find<LocalizationController>().locale.languageCode;
+    lang = localization.locale.languageCode;
     return await apiClient.getData(
       '${AppConstants.productUri}?perpage=$limit&page=$offset&lang=$lang',
     );

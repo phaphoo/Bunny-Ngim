@@ -1,6 +1,7 @@
 import 'package:bunny_ngim_app/controller/category_controller.dart';
 import 'package:bunny_ngim_app/util/dimensions.dart';
 import 'package:bunny_ngim_app/view/base/title_widget.dart';
+import 'package:bunny_ngim_app/view/screen/category/category_products_screen.dart';
 import 'package:bunny_ngim_app/view/screen/category/category_screen.dart';
 import 'package:bunny_ngim_app/view/screen/category/widgets/category_widget.dart';
 import 'package:flutter/material.dart';
@@ -25,14 +26,18 @@ class CategoryListWidget extends StatelessWidget {
               child: TitleWidget(
                 title: 'category'.tr,
                 onTap: () {
-                  if (categoryProvider.categoryList!.isNotEmpty) {
-                    Get.to(() => CategoryScreen(isBackToExit: true));
-                  }
+                  Get.to(
+                    () => CategoryProductsScreen(
+                      category: null,
+                      isBackToExit: true,
+                    ),
+                  );
                 },
               ),
             ),
 
-            categoryProvider.categoryList!.isNotEmpty
+            categoryProvider.categoryList != null &&
+                    categoryProvider.categoryList!.isNotEmpty
                 ? SizedBox(
                   height: MediaQuery.of(context).size.width / 3.3,
                   child: ListView.builder(

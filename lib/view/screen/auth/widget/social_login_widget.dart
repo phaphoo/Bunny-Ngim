@@ -1,10 +1,9 @@
-import 'dart:io';
-import 'package:bunny_ngim_app/controller/facebook_login_controller.dart';
 import 'package:bunny_ngim_app/controller/google_sign_in_controller.dart';
 import 'package:bunny_ngim_app/model/response/auth_model.dart';
 import 'package:bunny_ngim_app/util/dimensions.dart';
 import 'package:bunny_ngim_app/util/images.dart';
 import 'package:bunny_ngim_app/util/text_styles.dart';
+import 'package:bunny_ngim_app/view/dashboard/dashboard_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -15,7 +14,7 @@ class SocialLoginWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     AuthModel authModel = AuthModel();
 
-    List<Widget> _socialList = [
+    List<Widget> socialList = [
       InkWell(
         onTap: () async {
           await Get.find<GoogleSignInController>().login();
@@ -166,11 +165,14 @@ class SocialLoginWidget extends StatelessWidget {
 
         Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: _socialList,
+          children: socialList,
         ),
         const SizedBox(height: Dimensions.paddingSizeExtraLarge),
 
-        InkWell(child: Text('skip_for_now'.tr, style: titilliumRegular)),
+        InkWell(
+          onTap: () => Get.offAll(() => DashBoardScreen()),
+          child: Text('skip_for_now'.tr, style: titilliumRegular),
+        ),
       ],
     );
   }

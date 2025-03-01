@@ -67,7 +67,7 @@ class _SearchScreenState extends State<SearchScreen> {
                 right: Dimensions.paddingSizeSmall,
               ),
               onPressed: () {
-                Get.to(CartScreen());
+                Get.to(CartScreen(isBackToExit: true));
               },
               icon: Stack(
                 fit: StackFit.expand,

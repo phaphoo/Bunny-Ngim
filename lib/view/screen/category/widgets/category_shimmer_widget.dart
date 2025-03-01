@@ -18,52 +18,54 @@ class CategoryShimmerWidget extends StatelessWidget {
             padding: const EdgeInsets.only(left: Dimensions.paddingSizeDefault),
             child: SizedBox(
               height: 50,
-              child: Container(
-                width: 100,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: Theme.of(context).hintColor,
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey.withValues(alpha: 0.2),
-                      spreadRadius: 1,
-                      blurRadius: 5,
-                    ),
-                  ],
-                ),
-                child: Shimmer.fromColors(
-                  baseColor: Theme.of(context).cardColor,
-                  highlightColor: Colors.grey[300]!,
-                  enabled: true,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      Container(
-                        height: 70,
-                        padding: const EdgeInsets.all(10),
-                        decoration: BoxDecoration(
-                          color: Theme.of(context).hintColor,
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                      ),
-
-                      Padding(
-                        padding: const EdgeInsets.all(10),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const SizedBox(
-                              height: Dimensions.paddingSizeExtraSmall,
-                            ),
-                            Container(
-                              height: 5,
-                              color: Theme.of(context).cardColor,
-                            ),
-                          ],
-                        ),
+              child: ClipOval(
+                child: Container(
+                  width: 100,
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).hintColor,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.withValues(alpha: 0.2),
+                        spreadRadius: 1,
+                        blurRadius: 5,
                       ),
                     ],
+                  ),
+                  child: Shimmer.fromColors(
+                    baseColor: Theme.of(context).cardColor,
+                    highlightColor: Colors.grey[300]!,
+                    enabled: false,
+                    child: SizedBox(),
+                    // child: Column(
+                    //   crossAxisAlignment: CrossAxisAlignment.stretch,
+                    //   children: [
+                    //     Container(
+                    //       height: 70,
+                    //       padding: const EdgeInsets.all(10),
+                    //       decoration: BoxDecoration(
+                    //         color: Theme.of(context).hintColor,
+                    //         borderRadius: BorderRadius.circular(10),
+                    //       ),
+                    //     ),
+
+                    //     Padding(
+                    //       padding: const EdgeInsets.all(10),
+                    //       child: Column(
+                    //         mainAxisAlignment: MainAxisAlignment.center,
+                    //         crossAxisAlignment: CrossAxisAlignment.start,
+                    //         children: [
+                    //           const SizedBox(
+                    //             height: Dimensions.paddingSizeExtraSmall,
+                    //           ),
+                    //           Container(
+                    //             height: 5,
+                    //             color: Theme.of(context).cardColor,
+                    //           ),
+                    //         ],
+                    //       ),
+                    //     ),
+                    //   ],
+                    // ),
                   ),
                 ),
               ),

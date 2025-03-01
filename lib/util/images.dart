@@ -10,6 +10,8 @@ class Images {
   static const String billing = 'assets/images/billing_image.png';
   static const String checkcircle = 'assets/images/check_circle_image.png';
   static const String abapay = 'assets/images/abapay_image.png';
+  static const String basket = 'assets/images/basket.png';
+  static const String addToCart = 'assets/images/add-to-bag.png';
   static const String profileIcon = 'assets/images/profile_icon.png';
   static const String shoppingCart = 'assets/images/shopping-cart.png';
   static const String orderHistory = 'assets/images/order-history.png';

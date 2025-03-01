@@ -23,6 +23,8 @@
     "seconds": "seconds",
     "verify": "Verify",
     "otp_verification": "OTP Verification",
+    "skip_for_now": "Skip for now",
+    "all": "All",
     "please_input_otp_to_verify": "Please enter otp to verify",
     "select_language": "Select Language",
     "choose_your_language_to_proceed": "Choose your language to proceed",
