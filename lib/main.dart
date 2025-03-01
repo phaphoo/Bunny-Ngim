@@ -8,6 +8,7 @@ import 'package:bunny_ngim_app/helper/get_di.dart' as di;
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
 import 'helper/notification_helper copy.dart';
 
@@ -20,6 +21,7 @@ Future<void> main() async {
   }
 
   Map<String, Map<String, String>> _languages = await di.init();
+  await GetStorage.init();
   Get.find<LocalizationController>().loadCurrentLanguage();
   FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
       FlutterLocalNotificationsPlugin();

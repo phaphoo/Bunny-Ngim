@@ -19,11 +19,11 @@ class ProductModel {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.productsource != null) {
-      data['productsource'] = this.productsource!.toJson();
+    if (productsource != null) {
+      data['productsource'] = productsource!.toJson();
     }
-    if (this.productrecordinfo != null) {
-      data['productrecordinfo'] = this.productrecordinfo!.toJson();
+    if (productrecordinfo != null) {
+      data['productrecordinfo'] = productrecordinfo!.toJson();
     }
     return data;
   }
@@ -88,23 +88,23 @@ class Productsource {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['current_page'] = this.currentPage;
+    data['current_page'] = currentPage;
     if (this.data != null) {
       data['data'] = this.data!.map((v) => v.toJson()).toList();
     }
-    data['first_page_url'] = this.firstPageUrl;
-    data['from'] = this.from;
-    data['last_page'] = this.lastPage;
-    data['last_page_url'] = this.lastPageUrl;
-    if (this.links != null) {
-      data['links'] = this.links!.map((v) => v.toJson()).toList();
+    data['first_page_url'] = firstPageUrl;
+    data['from'] = from;
+    data['last_page'] = lastPage;
+    data['last_page_url'] = lastPageUrl;
+    if (links != null) {
+      data['links'] = links!.map((v) => v.toJson()).toList();
     }
-    data['next_page_url'] = this.nextPageUrl;
-    data['path'] = this.path;
-    data['per_page'] = this.perPage;
-    data['prev_page_url'] = this.prevPageUrl;
-    data['to'] = this.to;
-    data['total'] = this.total;
+    data['next_page_url'] = nextPageUrl;
+    data['path'] = path;
+    data['per_page'] = perPage;
+    data['prev_page_url'] = prevPageUrl;
+    data['to'] = to;
+    data['total'] = total;
     return data;
   }
 }
@@ -183,12 +183,22 @@ class Product {
     productType = json['product_type'];
     isservice = json['isservice'];
     // imginfo = json['imginfo'];
-    imginfo =
-        json['imginfo'] != null && json['imginfo'].isNotEmpty
-            ? (jsonDecode(json['imginfo']) as List).isNotEmpty
-                ? ImageInfo.fromJson(jsonDecode(json['imginfo'])[0])
-                : null
-            : null;
+    if (json['imginfo'] != null) {
+      if (json['imginfo'] is String) {
+        // If `imginfo` is a String, decode it
+        List<dynamic> imgList = jsonDecode(json['imginfo']);
+        imginfo = imgList.isNotEmpty ? ImageInfo.fromJson(imgList[0]) : null;
+      } else if (json['imginfo'] is List) {
+        // If `imginfo` is already a List
+        imginfo =
+            json['imginfo'].isNotEmpty
+                ? ImageInfo.fromJson(json['imginfo'][0])
+                : null;
+      } else if (json['imginfo'] is Map) {
+        // If `imginfo` is a single Map
+        imginfo = ImageInfo.fromJson(json['imginfo']);
+      }
+    }
     display = json['display'];
     title = json['title'];
     category = json['category'];
@@ -200,34 +210,34 @@ class Product {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['category_id'] = this.categoryId;
-    data['barcode'] = this.barcode;
-    data['productcode'] = this.productcode;
-    data['sizes'] = this.sizes;
-    data['colors'] = this.colors;
-    data['units'] = this.units;
-    data['unit_id'] = this.unitId;
-    data['printer_id'] = this.printerId;
-    data['costing'] = this.costing;
-    data['pricing'] = this.pricing;
-    data['xtraprice'] = this.xtraprice;
-    data['discount'] = this.discount;
-    data['pvat'] = this.pvat;
-    data['madewith'] = this.madewith;
-    data['product_type'] = this.productType;
-    data['isservice'] = this.isservice;
+    data['id'] = id;
+    data['category_id'] = categoryId;
+    data['barcode'] = barcode;
+    data['productcode'] = productcode;
+    data['sizes'] = sizes;
+    data['colors'] = colors;
+    data['units'] = units;
+    data['unit_id'] = unitId;
+    data['printer_id'] = printerId;
+    data['costing'] = costing;
+    data['pricing'] = pricing;
+    data['xtraprice'] = xtraprice;
+    data['discount'] = discount;
+    data['pvat'] = pvat;
+    data['madewith'] = madewith;
+    data['product_type'] = productType;
+    data['isservice'] = isservice;
     // data['imginfo'] = this.imginfo;
-    if (this.imginfo != null) {
-      data['imginfo'] = this.imginfo!.toJson();
+    if (imginfo != null) {
+      data['imginfo'] = imginfo!.toJson();
     }
-    data['display'] = this.display;
-    data['title'] = this.title;
-    data['category'] = this.category;
-    data['unit'] = this.unit;
-    data['expireddate'] = this.expireddate;
-    data['dfpricing'] = this.dfpricing;
-    data['priceformat'] = this.priceformat;
+    data['display'] = display;
+    data['title'] = title;
+    data['category'] = category;
+    data['unit'] = unit;
+    data['expireddate'] = expireddate;
+    data['dfpricing'] = dfpricing;
+    data['priceformat'] = priceformat;
     return data;
   }
 }
@@ -247,9 +257,9 @@ class Links {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['url'] = this.url;
-    data['label'] = this.label;
-    data['active'] = this.active;
+    data['url'] = url;
+    data['label'] = label;
+    data['active'] = active;
     return data;
   }
 }
@@ -279,11 +289,11 @@ class Productrecordinfo {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['from'] = this.from;
-    data['to'] = this.to;
-    data['total'] = this.total;
-    data['perpage'] = this.perpage;
-    data['lastpage'] = this.lastpage;
+    data['from'] = from;
+    data['to'] = to;
+    data['total'] = total;
+    data['perpage'] = perpage;
+    data['lastpage'] = lastpage;
     return data;
   }
 }

@@ -3,7 +3,9 @@ import 'package:bunny_ngim_app/api/api_client.dart';
 import 'package:bunny_ngim_app/config/config_controller.dart';
 import 'package:bunny_ngim_app/config/localization_controller.dart';
 import 'package:bunny_ngim_app/controller/banner_controller.dart';
+import 'package:bunny_ngim_app/controller/cart_controller.dart';
 import 'package:bunny_ngim_app/controller/category_controller.dart';
+import 'package:bunny_ngim_app/controller/favorite_controller.dart';
 import 'package:bunny_ngim_app/controller/google_sign_in_controller.dart';
 import 'package:bunny_ngim_app/controller/product_controller.dart';
 import 'package:bunny_ngim_app/controller/sms_controller.dart';
@@ -20,6 +22,7 @@ import 'package:get/get.dart';
 Future<Map<String, Map<String, String>>> init() async {
   // Core
   final sharedPreferences = await SharedPreferences.getInstance();
+
   Get.lazyPut(() => sharedPreferences);
   Get.lazyPut(
     () => ApiClient(
@@ -41,6 +44,9 @@ Future<Map<String, Map<String, String>>> init() async {
   Get.lazyPut(() => ConfigRepo(apiClient: Get.find()));
   Get.lazyPut(() => CategoryRepo(apiClient: Get.find()));
   Get.lazyPut(() => LocalizationController());
+  Get.lazyPut(() => FavoriteController());
+  Get.lazyPut(() => CartController());
+
   Get.lazyPut(() => SMSController());
   Get.lazyPut(() => BannerController());
   Get.lazyPut(() => GoogleAuthProvider());
@@ -83,18 +89,18 @@ Future<Map<String, Map<String, String>>> init() async {
   // Get.lazyPut(() => LocationRepo(apiClient: Get.find()));
 
   // Retrieving localized data
-  Map<String, Map<String, String>> _languages = Map();
+  Map<String, Map<String, String>> languages = Map();
   for (LanguageModel languageModel in AppConstants.languages) {
     String jsonStringValues = await rootBundle.loadString(
       'assets/language/${languageModel.languageCode}.json',
     );
-    Map<String, dynamic> _mappedJson = json.decode(jsonStringValues);
+    Map<String, dynamic> mappedJson = json.decode(jsonStringValues);
     Map<String, String> _json = Map();
-    _mappedJson.forEach((key, value) {
+    mappedJson.forEach((key, value) {
       _json[key] = value.toString();
     });
-    _languages['${languageModel.languageCode}_${languageModel.countryCode}'] =
+    languages['${languageModel.languageCode}_${languageModel.countryCode}'] =
         _json;
   }
-  return _languages;
+  return languages;
 }

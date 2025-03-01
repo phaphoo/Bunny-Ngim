@@ -171,7 +171,12 @@ class SocialLoginWidget extends StatelessWidget {
 
         InkWell(
           onTap: () => Get.offAll(() => DashBoardScreen()),
-          child: Text('skip_for_now'.tr, style: titilliumRegular),
+          child: Text(
+            'skip_for_now'.tr,
+            style: titilliumBold.copyWith(
+              color: Theme.of(context).secondaryHeaderColor,
+            ),
+          ),
         ),
       ],
     );

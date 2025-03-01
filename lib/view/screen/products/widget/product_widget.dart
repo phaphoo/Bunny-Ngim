@@ -164,6 +164,7 @@ class ProductWidget extends StatelessWidget {
                   top: 18,
                   right: 16,
                   child: FavouriteButtonWidget(
+                    product: productModel,
                     backgroundColor: Theme.of(context).hintColor,
                     productId: productModel.id,
                   ),
@@ -173,6 +174,7 @@ class ProductWidget extends StatelessWidget {
                   top: 50,
                   right: 16,
                   child: AddToCartButtonWidget(
+                    product: productModel,
                     backgroundColor: Theme.of(context).hintColor,
                     productId: productModel.id,
                   ),

@@ -12,6 +12,10 @@ class Images {
   static const String abapay = 'assets/images/abapay_image.png';
   static const String basket = 'assets/images/basket.png';
   static const String addToCart = 'assets/images/add-to-bag.png';
+  static const String homePage = 'assets/images/home-page.png';
+  static const String avatarIcon = 'assets/images/avatar-icon.png';
+  static const String noteIcon = 'assets/images/note-icon.png';
+  static const String like = 'assets/images/like.png';
   static const String profileIcon = 'assets/images/profile_icon.png';
   static const String shoppingCart = 'assets/images/shopping-cart.png';
   static const String orderHistory = 'assets/images/order-history.png';

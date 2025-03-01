@@ -85,4 +85,11 @@ class ProductController extends GetxController implements GetxService {
       update();
     }
   }
+
+  int? _featuredDealSelectedIndex;
+  int? get featuredDealSelectedIndex => _featuredDealSelectedIndex;
+  void changeSelectedIndex(int selectedIndex) {
+    _featuredDealSelectedIndex = selectedIndex;
+    update();
+  }
 }

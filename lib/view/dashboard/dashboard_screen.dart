@@ -4,6 +4,7 @@ import 'package:bunny_ngim_app/util/images.dart';
 import 'package:bunny_ngim_app/util/text_styles.dart';
 import 'package:bunny_ngim_app/view/base/custom_exit_card.dart';
 import 'package:bunny_ngim_app/view/screen/account/account_screen.dart';
+import 'package:bunny_ngim_app/view/screen/cart/cart_screen.dart';
 import 'package:bunny_ngim_app/view/screen/favorite/favorite_screen.dart';
 import 'package:bunny_ngim_app/view/screen/home/home_screen.dart';
 import 'package:bunny_ngim_app/view/screen/order/order_screen.dart';
@@ -32,25 +33,31 @@ class DashBoardScreenState extends State<DashBoardScreen> {
     _screens = [
       NavigationModel(
         name: 'home',
-        icon: Images.homeIcon,
+        icon: Images.homePage,
         screen: const HomeScreen(),
       ),
 
       NavigationModel(
+        name: 'my_cart',
+        icon: Images.cart,
+        screen: CartScreen(isBackToExit: false),
+      ),
+
+      NavigationModel(
         name: 'history',
-        icon: Images.orderHistory,
+        icon: Images.noteIcon,
         screen: OrderScreen(isBackToExit: false),
       ),
 
       NavigationModel(
         name: 'favorite',
-        icon: Images.heart,
-        screen: const FavoriteScreen(isBackToExit: false),
+        icon: Images.like,
+        screen: FavoriteScreen(isBackToExit: false),
       ),
 
       NavigationModel(
         name: 'account',
-        icon: Images.profileIcon,
+        icon: Images.avatarIcon,
         screen: const AccountScreen(isBackToExit: false),
       ),
     ];
@@ -150,7 +157,7 @@ class CustomMenuItem extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.all(2),
         child: SizedBox(
-          width: isSelected ? 90 : 50,
+          width: isSelected ? 100 : 60,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
@@ -162,8 +169,8 @@ class CustomMenuItem extends StatelessWidget {
                     isSelected
                         ? Theme.of(context).primaryColor
                         : Theme.of(context).hintColor,
-                width: Dimensions.paddingSizeLarge,
-                height: Dimensions.paddingSizeLarge,
+                width: Dimensions.paddingSizeExtraLarge,
+                height: Dimensions.paddingSizeExtraLarge,
               ),
               isSelected
                   ? Text(
