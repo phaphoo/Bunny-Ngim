@@ -4,7 +4,7 @@
 <dict>
     <key>BGTaskSchedulerPermittedIdentifiers</key>
 	<array>
-		<string>com.phsarfarmkhmer.userapp</string>
+		<string>com.pfkbunnyngim.userapp</string>
 	</array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>

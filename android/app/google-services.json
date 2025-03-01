@@ -7,6 +7,50 @@
   "client": [
     {
       "client_info": {
+        "mobilesdk_app_id": "1:541658347578:android:e514cee7ba9c5d9273dd03",
+        "android_client_info": {
+          "package_name": "com.pfkbunnyngim.userapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "541658347578-1j5ecajvdfukp7580jq6705eqv9hq2cc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.pfkbunnyngim.userapp",
+            "certificate_hash": "4a545597c7ee38a9f4c261d01645043205eaf64e"
+          }
+        },
+        {
+          "client_id": "541658347578-lk0a6ae3i8nnqaqpvnpb2i89bc1oiv1m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBHIh9TDj4xGw9f3s0keSszIMAn5rJw5Dc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "541658347578-lk0a6ae3i8nnqaqpvnpb2i89bc1oiv1m.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "541658347578-9qcsm5j5ftllhbo0g0fj74hec9iskovp.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.phsarfarmkhmer.userapp"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:541658347578:android:fa1533c6d84b561f73dd03",
         "android_client_info": {
           "package_name": "com.phsarfarmkhmer.userapp"

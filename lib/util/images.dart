@@ -11,6 +11,7 @@ class Images {
   static const String checkcircle = 'assets/images/check_circle_image.png';
   static const String abapay = 'assets/images/abapay_image.png';
   static const String basket = 'assets/images/basket.png';
+  static const String usa = 'assets/images/usa.png';
   static const String addToCart = 'assets/images/add-to-bag.png';
   static const String homePage = 'assets/images/home-page.png';
   static const String avatarIcon = 'assets/images/avatar-icon.png';

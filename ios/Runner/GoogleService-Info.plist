@@ -3,11 +3,11 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>541658347578-9qcsm5j5ftllhbo0g0fj74hec9iskovp.apps.googleusercontent.com</string>
+	<string>541658347578-biehlsfaiksjr7lf0jkil04tnsouhv62.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.541658347578-9qcsm5j5ftllhbo0g0fj74hec9iskovp</string>
+	<string>com.googleusercontent.apps.541658347578-biehlsfaiksjr7lf0jkil04tnsouhv62</string>
 	<key>ANDROID_CLIENT_ID</key>
-	<string>541658347578-b0ena3523u70tuvq5e22p07chhd2irga.apps.googleusercontent.com</string>
+	<string>541658347578-1j5ecajvdfukp7580jq6705eqv9hq2cc.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
 	<string>AIzaSyAbGN1Tc2t9obpzwXSF9O7EoOmgiA_fr7U</string>
 	<key>GCM_SENDER_ID</key>
@@ -15,7 +15,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.phsarfarmkhmer.userapp</string>
+	<string>com.pfkbunnyngim.userapp</string>
 	<key>PROJECT_ID</key>
 	<string>bunny-ngim-app</string>
 	<key>STORAGE_BUCKET</key>
@@ -31,6 +31,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:541658347578:ios:e158bc54cd82a9da73dd03</string>
+	<string>1:541658347578:ios:66192ab598b45c1173dd03</string>
 </dict>
 </plist>
