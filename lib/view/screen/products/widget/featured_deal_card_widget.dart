@@ -2,6 +2,7 @@ import 'package:bunny_ngim_app/model/response/product_model.dart';
 import 'package:bunny_ngim_app/util/dimensions.dart';
 import 'package:bunny_ngim_app/util/text_styles.dart';
 import 'package:bunny_ngim_app/view/base/painter/custom_image.dart';
+import 'package:bunny_ngim_app/view/screen/products/product_details_screen.dart';
 import 'package:bunny_ngim_app/view/screen/products/widget/add_to_cart_button_widget.dart';
 import 'package:bunny_ngim_app/view/screen/products/widget/favourite_button_widget.dart';
 import 'package:flutter/material.dart';
@@ -20,7 +21,18 @@ class FeaturedDealWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: null,
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder:
+                (_) => ProductDetails(
+                  productId: product.id,
+                  productDetailsModel: product,
+                ),
+          ),
+        );
+      },
 
       child: LayoutBuilder(
         builder: (context, constrains) {

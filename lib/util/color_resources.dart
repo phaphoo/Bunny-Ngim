@@ -15,11 +15,7 @@ class ColorResources {
   static Color blue3 = const Color(0xffFF7129);
   static Color blue4 = const Color(0xffFF7129);
 
-  static List<Color> myColors = [
-    blue,
-    blue1,
-    blue2,
-    blue3,
-    blue4,
-  ];
+  static List<Color> myColors = [blue, blue1, blue2, blue3, blue4];
+
+  static var red;
 }

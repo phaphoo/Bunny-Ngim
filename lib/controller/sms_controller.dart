@@ -30,7 +30,7 @@ class SMSController extends GetxController implements GetxService {
     _isLoading = true;
     update();
     _fullnumber = fullnumber;
-    Get.to(VerifyScreen(fullnumber: _fullnumber));
+    Get.to(() => VerifyScreen(fullnumber: _fullnumber));
     try {
       _auth.setLanguageCode(Get.locale!.languageCode);
       await _auth.verifyPhoneNumber(
@@ -46,7 +46,7 @@ class SMSController extends GetxController implements GetxService {
           _isLoading = false;
           update();
 
-          Get.to(VerifyScreen(fullnumber: _fullnumber));
+          Get.to(() => VerifyScreen(fullnumber: _fullnumber));
         },
         timeout: Duration(seconds: 120),
         codeAutoRetrievalTimeout: (String verificationId) {},

@@ -3,6 +3,7 @@ import 'package:bunny_ngim_app/model/response/product_model.dart';
 import 'package:bunny_ngim_app/util/dimensions.dart';
 import 'package:bunny_ngim_app/util/text_styles.dart';
 import 'package:bunny_ngim_app/view/base/painter/custom_image.dart';
+import 'package:bunny_ngim_app/view/screen/products/product_details_screen.dart';
 import 'package:bunny_ngim_app/view/screen/products/widget/add_to_cart_button_widget.dart';
 import 'package:bunny_ngim_app/view/screen/products/widget/favourite_button_widget.dart';
 import 'package:flutter/material.dart';
@@ -23,12 +24,16 @@ class ProductWidget extends StatelessWidget {
       builder: (configController) {
         return InkWell(
           onTap: () {
-            // Navigator.push(
-            //     context,
-            //     PageRouteBuilder(
-            //         transitionDuration: const Duration(milliseconds: 1000),
-            //         pageBuilder: (context, anim1, anim2) => ProductDetails(
-            //             productId: productModel.id, slug: productModel.slug)));
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder:
+                    (_) => ProductDetails(
+                      productId: productModel.id,
+                      productDetailsModel: productModel,
+                    ),
+              ),
+            );
           },
           child: Container(
             margin: const EdgeInsets.all(Dimensions.paddingSizeExtraSmall),
