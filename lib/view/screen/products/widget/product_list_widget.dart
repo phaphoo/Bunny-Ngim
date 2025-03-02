@@ -1,50 +1,41 @@
-import 'package:bunny_ngim_app/controller/category_controller.dart';
+import 'package:bunny_ngim_app/controller/product_controller.dart';
 import 'package:bunny_ngim_app/util/dimensions.dart';
 import 'package:bunny_ngim_app/view/base/title_widget.dart';
 import 'package:bunny_ngim_app/view/screen/category/category_products_screen.dart';
-import 'package:bunny_ngim_app/view/screen/category/widgets/category_widget.dart';
+import 'package:bunny_ngim_app/view/screen/category/widgets/category_shimmer_widget.dart';
+import 'package:bunny_ngim_app/view/screen/products/widget/product_list_tile_widget.dart';
+import 'package:bunny_ngim_app/view/screen/products/widget/product_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'category_shimmer_widget.dart';
-
-class CategoryListWidget extends StatelessWidget {
+class ProductListWidget extends StatelessWidget {
   final bool isHomePage;
-  const CategoryListWidget({super.key, required this.isHomePage});
+  const ProductListWidget({super.key, required this.isHomePage});
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<CategoryController>(
-      builder: (categoryProvider) {
+    return GetBuilder<ProductController>(
+      builder: (productController) {
         return Column(
           children: [
             Padding(
               padding: const EdgeInsets.symmetric(
                 horizontal: Dimensions.paddingSizeSmall,
               ),
-              child: TitleWidget(
-                title: 'category'.tr,
-                onTap: () {
-                  Get.to(
-                    () => CategoryProductsScreen(
-                      category: null,
-                      isBackToExit: true,
-                    ),
-                  );
-                },
-              ),
+              child: TitleWidget(title: 'recommended'.tr, onTap: null),
             ),
 
-            categoryProvider.categoryList != null &&
-                    categoryProvider.categoryList!.isNotEmpty
+            productController.productList != null &&
+                    productController.productList!.isNotEmpty
                 ? SizedBox(
-                  height: MediaQuery.of(context).size.width / 3.3,
+                  height: MediaQuery.of(context).size.width / 1.6,
                   child: ListView.builder(
                     padding: EdgeInsets.symmetric(
                       horizontal: Dimensions.paddingSizeSmall,
+                      vertical: Dimensions.paddingSizeSmall,
                     ),
                     scrollDirection: Axis.horizontal,
-                    itemCount: categoryProvider.categoryList!.length,
+                    itemCount: productController.productList!.length,
                     shrinkWrap: true,
                     itemBuilder: (BuildContext context, int index) {
                       return InkWell(
@@ -53,13 +44,11 @@ class CategoryListWidget extends StatelessWidget {
                         onTap: () {
                           // Navigator.push(context, MaterialPageRoute(builder: (_) => BrandAndCategoryProductScreen(
                           //     isBrand: false,
-                          //     id: categoryProvider.categoryList[index].id.toString(),
-                          //     name: categoryProvider.categoryList[index].name)));
+                          //     id: productController.categoryList[index].id.toString(),
+                          //     name: productController.categoryList[index].name)));
                         },
-                        child: CategoryWidget(
-                          category: categoryProvider.categoryList![index],
-                          index: index,
-                          length: categoryProvider.categoryList!.length,
+                        child: ProductListTileWidget(
+                          productModel: productController.productList![index],
                         ),
                       );
                     },

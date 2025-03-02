@@ -8,10 +8,10 @@ import 'package:bunny_ngim_app/view/screen/products/widget/favourite_button_widg
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class ProductWidget extends StatelessWidget {
+class ProductListTileWidget extends StatelessWidget {
   final Product productModel;
   final int productNameLine;
-  const ProductWidget({
+  const ProductListTileWidget({
     super.key,
     required this.productModel,
     this.productNameLine = 2,
@@ -51,7 +51,7 @@ class ProductWidget extends StatelessWidget {
             child: Stack(
               children: [
                 Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  // crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     LayoutBuilder(
                       builder:
@@ -64,50 +64,48 @@ class ProductWidget extends StatelessWidget {
                                 Dimensions.radiusSizeDefault,
                               ),
                             ),
-                            child: Stack(
-                              children: [
-                                Container(
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(
-                                      Dimensions.paddingSizeSmall,
-                                    ),
-                                    border: Border.all(
-                                      color: Theme.of(
-                                        context,
-                                      ).primaryColor.withValues(alpha: .10),
-                                      width: 1,
-                                    ),
-                                    color: Theme.of(context).highlightColor,
-                                    boxShadow: [
-                                      BoxShadow(
-                                        color: Theme.of(
-                                          context,
-                                        ).primaryColor.withValues(alpha: 0.05),
-                                        spreadRadius: 0,
-                                        blurRadius: 10,
-                                        offset: const Offset(0, 0),
-                                      ),
-                                    ],
-                                  ),
-                                  margin: const EdgeInsets.only(
-                                    left: Dimensions.paddingSizeSmall,
-                                    top: Dimensions.paddingSizeSmall,
-                                    right: Dimensions.paddingSizeSmall,
-                                  ),
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(
-                                      Dimensions.paddingSizeDefault,
-                                    ),
-                                    child: CustomImage(
-                                      image:
-                                          '${configController.filePath}/${productModel.imginfo!.fileName}',
-                                      fit: BoxFit.cover,
-                                      height: boxConstraint.maxWidth * 0.82,
-                                      width: boxConstraint.maxWidth,
-                                    ),
-                                  ),
+                            child: Container(
+                              height: MediaQuery.of(context).size.width / 3,
+                              width: MediaQuery.of(context).size.width / 2.6,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(
+                                  Dimensions.paddingSizeSmall,
                                 ),
-                              ],
+                                border: Border.all(
+                                  color: Theme.of(
+                                    context,
+                                  ).primaryColor.withValues(alpha: .10),
+                                  width: 1,
+                                ),
+                                color: Theme.of(context).highlightColor,
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Theme.of(
+                                      context,
+                                    ).primaryColor.withValues(alpha: 0.05),
+                                    spreadRadius: 0,
+                                    blurRadius: 10,
+                                    offset: const Offset(0, 0),
+                                  ),
+                                ],
+                              ),
+                              margin: const EdgeInsets.only(
+                                left: Dimensions.paddingSizeSmall,
+                                top: Dimensions.paddingSizeSmall,
+                                right: Dimensions.paddingSizeSmall,
+                              ),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(
+                                  Dimensions.paddingSizeDefault,
+                                ),
+                                child: CustomImage(
+                                  image:
+                                      '${configController.filePath}/${productModel.imginfo!.fileName}',
+                                  fit: BoxFit.cover,
+                                  height: boxConstraint.maxWidth * 0.82,
+                                  width: boxConstraint.maxWidth,
+                                ),
+                              ),
                             ),
                           ),
                     ),

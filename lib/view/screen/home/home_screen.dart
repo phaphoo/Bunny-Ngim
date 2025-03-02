@@ -15,6 +15,7 @@ import 'package:bunny_ngim_app/view/screen/category/widgets/category_list_widget
 import 'package:bunny_ngim_app/view/screen/home/widgets/banners_widget.dart';
 import 'package:bunny_ngim_app/view/screen/products/featured_deal_list_widget.dart';
 import 'package:bunny_ngim_app/view/screen/products/products_view.dart';
+import 'package:bunny_ngim_app/view/screen/products/widget/product_list_widget.dart';
 import 'package:bunny_ngim_app/view/screen/search/search_home_page_widget.dart';
 import 'package:bunny_ngim_app/view/screen/search/search_screen.dart';
 import 'package:bunny_ngim_app/view/setting/popup_language.dart';
@@ -212,9 +213,13 @@ class _HomeScreenState extends State<HomeScreen> {
                               height: Dimensions.paddingSizeDefault,
                             ),
                             const FeaturedDealsListWidget(),
-                            const SizedBox(
-                              height: Dimensions.paddingSizeDefault,
-                            ),
+                            // const SizedBox(
+                            //   height: Dimensions.paddingSizeDefault,
+                            // ),
+                            const ProductListWidget(isHomePage: true),
+                            // const SizedBox(
+                            //   height: Dimensions.paddingSizeDefault,
+                            // ),
                             Padding(
                               padding: const EdgeInsets.symmetric(
                                 horizontal: Dimensions.paddingSizeSmall,
