@@ -62,7 +62,6 @@ class CartController extends GetxController implements GetxService {
               .toList()
               .reversed
               .toList();
-      ;
     }
     update();
   }

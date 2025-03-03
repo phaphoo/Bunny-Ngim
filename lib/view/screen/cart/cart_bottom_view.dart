@@ -41,6 +41,14 @@ class _MiniProductBottomSheetState extends State<MiniProductBottomSheet> {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
+          Container(
+            width: 40,
+            height: 5,
+            decoration: BoxDecoration(
+              color: Theme.of(context).hintColor.withOpacity(.5),
+              borderRadius: BorderRadius.circular(20),
+            ),
+          ),
           Row(
             children: [
               ClipRRect(

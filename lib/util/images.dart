@@ -9,9 +9,14 @@ class Images {
   static const String facebook1 = 'assets/images/facebook_image.png';
   static const String billing = 'assets/images/billing_image.png';
   static const String checkcircle = 'assets/images/check_circle_image.png';
+  static const String contactUs = 'assets/images/contact-form.png';
+  static const String info = 'assets/images/info.png';
   static const String abapay = 'assets/images/abapay_image.png';
   static const String basket = 'assets/images/basket.png';
+  static const String loginIcon = 'assets/images/login_icon.png';
+  static const String delete = 'assets/images/delete.png';
   static const String usa = 'assets/images/usa.png';
+  static const String guestProfile = 'assets/images/guest_profile.png';
   static const String addToCart = 'assets/images/add-to-bag.png';
   static const String homePage = 'assets/images/home-page.png';
   static const String avatarIcon = 'assets/images/avatar-icon.png';
