@@ -28,7 +28,7 @@ class FlashDealsListWidget extends StatelessWidget {
                       child: CarouselSlider.builder(
                         options: CarouselOptions(
                           viewportFraction: ResponsiveHelper.isTab() ? .5 : .65,
-                          autoPlay: false,
+                          autoPlay: true,
                           pauseAutoPlayOnTouch: true,
                           pauseAutoPlayOnManualNavigate: true,
                           enlargeFactor: 0.2,

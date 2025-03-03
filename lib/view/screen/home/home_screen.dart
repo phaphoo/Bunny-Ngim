@@ -108,7 +108,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                 20,
                                           )
                                           : CustomImage(
-                                            image: Images.english,
+                                            image: Images.usa,
                                             height:
                                                 Dimensions.iconSizeExtraLarge -
                                                 3,

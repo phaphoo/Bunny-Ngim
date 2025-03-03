@@ -22,9 +22,15 @@ class _MiniProductBottomSheetState extends State<MiniProductBottomSheet> {
   double totalPrice = 0;
 
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    totalPrice = double.parse(widget.product.dfpricing.toString() ?? '0');
+  }
+
+  @override
   Widget build(BuildContext context) {
     final CartController cartController = Get.find<CartController>();
-    totalPrice = double.parse(widget.product.dfpricing.toString() ?? '0');
 
     return Container(
       padding: const EdgeInsets.all(16),

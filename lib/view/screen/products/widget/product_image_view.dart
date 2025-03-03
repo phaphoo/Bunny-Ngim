@@ -22,11 +22,15 @@ class ProductImageView extends StatelessWidget {
               () => Get.to(
                 ProductImageScreen(
                   title: 'product_image'.tr,
-                  imageList: [productModel.imginfo!.filepath],
+                  imageList:
+                      productModel.imginfo != null
+                          ? [productModel.imginfo!.filepath]
+                          : [],
                 ),
               ),
           child:
-              productModel.imginfo!.filepath.isNotEmpty
+              productModel.imginfo != null &&
+                      productModel.imginfo!.filepath.isNotEmpty
                   ? ClipRRect(
                     child: Container(
                       decoration: BoxDecoration(
@@ -40,7 +44,11 @@ class ProductImageView extends StatelessWidget {
                           SizedBox(
                             height: MediaQuery.of(context).size.width,
                             child:
-                                productModel.imginfo!.filepath.isNotEmpty
+                                productModel.imginfo != null &&
+                                        productModel
+                                            .imginfo!
+                                            .filepath
+                                            .isNotEmpty
                                     ? PageView.builder(
                                       controller: _controller,
                                       itemCount:
@@ -92,7 +100,10 @@ class ProductImageView extends StatelessWidget {
                       ),
                     ),
                   )
-                  : const SizedBox(),
+                  : SizedBox(
+                    height: MediaQuery.of(context).size.width,
+                    child: CustomImage(image: 'empty'),
+                  ),
         ),
       ],
     );

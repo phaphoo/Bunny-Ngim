@@ -23,7 +23,7 @@ class FeaturedDealsListWidget extends StatelessWidget {
                       options: CarouselOptions(
                         aspectRatio: 2.5,
                         viewportFraction: 0.86,
-                        autoPlay: false,
+                        autoPlay: true,
                         pauseAutoPlayOnTouch: true,
                         pauseAutoPlayOnManualNavigate: true,
                         pauseAutoPlayInFiniteScroll: true,

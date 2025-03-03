@@ -70,7 +70,7 @@ class ProductListTileWidget extends StatelessWidget {
                               width: MediaQuery.of(context).size.width / 2.6,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(
-                                  Dimensions.paddingSizeSmall,
+                                  Dimensions.radiusSizeDefault,
                                 ),
                                 border: Border.all(
                                   color: Theme.of(
@@ -97,11 +97,13 @@ class ProductListTileWidget extends StatelessWidget {
                               ),
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(
-                                  Dimensions.paddingSizeDefault,
+                                  Dimensions.radiusSizeDefault,
                                 ),
                                 child: CustomImage(
                                   image:
-                                      '${configController.filePath}/${productModel.imginfo!.fileName}',
+                                      productModel.imginfo != null
+                                          ? '${configController.filePath}/${productModel.imginfo!.fileName}'
+                                          : '',
                                   fit: BoxFit.cover,
                                   height: boxConstraint.maxWidth * 0.82,
                                   width: boxConstraint.maxWidth,

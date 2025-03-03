@@ -22,6 +22,14 @@
           }
         },
         {
+          "client_id": "541658347578-rqu4hmpji1emfm780n8s2ttb2cdsa90m.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.pfkbunnyngim.userapp",
+            "certificate_hash": "d61995be3cef8e4f9ecc588976f87bd437236214"
+          }
+        },
+        {
           "client_id": "541658347578-lk0a6ae3i8nnqaqpvnpb2i89bc1oiv1m.apps.googleusercontent.com",
           "client_type": 3
         }

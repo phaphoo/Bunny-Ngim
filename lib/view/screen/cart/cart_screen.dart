@@ -82,7 +82,10 @@ class _CartScreenState extends State<CartScreen> {
                                 Dimensions.radiusSizeSmall,
                               ),
                               child: CustomImage(
-                                image: item.product.imginfo!.filepath ?? '',
+                                image:
+                                    item.product.imginfo != null
+                                        ? item.product.imginfo!.filepath
+                                        : '',
                                 width: 60,
                                 fit: BoxFit.cover,
                               ),

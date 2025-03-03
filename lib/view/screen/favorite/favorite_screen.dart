@@ -1,3 +1,4 @@
+import 'package:bunny_ngim_app/util/dimensions.dart';
 import 'package:bunny_ngim_app/view/base/custom_app_bar_widget.dart';
 import 'package:bunny_ngim_app/view/base/no_internet_screen_widget.dart';
 import 'package:bunny_ngim_app/view/screen/products/widget/product_widget.dart';
@@ -42,12 +43,11 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
             );
           }
           return Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(Dimensions.paddingSizeSmall),
             child: MasonryGridView.count(
               itemCount: controller.favoriteProducts.length,
               crossAxisCount: 2,
               padding: const EdgeInsets.all(0),
-              physics: const NeverScrollableScrollPhysics(),
               shrinkWrap: true,
               itemBuilder: (BuildContext context, int index) {
                 Product product = controller.favoriteProducts[index];

@@ -41,7 +41,7 @@ class CustomExitCard extends StatelessWidget {
           const SizedBox(height: Dimensions.paddingSizeExtraSmall),
 
           Text(
-            'close_the_app',
+            'close_the_app'.tr,
             style: titilliumBold.copyWith(fontSize: Dimensions.fontSizeLarge),
           ),
 

@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:get/get.dart';
 
-class ProductView extends StatelessWidget {
+class ProductView extends StatefulWidget {
   final bool isHomePage;
   final ScrollController? scrollController;
   final String? sellerId;
@@ -20,21 +20,38 @@ class ProductView extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
-    int offset = 1;
-    scrollController!.addListener(() async {
-      if (scrollController!.position.maxScrollExtent ==
-              scrollController!.position.pixels &&
-          Get.find<ProductController>().productList!.isNotEmpty) {
-        int pageSize = Get.find<ProductController>().productTotalPage;
+  State<ProductView> createState() => _ProductViewState();
+}
 
-        if (offset < pageSize) {
-          offset++;
-          await Get.find<ProductController>().getAllProductList(offset: offset);
-        }
+class _ProductViewState extends State<ProductView> {
+  int offset = 1;
+  @override
+  void initState() {
+    super.initState();
+    widget.scrollController?.addListener(_scrollListener);
+  }
+
+  @override
+  void dispose() {
+    widget.scrollController?.removeListener(_scrollListener);
+    super.dispose();
+  }
+
+  void _scrollListener() async {
+    if (widget.scrollController!.position.pixels ==
+            widget.scrollController!.position.maxScrollExtent &&
+        Get.find<ProductController>().productList!.isNotEmpty) {
+      int pageSize = Get.find<ProductController>().productTotalPage;
+      if (offset < pageSize) {
+        offset++;
+        print('Fetching page: $offset');
+        await Get.find<ProductController>().getAllProductList(offset: offset);
       }
-    });
+    }
+  }
 
+  @override
+  Widget build(BuildContext context) {
     return GetBuilder<ProductController>(
       builder: (prodProvider) {
         List<Product>? productList = [];
@@ -47,7 +64,7 @@ class ProductView extends StatelessWidget {
                 ? (productList != null && productList.isNotEmpty)
                     ? MasonryGridView.count(
                       itemCount:
-                          isHomePage
+                          widget.isHomePage
                               ? productList.length > 4
                                   ? 4
                                   : productList.length
@@ -62,7 +79,7 @@ class ProductView extends StatelessWidget {
                     )
                     : const NoInternetOrDataScreenWidget(isNoInternet: false)
                 : ProductShimmer(
-                  isHomePage: isHomePage,
+                  isHomePage: widget.isHomePage,
                   isEnabled: prodProvider.firstLoading,
                 ),
             prodProvider.filterIsLoading

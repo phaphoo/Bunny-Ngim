@@ -10,6 +10,7 @@ import 'package:bunny_ngim_app/view/base/title_widget.dart';
 import 'package:bunny_ngim_app/view/screen/cart/cart_bottom_view.dart';
 import 'package:bunny_ngim_app/view/screen/cart/cart_screen.dart';
 import 'package:bunny_ngim_app/view/screen/products/related_product_view.dart';
+import 'package:bunny_ngim_app/view/screen/products/widget/favourite_button_widget.dart';
 import 'package:bunny_ngim_app/view/screen/products/widget/product_details_shimmer.dart';
 import 'package:bunny_ngim_app/view/screen/products/widget/product_image_view.dart';
 import 'package:flutter/material.dart';
@@ -92,59 +93,84 @@ class _ProductDetailsState extends State<ProductDetails> {
                                                       ).hoverColor,
                                                 ),
 
-                                                Padding(
-                                                  padding: const EdgeInsets.all(
-                                                    Dimensions
-                                                        .paddingSizeDefault,
-                                                  ),
-                                                  child: Container(
-                                                    decoration: BoxDecoration(
-                                                      color:
-                                                          Theme.of(
-                                                            context,
-                                                          ).cardColor,
-                                                    ),
-                                                    child: Column(
-                                                      children: [
-                                                        Row(
-                                                          children: [
-                                                            Text(
-                                                              '${widget.productDetailsModel.title}',
-                                                              style: titilliumBold
-                                                                  .copyWith(
-                                                                    fontSize:
-                                                                        Dimensions
-                                                                            .fontSizeLarge,
-                                                                  ),
-                                                            ),
-                                                          ],
-                                                        ),
-                                                        const SizedBox(
-                                                          height:
+                                                Row(
+                                                  children: [
+                                                    Expanded(
+                                                      child: Padding(
+                                                        padding:
+                                                            const EdgeInsets.all(
                                                               Dimensions
                                                                   .paddingSizeDefault,
-                                                        ),
-                                                        Row(
-                                                          children: [
-                                                            Text(
-                                                              '${widget.productDetailsModel.priceformat}/${widget.productDetailsModel.unit}',
-                                                              style: titilliumRegular.copyWith(
-                                                                fontSize:
-                                                                    Dimensions
-                                                                        .fontSizeLarge,
+                                                            ),
+                                                        child: Container(
+                                                          decoration:
+                                                              BoxDecoration(
                                                                 color:
                                                                     Theme.of(
-                                                                          context,
-                                                                        )
-                                                                        .colorScheme
-                                                                        .error,
+                                                                      context,
+                                                                    ).cardColor,
                                                               ),
-                                                            ),
-                                                          ],
+                                                          child: Column(
+                                                            children: [
+                                                              Row(
+                                                                children: [
+                                                                  Text(
+                                                                    '${widget.productDetailsModel.title}',
+                                                                    style: titilliumBold.copyWith(
+                                                                      fontSize:
+                                                                          Dimensions
+                                                                              .fontSizeLarge,
+                                                                    ),
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                              const SizedBox(
+                                                                height:
+                                                                    Dimensions
+                                                                        .paddingSizeDefault,
+                                                              ),
+                                                              Row(
+                                                                children: [
+                                                                  Text(
+                                                                    '${widget.productDetailsModel.priceformat}/${widget.productDetailsModel.unit}',
+                                                                    style: titilliumRegular.copyWith(
+                                                                      fontSize:
+                                                                          Dimensions
+                                                                              .fontSizeLarge,
+                                                                      color:
+                                                                          Theme.of(
+                                                                            context,
+                                                                          ).colorScheme.error,
+                                                                    ),
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                            ],
+                                                          ),
                                                         ),
-                                                      ],
+                                                      ),
                                                     ),
-                                                  ),
+                                                    Padding(
+                                                      padding: const EdgeInsets.all(
+                                                        Dimensions
+                                                            .paddingSizeDefault,
+                                                      ),
+                                                      child: FavouriteButtonWidget(
+                                                        isFeatured: true,
+                                                        product:
+                                                            widget
+                                                                .productDetailsModel,
+                                                        backgroundColor:
+                                                            Theme.of(
+                                                              context,
+                                                            ).hintColor,
+                                                        productId:
+                                                            widget
+                                                                .productDetailsModel
+                                                                .id,
+                                                      ),
+                                                    ),
+                                                  ],
                                                 ),
 
                                                 // ProductTitleView(

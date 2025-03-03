@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:bunny_ngim_app/controller/cart_controller.dart';
 import 'package:bunny_ngim_app/util/custom_textfiled.dart';
 import 'package:bunny_ngim_app/util/dimensions.dart';
 import 'package:bunny_ngim_app/util/images.dart';
@@ -60,46 +61,50 @@ class _SearchScreenState extends State<SearchScreen> {
           controller: _queryTextController,
         ),
         actions: [
-          SizedBox(
-            width: Get.width / 11,
-            child: IconButton(
-              padding: const EdgeInsets.only(
-                right: Dimensions.paddingSizeSmall,
-              ),
-              onPressed: () {
-                Get.to(CartScreen(isBackToExit: true));
-              },
-              icon: Stack(
-                fit: StackFit.expand,
-                children: [
-                  Image.asset(
-                    Images.cart,
-                    width: Dimensions.iconSizeDefault,
-                    height: Dimensions.iconSizeDefault,
-                    color: Get.isDarkMode ? Colors.white : Colors.black,
+          GetBuilder<CartController>(
+            builder: (cartController) {
+              return SizedBox(
+                width: Get.width / 11,
+                child: IconButton(
+                  padding: const EdgeInsets.only(
+                    right: Dimensions.paddingSizeSmall,
                   ),
-                  Positioned(
-                    top: 8,
-                    right: 0,
-                    child: Container(
-                      alignment: Alignment.center,
-                      padding: const EdgeInsets.all(2.5),
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Colors.red,
+                  onPressed: () {
+                    Get.to(CartScreen(isBackToExit: true));
+                  },
+                  icon: Stack(
+                    fit: StackFit.expand,
+                    children: [
+                      Image.asset(
+                        Images.cart,
+                        width: Dimensions.iconSizeDefault,
+                        height: Dimensions.iconSizeDefault,
+                        color: Get.isDarkMode ? Colors.white : Colors.black,
                       ),
-                      child: Text(
-                        '0',
-                        style: titilliumRegular.copyWith(
-                          color: Colors.white,
-                          fontSize: Dimensions.fontSizeExtraSmall,
+                      Positioned(
+                        top: 5,
+                        right: 0,
+                        child: Container(
+                          alignment: Alignment.center,
+                          padding: const EdgeInsets.all(5),
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: Theme.of(context).colorScheme.error,
+                          ),
+                          child: Text(
+                            '${cartController.cartItems.length}',
+                            style: titilliumRegular.copyWith(
+                              color: Colors.white,
+                              fontSize: Dimensions.fontSizeExtraSmall,
+                            ),
+                          ),
                         ),
                       ),
-                    ),
+                    ],
                   ),
-                ],
-              ),
-            ),
+                ),
+              );
+            },
           ),
         ],
       ),
