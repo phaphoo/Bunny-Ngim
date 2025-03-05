@@ -12,6 +12,7 @@
     "done":"បានបញ្ចប់",
     "description": "ការពណ៌នា",
     "related_product": "ផលិតផលដែលទាក់ទង",
+    "connection_to_api_server_failed": "ការភ្ជាប់ទៅ API Server បានបរាជ័យ",
     "product_image": "រូបភាពផលិតផល",
     "top_selling": "លក់ដាច់បំផុត",
     "driving_Lesson":"មេរៀនបើកបរ",

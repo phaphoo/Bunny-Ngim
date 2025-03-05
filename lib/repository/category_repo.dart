@@ -8,7 +8,7 @@ class CategoryRepo {
   CategoryRepo({required this.apiClient});
 
   final localization = Get.find<LocalizationController>();
-  String lang = 'en';
+  String lang = '';
 
   Future<Response> getProductByCateData(
     String? cateId, {
@@ -16,8 +16,9 @@ class CategoryRepo {
     int offset = 1,
   }) async {
     lang = localization.currentLanguageCode;
+    print('langlang ${lang}');
     return await apiClient.getData(
-      '${AppConstants.productUri}?perpage=$limit&page=$offset&lang=$lang&category_id=$cateId',
+      '${AppConstants.productUri}?perpage=$limit&page=$offset&lang=$lang&category=$cateId',
     );
   }
 

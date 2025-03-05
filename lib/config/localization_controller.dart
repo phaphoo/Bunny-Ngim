@@ -23,6 +23,7 @@ class LocalizationController extends GetxController implements GetxService {
     _locale = locale;
 
     saveLanguage(_locale);
+    loadCurrentLanguage();
 
     update();
   }

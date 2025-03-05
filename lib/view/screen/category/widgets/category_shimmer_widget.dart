@@ -8,7 +8,7 @@ class CategoryShimmerWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 100,
+      height: 90,
       child: ListView.builder(
         itemCount: 4,
         scrollDirection: Axis.horizontal,
@@ -20,9 +20,9 @@ class CategoryShimmerWidget extends StatelessWidget {
               height: 50,
               child: ClipOval(
                 child: Container(
-                  width: 100,
+                  width: 90,
                   decoration: BoxDecoration(
-                    color: Theme.of(context).hintColor,
+                    color: Theme.of(context).hintColor.withValues(alpha: 0.05),
                     boxShadow: [
                       BoxShadow(
                         color: Colors.grey.withValues(alpha: 0.2),

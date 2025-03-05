@@ -46,7 +46,7 @@ class _MiniProductBottomSheetState extends State<MiniProductBottomSheet> {
             height: 5,
             decoration: BoxDecoration(
               color: Theme.of(context).hintColor.withOpacity(.5),
-              borderRadius: BorderRadius.circular(20),
+              borderRadius: BorderRadius.circular(Dimensions.radiusSizeLarge),
             ),
           ),
           Row(

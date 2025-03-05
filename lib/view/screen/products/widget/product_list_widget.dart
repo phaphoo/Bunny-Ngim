@@ -4,6 +4,7 @@ import 'package:bunny_ngim_app/view/base/title_widget.dart';
 import 'package:bunny_ngim_app/view/screen/category/category_products_screen.dart';
 import 'package:bunny_ngim_app/view/screen/category/widgets/category_shimmer_widget.dart';
 import 'package:bunny_ngim_app/view/screen/products/view_all_product_screen.dart';
+import 'package:bunny_ngim_app/view/screen/products/widget/product_list_shimmer.dart';
 import 'package:bunny_ngim_app/view/screen/products/widget/product_list_tile_widget.dart';
 import 'package:bunny_ngim_app/view/screen/products/widget/product_widget.dart';
 import 'package:flutter/material.dart';
@@ -59,7 +60,7 @@ class ProductListWidget extends StatelessWidget {
                     },
                   ),
                 )
-                : const CategoryShimmerWidget(),
+                : const ProductListShimmer(isEnabled: true, isHomePage: true),
           ],
         );
       },

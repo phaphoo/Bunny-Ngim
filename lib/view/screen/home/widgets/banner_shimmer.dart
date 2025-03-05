@@ -32,7 +32,7 @@ class BannerShimmer extends StatelessWidget {
 
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
-                color: Theme.of(context).hintColor,
+                color: Theme.of(context).hintColor.withValues(alpha: 0.05),
                 boxShadow: [
                   BoxShadow(
                     color: Colors.grey.withValues(alpha: 0.3),

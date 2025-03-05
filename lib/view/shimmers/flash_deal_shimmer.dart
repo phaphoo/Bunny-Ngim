@@ -14,162 +14,6 @@ class FlashDealShimmer extends StatelessWidget {
       padding: const EdgeInsets.only(bottom: Dimensions.paddingSizeSmall),
       child: Column(
         children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: Dimensions.paddingSizeDefault,
-            ),
-            child: Container(
-              height: ResponsiveHelper.isTab() ? 100 : 70,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                color: Theme.of(context).disabledColor,
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.withValues(alpha: 0.3),
-                    spreadRadius: 1,
-                    blurRadius: 5,
-                  ),
-                ],
-              ),
-              child: Shimmer.fromColors(
-                baseColor: Theme.of(context).cardColor,
-                highlightColor: Colors.grey[300]!,
-                enabled: true,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(10),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Expanded(
-                            child: Container(
-                              height: ResponsiveHelper.isTab() ? 70 : 50,
-                              width: MediaQuery.of(context).size.width / 5,
-                              padding: const EdgeInsets.all(
-                                Dimensions.paddingSizeLarge,
-                              ),
-                              decoration: BoxDecoration(
-                                color: Theme.of(context).disabledColor,
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                            ),
-                          ),
-
-                          const SizedBox(width: 20),
-                          Container(
-                            height: ResponsiveHelper.isTab() ? 70 : 50,
-                            width: ResponsiveHelper.isTab() ? 70 : 50,
-                            padding: const EdgeInsets.all(
-                              Dimensions.paddingSizeLarge,
-                            ),
-                            decoration: BoxDecoration(
-                              color: Theme.of(context).disabledColor,
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                          ),
-                          const SizedBox(width: 20),
-                          Container(
-                            height: ResponsiveHelper.isTab() ? 70 : 50,
-                            width: ResponsiveHelper.isTab() ? 70 : 50,
-                            padding: const EdgeInsets.all(
-                              Dimensions.paddingSizeLarge,
-                            ),
-                            decoration: BoxDecoration(
-                              color: Theme.of(context).disabledColor,
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                          ),
-                          const SizedBox(width: 20),
-                          Container(
-                            height: ResponsiveHelper.isTab() ? 70 : 50,
-                            width: ResponsiveHelper.isTab() ? 70 : 50,
-                            padding: const EdgeInsets.all(
-                              Dimensions.paddingSizeLarge,
-                            ),
-                            decoration: BoxDecoration(
-                              color: Theme.of(context).disabledColor,
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                          ),
-                          const SizedBox(width: 20),
-                          Container(
-                            height: ResponsiveHelper.isTab() ? 70 : 50,
-                            width: ResponsiveHelper.isTab() ? 70 : 50,
-                            padding: const EdgeInsets.all(
-                              Dimensions.paddingSizeLarge,
-                            ),
-                            decoration: BoxDecoration(
-                              color: Theme.of(context).disabledColor,
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                          ),
-
-                          const SizedBox(width: 20),
-                          Expanded(
-                            child: Container(
-                              height: ResponsiveHelper.isTab() ? 70 : 50,
-                              width: MediaQuery.of(context).size.width / 5,
-                              padding: const EdgeInsets.all(
-                                Dimensions.paddingSizeLarge,
-                              ),
-                              decoration: BoxDecoration(
-                                color: Theme.of(context).disabledColor,
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ),
-
-          Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 50,
-              vertical: Dimensions.paddingSizeSmall,
-            ),
-            child: Container(
-              height: ResponsiveHelper.isTab() ? 30 : 10,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(2),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.withValues(alpha: 0.2),
-                    spreadRadius: 1,
-                    blurRadius: 5,
-                  ),
-                ],
-                color: Theme.of(context).disabledColor,
-              ),
-              child: Shimmer.fromColors(
-                baseColor: Theme.of(context).cardColor,
-                highlightColor: Colors.grey[100]!,
-                enabled: true,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    Container(
-                      height: ResponsiveHelper.isTab() ? 30 : 10,
-                      padding: const EdgeInsets.all(
-                        Dimensions.paddingSizeLarge,
-                      ),
-                      decoration: BoxDecoration(
-                        color: Theme.of(context).disabledColor,
-                        borderRadius: BorderRadius.circular(2),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ),
-
           CarouselSlider.builder(
             options: CarouselOptions(
               viewportFraction: ResponsiveHelper.isTab() ? .5 : .7,
@@ -189,7 +33,7 @@ class FlashDealShimmer extends StatelessWidget {
                   width: 300,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
-                    color: Theme.of(context).disabledColor,
+                    color: Theme.of(context).hintColor.withValues(alpha: 0.4),
                     boxShadow: [
                       BoxShadow(
                         color: Colors.grey.withValues(alpha: 0.3),
@@ -211,7 +55,9 @@ class FlashDealShimmer extends StatelessWidget {
                             Dimensions.paddingSizeLarge,
                           ),
                           decoration: BoxDecoration(
-                            color: Theme.of(context).disabledColor,
+                            color: Theme.of(
+                              context,
+                            ).hintColor.withValues(alpha: 0.05),
                             borderRadius: BorderRadius.circular(10),
                           ),
                         ),

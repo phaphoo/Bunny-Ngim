@@ -18,7 +18,7 @@ class ProductDetailsShimmer extends StatelessWidget {
                 margin: const EdgeInsets.all(5),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
-                  color: Theme.of(context).hintColor.withOpacity(0.2),
+                  color: Theme.of(context).hintColor.withValues(alpha: 0.05),
                   boxShadow: [
                     BoxShadow(
                       color: Colors.grey.withOpacity(0.3),
@@ -40,7 +40,9 @@ class ProductDetailsShimmer extends StatelessWidget {
                           Dimensions.paddingSizeLarge,
                         ),
                         decoration: BoxDecoration(
-                          color: Theme.of(context).hintColor.withOpacity(0.2),
+                          color: Theme.of(
+                            context,
+                          ).hintColor.withValues(alpha: 0.05),
                           borderRadius: BorderRadius.circular(10),
                         ),
                       ),

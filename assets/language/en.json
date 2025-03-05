@@ -15,6 +15,7 @@
     "history":"History",
     "sign_in":"Sign In",
     "enter_phone_number":"Enter phone number",
+    "connection_to_api_server_failed": "Connection to api server failed",
     "phone_number":"Phone Number",
     "i_didnt_receive_the_code":"I didnt receive the code",
     "resent_code_successfully": "Resent code successfully",
