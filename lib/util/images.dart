@@ -65,6 +65,8 @@ class Images {
   static const String profileimage = "assets/images/avatar.png";
   static const String cards = 'assets/images/4cards.png';
   static const String robotsit = "assets/images/sitrobot.png";
+  static const String addressMap = "assets/images/address-map.png";
+  static const String smartphone = "assets/images/smartphone.png";
   static const String writeIcon = "assets/images/write_icon.png";
   static const String writtingGif = "assets/images/writting.gif";
 

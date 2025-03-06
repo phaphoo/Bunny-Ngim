@@ -79,11 +79,9 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
                         children: [
                           Row(
                             children: [
-                              ClipOval(
-                                child: CustomImage(
-                                  image: Images.Generate,
-                                  height: Get.width / 9,
-                                ),
+                              CustomImage(
+                                image: Images.addressMap,
+                                height: Get.width / 9,
                               ),
                               const SizedBox(
                                 width: Dimensions.paddingSizeDefault,
@@ -140,11 +138,9 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
                         children: [
                           Row(
                             children: [
-                              ClipOval(
-                                child: CustomImage(
-                                  image: Images.phone,
-                                  height: Get.width / 9,
-                                ),
+                              CustomImage(
+                                image: Images.smartphone,
+                                height: Get.width / 9,
                               ),
                               const SizedBox(
                                 width: Dimensions.paddingSizeDefault,
@@ -175,52 +171,7 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
                       ),
                     ),
                   ),
-                  const SizedBox(height: Dimensions.paddingSizeLarge),
-                  Center(
-                    child: Text(
-                      'social_media'.tr,
-                      style: titilliumBold.copyWith(
-                        fontSize: Dimensions.fontSizeLarge,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: Dimensions.paddingSizeSmall),
-                  Center(
-                    child: SizedBox(
-                      height: Get.width / 5,
-                      child: ListView.builder(
-                        shrinkWrap: true,
-                        scrollDirection: Axis.horizontal,
-                        itemCount: config.configModel!.contactus.length,
-                        itemBuilder: (context, index) {
-                          return Padding(
-                            padding: const EdgeInsets.all(
-                              Dimensions.paddingSizeSmall,
-                            ),
-                            child: InkWell(
-                              onTap: () {
-                                openLink(
-                                  config.configModel!.contactus[index].info ??
-                                      '',
-                                );
-                              },
-                              child: Column(
-                                children: [
-                                  ClipOval(
-                                    child: CustomImage(
-                                      image: Images.instagram,
-                                      height: Get.width / 7,
-                                      width: Get.width / 7,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          );
-                        },
-                      ),
-                    ),
-                  ),
+
                   const SizedBox(height: Dimensions.paddingSizeLarge),
                   Center(
                     child: Text(
@@ -267,7 +218,52 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
                   CustomTextField(hinttext: 'message'.tr, isEnter: true),
                   const SizedBox(height: Dimensions.paddingSizeDefault),
                   CustomButton(text: 'submit'.tr),
-                  const SizedBox(height: Dimensions.paddingSizeDefault),
+                  const SizedBox(height: Dimensions.paddingSizeLarge),
+                  Center(
+                    child: Text(
+                      'social_media'.tr,
+                      style: titilliumBold.copyWith(
+                        fontSize: Dimensions.fontSizeLarge,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: Dimensions.paddingSizeSmall),
+                  Center(
+                    child: SizedBox(
+                      height: Get.width / 5,
+                      child: ListView.builder(
+                        shrinkWrap: true,
+                        scrollDirection: Axis.horizontal,
+                        itemCount: config.configModel!.contactus.length,
+                        itemBuilder: (context, index) {
+                          return Padding(
+                            padding: const EdgeInsets.all(
+                              Dimensions.paddingSizeSmall,
+                            ),
+                            child: InkWell(
+                              onTap: () {
+                                openLink(
+                                  config.configModel!.contactus[index].info ??
+                                      '',
+                                );
+                              },
+                              child: Column(
+                                children: [
+                                  ClipOval(
+                                    child: CustomImage(
+                                      image: Images.instagram,
+                                      height: Get.width / 7,
+                                      width: Get.width / 7,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),

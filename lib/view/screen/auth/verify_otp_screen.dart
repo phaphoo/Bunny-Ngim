@@ -254,59 +254,9 @@ class _VerifyScreenState extends State<VerifyScreen> {
                           showCustomSnackBar('invalid_otp'.tr, Get.context!);
                         }
                       }
-                      // if (codeNumberController.text.isEmpty) {
-                      //   showCustomSnackBar('please_input_otp_to_verify'.tr);
-                      // } else if (codeNumberController.text.length == 6) {
-                      //   if (await Get.find<SMSProvider>().verify(smsCode: codeNumberController.text)) {
-                      //     AuthModel authModel = AuthModel();
-                      //     authModel.name = '${widget.fullnumber}';
-                      //     authModel.mobile = '${widget.fullnumber}';
-                      //     authModel.email = '${widget.fullnumber}@ttm.com';
-                      //     authModel.uid = '${widget.fullnumber}';
-
-                      //     if (codeNumberController.text == '999999') {
-                      //       await Get.find<AuthProvider>().getUser(authModel.uid!);
-
-                      //       if (Get.find<AuthProvider>().user.id == null || Get.find<AuthProvider>().user.id.toString().isEmpty) {
-                      //         await Get.find<AuthProvider>().register(authModel);
-                      //         Get.to(ChooseLocationScreen());
-                      //       } else {
-                      //         Get.to(ChooseLocationScreen());
-                      //       }
-                      //     } else if (Get.find<AuthProvider>().user.id == null || Get.find<AuthProvider>().user.id.toString().isEmpty) {
-                      //       await Get.find<AuthProvider>().register(authModel);
-                      //       // Get.to(ChooseLocationScreen());
-                      //       Get.find<LocationProvider>().switchLocation(Get.find<LocationProvider>().locationList[0]);
-                      //       Get.offAll(MainScreen());
-                      //     } else {
-                      //       // Get.to(ChooseLocationScreen());
-                      //       Get.find<LocationProvider>().switchLocation(Get.find<LocationProvider>().locationList[0]);
-                      //       Get.offAll(MainScreen());
-                      //     }
-                      //     await Get.find<AuthProvider>().getUser(authModel.uid!);
-                      //   } else {
-                      //     showCustomSnackBar('invalid_otp'.tr);
-                      //   }
-                      // }
                     },
                   ),
                 ),
-                // Container(
-                //     alignment: Alignment.center,
-                //     width: double.infinity,
-                //     height: 50,
-                //     decoration: BoxDecoration(
-                //       color: Color(0xff2D6A3C),
-                //       borderRadius: BorderRadius.circular(
-                //         Dimensions.RADIUS_DEFAULT,
-                //       ),
-                //     ),
-                //     child: Text(
-                //       "verify".tr,
-                //       style: textStyleRegular.copyWith(
-                //         color: Colors.white,
-                //       ),
-                //     )),
               ],
             ),
           ),

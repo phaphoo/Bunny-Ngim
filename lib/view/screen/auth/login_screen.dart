@@ -6,7 +6,6 @@ import 'package:bunny_ngim_app/util/images.dart';
 import 'package:bunny_ngim_app/util/text_styles.dart';
 import 'package:bunny_ngim_app/view/base/code_picker_widget.dart';
 import 'package:bunny_ngim_app/view/base/show_custom_snackbar_widget.dart';
-import 'package:bunny_ngim_app/view/screen/auth/verify_otp_screen.dart';
 import 'package:bunny_ngim_app/view/screen/auth/widget/social_login_widget.dart';
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
@@ -43,115 +42,155 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: EdgeInsets.symmetric(
-              horizontal: Dimensions.paddingSizeDefault,
-            ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                // const ttmLogo(),
-                Align(child: Image.asset(Images.logo, width: 150)),
-                SizedBox(height: Dimensions.paddingSizeExtraLarge),
-                Text(
-                  "sign_in".tr,
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: Dimensions.fontSizeExtraLarge,
-                  ),
+      body: Stack(
+        children: [
+          Center(
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: Dimensions.paddingSizeDefault,
                 ),
-                SizedBox(height: Dimensions.paddingSizeLarge),
-                Text(
-                  "phone_number".tr,
-                  style: TextStyle(fontSize: Dimensions.fontSizeDefault),
-                ),
-                SizedBox(height: Dimensions.paddingSizeExtraSmall),
-                Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(
-                      Dimensions.paddingSizeSmall,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    // const ttmLogo(),
+                    Align(child: Image.asset(Images.logo, width: 150)),
+                    SizedBox(height: Dimensions.paddingSizeExtraLarge),
+                    Text(
+                      "sign_in".tr,
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: Dimensions.fontSizeExtraLarge,
+                      ),
                     ),
-                  ),
-                  child: Row(
-                    children: [
-                      Container(
-                        decoration: BoxDecoration(
-                          color: Theme.of(context).cardColor,
-                          border: Border.all(
-                            color: Theme.of(context).hintColor,
-                          ),
-                          borderRadius: BorderRadius.circular(
-                            Dimensions.radiusSizeSmall,
-                          ),
+                    SizedBox(height: Dimensions.paddingSizeLarge),
+                    Text(
+                      "phone_number".tr,
+                      style: TextStyle(fontSize: Dimensions.fontSizeDefault),
+                    ),
+                    SizedBox(height: Dimensions.paddingSizeExtraSmall),
+                    Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(
+                          Dimensions.paddingSizeSmall,
                         ),
-                        child: CodePickerWidget(
-                          onChanged: (CountryCode countryCode) {
-                            _countryDialCode = countryCode.dialCode!;
+                      ),
+                      child: Row(
+                        children: [
+                          Container(
+                            decoration: BoxDecoration(
+                              color: Theme.of(context).cardColor,
+                              border: Border.all(
+                                color: Theme.of(context).hintColor,
+                              ),
+                              borderRadius: BorderRadius.circular(
+                                Dimensions.radiusSizeSmall,
+                              ),
+                            ),
+                            child: CodePickerWidget(
+                              onChanged: (CountryCode countryCode) {
+                                _countryDialCode = countryCode.dialCode!;
+                              },
+                              hideSearch: true,
+                              initialSelection: _countryDialCode,
+                              favorite: [_countryDialCode],
+                              showDropDownButton: false,
+                              showFlagMain: true,
+
+                              textStyle: titilliumRegular.copyWith(
+                                color: Theme.of(context).hintColor,
+                              ),
+                            ),
+                          ),
+                          const SizedBox(
+                            width: Dimensions.paddingSizeExtraSmall,
+                          ),
+                          Expanded(
+                            child: SizedBox(
+                              child: CustomTextField(
+                                controller: phoneNumberController,
+                                hinttext: "enter_phone_number".tr,
+                                textInputType: TextInputType.number,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(height: Dimensions.paddingSizeExtraLarge),
+
+                    _isLoading
+                        ? Center(child: CircularProgressIndicator())
+                        : CustomButton(
+                          onTap: () async {
+                            String phone = phoneNumberController.text.trim();
+                            String numberWithCountryCode =
+                                _countryDialCode + phone;
+                            if (phoneNumberController.text.trim().startsWith(
+                              '0',
+                            )) {
+                              numberWithCountryCode =
+                                  numberWithCountryCode.substring(
+                                    0,
+                                    _countryDialCode.length,
+                                  ) +
+                                  phoneNumberController.text.trim().substring(
+                                    1,
+                                  );
+                            }
+
+                            if (phoneNumberController.text.isEmpty) {
+                              showCustomSnackBar(
+                                'please_enter_phone_number'.tr,
+                                context,
+                              );
+                            } else {
+                              _onPressed();
+                              await Get.find<SMSController>().send(
+                                numberWithCountryCode,
+                              );
+                            }
                           },
-                          hideSearch: true,
-                          initialSelection: _countryDialCode,
-                          favorite: [_countryDialCode],
-                          showDropDownButton: false,
-                          showFlagMain: true,
-
-                          textStyle: titilliumRegular.copyWith(
-                            color: Theme.of(context).hintColor,
-                          ),
+                          text: 'sign_in'.tr,
                         ),
-                      ),
-                      const SizedBox(width: Dimensions.paddingSizeExtraSmall),
-                      Expanded(
-                        child: SizedBox(
-                          child: CustomTextField(
-                            controller: phoneNumberController,
-                            hinttext: "enter_phone_number".tr,
-                            textInputType: TextInputType.number,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
+                    SizedBox(height: Dimensions.paddingSizeLarge),
+                    SocialLoginWidget(),
+                  ],
                 ),
-                SizedBox(height: Dimensions.paddingSizeExtraLarge),
-
-                _isLoading
-                    ? Center(child: CircularProgressIndicator())
-                    : CustomButton(
-                      onTap: () async {
-                        String phone = phoneNumberController.text.trim();
-                        String numberWithCountryCode = _countryDialCode + phone;
-                        if (phoneNumberController.text.trim().startsWith('0')) {
-                          numberWithCountryCode =
-                              numberWithCountryCode.substring(
-                                0,
-                                _countryDialCode.length,
-                              ) +
-                              phoneNumberController.text.trim().substring(1);
-                        }
-
-                        if (phoneNumberController.text.isEmpty) {
-                          showCustomSnackBar(
-                            'please_enter_phone_number'.tr,
-                            context,
-                          );
-                        } else {
-                          _onPressed();
-                          await Get.find<SMSController>().send(
-                            numberWithCountryCode,
-                          );
-                        }
-                      },
-                      text: 'sign_in'.tr,
-                    ),
-                SizedBox(height: Dimensions.paddingSizeLarge),
-                SocialLoginWidget(),
-              ],
+              ),
             ),
           ),
-        ),
+          Positioned(
+            top: 10,
+            left: Dimensions.paddingSizeSmall,
+            child: SafeArea(
+              child: GestureDetector(
+                onTap: () => Get.back(),
+                child: Container(
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 8,
+                    horizontal: 6,
+                  ),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(
+                      Dimensions.radiusSizeDefault,
+                    ),
+                    color: Theme.of(context).cardColor,
+                  ),
+                  child: Container(
+                    margin: EdgeInsets.only(left: GetPlatform.isIOS ? 5 : 5),
+                    child: Icon(
+                      Icons.arrow_back_ios,
+                      size: Dimensions.iconSizeExtraLarge - 3,
+                      color: Colors.black,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

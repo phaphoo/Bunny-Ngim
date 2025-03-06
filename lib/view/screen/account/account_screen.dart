@@ -1,8 +1,10 @@
+import 'dart:convert';
+
 import 'package:bunny_ngim_app/helper/html_view_screen.dart';
-import 'package:bunny_ngim_app/util/color_resources.dart';
 import 'package:bunny_ngim_app/util/dimensions.dart';
 import 'package:bunny_ngim_app/util/images.dart';
 import 'package:bunny_ngim_app/util/text_styles.dart';
+import 'package:bunny_ngim_app/view/base/logout_confirm_bottom_sheet.dart';
 import 'package:bunny_ngim_app/view/dashboard/dashboard_screen.dart';
 import 'package:bunny_ngim_app/view/screen/account/more_header_section.dart';
 import 'package:bunny_ngim_app/view/screen/auth/login_screen.dart';
@@ -104,7 +106,7 @@ class _AccountScreenState extends State<AccountScreen> {
                             leading: SizedBox(
                               width: 30,
                               child: Image.asset(
-                                Images.exitIcon,
+                                Images.loginIcon,
                                 color: Theme.of(context).secondaryHeaderColor,
                               ),
                             ),
@@ -115,7 +117,7 @@ class _AccountScreenState extends State<AccountScreen> {
                               ),
                             ),
                             onTap: () {
-                              Get.to(const LoginScreen());
+                              Get.to(() => const LoginScreen());
 
                               // showModalBottomSheet(
                               //   backgroundColor: Colors.transparent,
@@ -123,6 +125,28 @@ class _AccountScreenState extends State<AccountScreen> {
                               //   builder:
                               //       (_) => const LogoutCustomBottomSheet(),
                               // );
+                            },
+                          ),
+                          ListTile(
+                            leading: SizedBox(
+                              width: 30,
+                              child: Image.asset(
+                                Images.exitIcon,
+                                color: Theme.of(context).secondaryHeaderColor,
+                              ),
+                            ),
+                            title: Text(
+                              'sign_out'.tr,
+                              style: titilliumRegular.copyWith(
+                                fontSize: Dimensions.fontSizeLarge,
+                              ),
+                            ),
+                            onTap: () {
+                              showModalBottomSheet(
+                                backgroundColor: Colors.transparent,
+                                context: context,
+                                builder: (_) => const LogoutCustomBottomSheet(),
+                              );
                             },
                           ),
                           ListTile(
@@ -210,9 +234,9 @@ class TitleButton extends StatelessWidget {
       ),
       onTap: () {
         if (isHomePage) {
-          Get.offAll(navigateTo);
+          Get.offAll(() => navigateTo);
         } else {
-          Get.to(navigateTo);
+          Get.to(() => navigateTo);
         }
       },
     );

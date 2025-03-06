@@ -2,12 +2,11 @@ import 'package:bunny_ngim_app/util/custom_button.dart';
 import 'package:bunny_ngim_app/util/dimensions.dart';
 import 'package:bunny_ngim_app/util/images.dart';
 import 'package:bunny_ngim_app/util/text_styles.dart';
-import 'package:bunny_ngim_app/view/screen/auth/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class NotLoggedInBottomSheet extends StatelessWidget {
-  const NotLoggedInBottomSheet({super.key});
+class LogoutCustomBottomSheet extends StatelessWidget {
+  const LogoutCustomBottomSheet({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -24,22 +23,22 @@ class NotLoggedInBottomSheet extends StatelessWidget {
         children: [
           Container(
             width: 40,
-            height: 5,
+            height: 4,
             decoration: BoxDecoration(
               color: Theme.of(context).hintColor.withOpacity(.5),
               borderRadius: BorderRadius.circular(20),
             ),
           ),
-          const SizedBox(height: 40),
+          const SizedBox(height: 30),
           Padding(
             padding: const EdgeInsets.symmetric(
               vertical: Dimensions.paddingSizeDefault,
             ),
-            child: SizedBox(width: 60, child: Image.asset(Images.loginIcon)),
+            child: SizedBox(width: 60, child: Image.asset(Images.exitIcon)),
           ),
           const SizedBox(height: Dimensions.paddingSizeExtraSmall),
           Text(
-            'please_login'.tr,
+            'sign_out'.tr,
             style: titilliumBold.copyWith(fontSize: Dimensions.fontSizeLarge),
           ),
           Padding(
@@ -47,7 +46,7 @@ class NotLoggedInBottomSheet extends StatelessWidget {
               top: Dimensions.paddingSizeSmall,
               bottom: Dimensions.paddingSizeLarge,
             ),
-            child: Text('need_to_login'.tr),
+            child: Text('want_to_sign_out'.tr),
           ),
           const SizedBox(height: Dimensions.paddingSizeDefault),
           Padding(
@@ -64,18 +63,17 @@ class NotLoggedInBottomSheet extends StatelessWidget {
                     color: Theme.of(
                       context,
                     ).colorScheme.tertiaryContainer.withOpacity(.5),
+
                     onTap: () => Navigator.pop(context),
                   ),
                 ),
-                const SizedBox(width: Dimensions.paddingSizeExtraLarge),
+                const SizedBox(width: Dimensions.paddingSizeDefault),
                 SizedBox(
                   width: 120,
                   child: CustomButton(
-                    text: 'login'.tr,
-
+                    text: 'sign_out'.tr,
                     onTap: () {
-                      Navigator.of(context).pop();
-                      Get.to(() => const LoginScreen());
+                      Navigator.pop(context);
                     },
                   ),
                 ),
