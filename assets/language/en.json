@@ -17,6 +17,7 @@
     "enter_phone_number":"Enter phone number",
     "connection_to_api_server_failed": "Connection to api server failed",
     "phone_number":"Phone Number",
+    "no_related_product": "No related product",
     "sign_out": "Sign Out",
     "want_to_sign_out": "Do you want to sign out?",
     "i_didnt_receive_the_code":"I didnt receive the code",

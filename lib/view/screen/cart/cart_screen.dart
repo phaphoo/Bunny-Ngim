@@ -104,33 +104,48 @@ class _CartScreenState extends State<CartScreen> {
                                 Text("${'quantity'.tr}: ${item.quantity}"),
                               ],
                             ),
-                            trailing: Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                IconButton(
-                                  icon: Icon(
-                                    Icons.remove_circle,
-                                    color:
-                                        Theme.of(context).secondaryHeaderColor,
+                            trailing: Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(
+                                  Dimensions.radiusSizeExtraSmall,
+                                ),
+                                border: Border.all(
+                                  color: Theme.of(context).hintColor,
+                                ),
+                                color: Theme.of(
+                                  context,
+                                ).hintColor.withValues(alpha: 0.3),
+                              ),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  IconButton(
+                                    icon: Icon(
+                                      Icons.remove_circle,
+                                      color:
+                                          Theme.of(
+                                            context,
+                                          ).secondaryHeaderColor,
+                                    ),
+                                    onPressed: () {
+                                      controller.updateQty(item.product, false);
+                                    },
                                   ),
-                                  onPressed: () {
-                                    controller.updateQty(item.product, false);
-                                  },
-                                ),
-                                Text(
-                                  item.quantity.toString(),
-                                  style: const TextStyle(fontSize: 16),
-                                ),
-                                IconButton(
-                                  icon: Icon(
-                                    Icons.add_circle,
-                                    color: Theme.of(context).primaryColor,
+                                  Text(
+                                    item.quantity.toString(),
+                                    style: const TextStyle(fontSize: 16),
                                   ),
-                                  onPressed: () {
-                                    controller.updateQty(item.product, true);
-                                  },
-                                ),
-                              ],
+                                  IconButton(
+                                    icon: Icon(
+                                      Icons.add_circle,
+                                      color: Theme.of(context).primaryColor,
+                                    ),
+                                    onPressed: () {
+                                      controller.updateQty(item.product, true);
+                                    },
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ),

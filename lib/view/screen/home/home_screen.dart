@@ -34,7 +34,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   final ScrollController _scrollController = ScrollController();
   Future<void> load() async {
-    await Get.find<CategoryController>().getCategoryList();
+    Get.find<CategoryController>().getCategoryList();
     await Get.find<ProductController>().getAllProductList();
   }
 
@@ -66,6 +66,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   },
                   child: CustomScrollView(
                     controller: _scrollController,
+                    physics: ClampingScrollPhysics(),
                     slivers: [
                       SliverAppBar(
                         floating: false,
@@ -131,11 +132,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                       Image.asset(
                                         Images.cart,
                                         color: Theme.of(context).primaryColor,
-
                                         width: Dimensions.iconSizeExtraLarge,
                                         height: Dimensions.iconSizeExtraLarge,
                                       ),
-
                                       Positioned.fill(
                                         child: Container(
                                           transform: Matrix4.translationValues(
@@ -188,7 +187,6 @@ class _HomeScreenState extends State<HomeScreen> {
                             },
                             child: Hero(
                               tag: 'search_item',
-
                               child: Material(
                                 color:
                                     Theme.of(context).scaffoldBackgroundColor,
