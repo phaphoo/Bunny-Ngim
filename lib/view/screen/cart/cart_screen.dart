@@ -4,6 +4,7 @@ import 'package:bunny_ngim_app/util/text_styles.dart';
 import 'package:bunny_ngim_app/view/base/custom_app_bar_widget.dart';
 import 'package:bunny_ngim_app/view/base/no_internet_screen_widget.dart';
 import 'package:bunny_ngim_app/view/base/painter/custom_image.dart';
+import 'package:bunny_ngim_app/view/screen/cart/widget/cart_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:bunny_ngim_app/controller/cart_controller.dart';
@@ -46,124 +47,131 @@ class _CartScreenState extends State<CartScreen> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(height: Dimensions.paddingSizeDefault),
               Expanded(
                 child: ListView.builder(
                   shrinkWrap: true,
                   itemCount: controller.cartItems.length,
                   itemBuilder: (context, index) {
                     final item = controller.cartItems[index];
-                    return Stack(
-                      children: [
-                        Container(
-                          decoration: BoxDecoration(
-                            color: Theme.of(context).cardColor,
-                            borderRadius: BorderRadius.circular(
-                              Dimensions.radiusSizeSmall,
-                            ),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Theme.of(
-                                  context,
-                                ).hintColor.withValues(alpha: 0.2),
-                                spreadRadius: 0,
-                                blurRadius: 15,
-                                offset: const Offset(0, 4),
-                              ),
-                            ],
-                          ),
-                          margin: const EdgeInsets.symmetric(
-                            vertical: Dimensions.paddingSizeExtraSmall,
-                            horizontal: Dimensions.paddingSizeDefault,
-                          ),
-                          child: ListTile(
-                            leading: ClipRRect(
-                              borderRadius: BorderRadius.circular(
-                                Dimensions.radiusSizeSmall,
-                              ),
-                              child: CustomImage(
-                                image:
-                                    item.product.imginfo != null
-                                        ? item.product.imginfo!.filepath
-                                        : '',
-                                width: 60,
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-
-                            title: Text(
-                              item.product.title ?? 'No Name',
-                              style: titilliumBold,
-                            ),
-                            subtitle: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  "${'price'.tr}: ${item.product.priceformat}",
-                                ),
-                                Text("${'quantity'.tr}: ${item.quantity}"),
-                              ],
-                            ),
-                            trailing: Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(
-                                  Dimensions.radiusSizeExtraSmall,
-                                ),
-                                border: Border.all(
-                                  color: Theme.of(context).hintColor,
-                                ),
-                                color: Theme.of(
-                                  context,
-                                ).hintColor.withValues(alpha: 0.3),
-                              ),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  IconButton(
-                                    icon: Icon(
-                                      Icons.remove_circle,
-                                      color:
-                                          Theme.of(
-                                            context,
-                                          ).secondaryHeaderColor,
-                                    ),
-                                    onPressed: () {
-                                      controller.updateQty(item.product, false);
-                                    },
-                                  ),
-                                  Text(
-                                    item.quantity.toString(),
-                                    style: const TextStyle(fontSize: 16),
-                                  ),
-                                  IconButton(
-                                    icon: Icon(
-                                      Icons.add_circle,
-                                      color: Theme.of(context).primaryColor,
-                                    ),
-                                    onPressed: () {
-                                      controller.updateQty(item.product, true);
-                                    },
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                        // Positioned(
-                        //   top: 10,
-                        //   right: 20,
-                        //   child: GestureDetector(
-                        //     onTap: () {
-                        //       controller.removeFromCart(item.product);
-                        //     },
-                        //     child: Icon(
-                        //       Icons.delete_forever,
-                        //       color: Colors.red,
-                        //     ),
-                        //   ),
-                        // ),
-                      ],
+                    return CartWidget(
+                      index: index,
+                      fromCheckout: true,
+                      cartModel: item,
+                      produtQty: item.quantity.toString(),
                     );
+                    // Stack(
+                    //   children: [
+                    //     Container(
+                    //       decoration: BoxDecoration(
+                    //         color: Theme.of(context).cardColor,
+                    //         borderRadius: BorderRadius.circular(
+                    //           Dimensions.radiusSizeSmall,
+                    //         ),
+                    //         boxShadow: [
+                    //           BoxShadow(
+                    //             color: Theme.of(
+                    //               context,
+                    //             ).hintColor.withValues(alpha: 0.2),
+                    //             spreadRadius: 0,
+                    //             blurRadius: 15,
+                    //             offset: const Offset(0, 4),
+                    //           ),
+                    //         ],
+                    //       ),
+                    //       margin: const EdgeInsets.symmetric(
+                    //         vertical: Dimensions.paddingSizeExtraSmall,
+                    //         horizontal: Dimensions.paddingSizeDefault,
+                    //       ),
+                    //       child: ListTile(
+                    //         leading: ClipRRect(
+                    //           borderRadius: BorderRadius.circular(
+                    //             Dimensions.radiusSizeSmall,
+                    //           ),
+                    //           child: CustomImage(
+                    //             image:
+                    //                 item.product.imginfo != null
+                    //                     ? item.product.imginfo!.filepath
+                    //                     : '',
+                    //             width: Get.width / 7,
+                    //             fit: BoxFit.cover,
+                    //           ),
+                    //         ),
+
+                    //         title: Text(
+                    //           item.product.title ?? 'No Name',
+                    //           style: titilliumBold,
+                    //         ),
+                    //         subtitle: Column(
+                    //           crossAxisAlignment: CrossAxisAlignment.start,
+                    //           children: [
+                    //             Text(
+                    //               "${'price'.tr}: ${item.product.priceformat}",
+                    //             ),
+                    //             Text("${'quantity'.tr}: ${item.quantity}"),
+                    //           ],
+                    //         ),
+                    //         trailing: Container(
+                    //           decoration: BoxDecoration(
+                    //             borderRadius: BorderRadius.circular(
+                    //               Dimensions.radiusSizeExtraSmall,
+                    //             ),
+                    //             border: Border.all(
+                    //               color: Theme.of(context).hintColor,
+                    //             ),
+                    //             color: Theme.of(
+                    //               context,
+                    //             ).hintColor.withValues(alpha: 0.3),
+                    //           ),
+                    //           child: Row(
+                    //             mainAxisSize: MainAxisSize.min,
+                    //             children: [
+                    //               IconButton(
+                    //                 icon: Icon(
+                    //                   item.quantity == 1
+                    //                       ? Icons.delete
+                    //                       : Icons.remove_circle,
+                    //                   color:
+                    //                       Theme.of(
+                    //                         context,
+                    //                       ).secondaryHeaderColor,
+                    //                 ),
+                    //                 onPressed: () {
+                    //                   controller.updateQty(item.product, false);
+                    //                 },
+                    //               ),
+                    //               Text(
+                    //                 item.quantity.toString(),
+                    //                 style: const TextStyle(fontSize: 16),
+                    //               ),
+                    //               IconButton(
+                    //                 icon: Icon(
+                    //                   Icons.add_circle,
+                    //                   color: Theme.of(context).primaryColor,
+                    //                 ),
+                    //                 onPressed: () {
+                    //                   controller.updateQty(item.product, true);
+                    //                 },
+                    //               ),
+                    //             ],
+                    //           ),
+                    //         ),
+                    //       ),
+                    //     ),
+                    //     // Positioned(
+                    //     //   top: 10,
+                    //     //   right: 20,
+                    //     //   child: GestureDetector(
+                    //     //     onTap: () {
+                    //     //       controller.removeFromCart(item.product);
+                    //     //     },
+                    //     //     child: Icon(
+                    //     //       Icons.delete_forever,
+                    //     //       color: Colors.red,
+                    //     //     ),
+                    //     //   ),
+                    //     // ),
+                    //   ],
+                    // );
                   },
                 ),
               ),

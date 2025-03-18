@@ -102,7 +102,7 @@ class ProductListTileWidget extends StatelessWidget {
                                 child: CustomImage(
                                   image:
                                       productModel.imginfo != null
-                                          ? '${configController.filePath}/${productModel.imginfo!.fileName}'
+                                          ? productModel.imginfo!.filepath
                                           : '',
                                   fit: BoxFit.cover,
                                   height: boxConstraint.maxWidth * 0.82,

@@ -38,7 +38,10 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
                   Center(
                     child: ClipOval(
                       child: CustomImage(
-                        image: config.companyProfile!.logo ?? '',
+                        image:
+                            config.companyProfile != null
+                                ? config.companyProfile!.logo!
+                                : '',
                         height: Get.width / 2.5,
                         width: Get.width / 2.5,
                       ),
@@ -101,7 +104,9 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
                                   SizedBox(
                                     width: Get.width / 1.5,
                                     child: Text(
-                                      config.companyProfile!.address ?? '',
+                                      config.companyProfile != null
+                                          ? config.companyProfile!.address!
+                                          : '',
                                     ),
                                   ),
                                 ],
@@ -160,7 +165,9 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
                                   SizedBox(
                                     width: Get.width / 1.5,
                                     child: Text(
-                                      config.companyProfile!.phone ?? '',
+                                      config.companyProfile != null
+                                          ? config.companyProfile!.phone!
+                                          : '',
                                     ),
                                   ),
                                 ],
@@ -219,51 +226,53 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
                   const SizedBox(height: Dimensions.paddingSizeDefault),
                   CustomButton(text: 'submit'.tr),
                   const SizedBox(height: Dimensions.paddingSizeLarge),
-                  Center(
-                    child: Text(
-                      'social_media'.tr,
-                      style: titilliumBold.copyWith(
-                        fontSize: Dimensions.fontSizeLarge,
+                  if (config.configModel != null)
+                    Center(
+                      child: Text(
+                        'social_media'.tr,
+                        style: titilliumBold.copyWith(
+                          fontSize: Dimensions.fontSizeLarge,
+                        ),
                       ),
                     ),
-                  ),
                   const SizedBox(height: Dimensions.paddingSizeSmall),
-                  Center(
-                    child: SizedBox(
-                      height: Get.width / 5,
-                      child: ListView.builder(
-                        shrinkWrap: true,
-                        scrollDirection: Axis.horizontal,
-                        itemCount: config.configModel!.contactus.length,
-                        itemBuilder: (context, index) {
-                          return Padding(
-                            padding: const EdgeInsets.all(
-                              Dimensions.paddingSizeSmall,
-                            ),
-                            child: InkWell(
-                              onTap: () {
-                                openLink(
-                                  config.configModel!.contactus[index].info ??
-                                      '',
-                                );
-                              },
-                              child: Column(
-                                children: [
-                                  ClipOval(
-                                    child: CustomImage(
-                                      image: Images.instagram,
-                                      height: Get.width / 7,
-                                      width: Get.width / 7,
-                                    ),
-                                  ),
-                                ],
+                  if (config.configModel != null)
+                    Center(
+                      child: SizedBox(
+                        height: Get.width / 5,
+                        child: ListView.builder(
+                          shrinkWrap: true,
+                          scrollDirection: Axis.horizontal,
+                          itemCount: config.configModel!.contactus.length,
+                          itemBuilder: (context, index) {
+                            return Padding(
+                              padding: const EdgeInsets.all(
+                                Dimensions.paddingSizeSmall,
                               ),
-                            ),
-                          );
-                        },
+                              child: InkWell(
+                                onTap: () {
+                                  openLink(
+                                    config.configModel!.contactus[index].info ??
+                                        '',
+                                  );
+                                },
+                                child: Column(
+                                  children: [
+                                    ClipOval(
+                                      child: CustomImage(
+                                        image: Images.instagram,
+                                        height: Get.width / 7,
+                                        width: Get.width / 7,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            );
+                          },
+                        ),
                       ),
                     ),
-                  ),
                 ],
               ),
             ),
