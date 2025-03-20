@@ -1,9 +1,11 @@
 import 'package:bunny_ngim_app/api/api_checker.dart';
 import 'package:bunny_ngim_app/api/api_client.dart';
+import 'package:bunny_ngim_app/model/response/banner_model.dart';
 import 'package:bunny_ngim_app/model/response/company_model.dart';
 import 'package:bunny_ngim_app/model/response/config_model.dart';
 import 'package:bunny_ngim_app/model/response/contact_model.dart';
 import 'package:bunny_ngim_app/model/response/main_manu_model.dart';
+import 'package:bunny_ngim_app/model/response/product_model.dart';
 import 'package:bunny_ngim_app/model/response/province_model.dart';
 import 'package:bunny_ngim_app/repository/config_repo.dart';
 import 'package:get/get.dart';
@@ -25,6 +27,9 @@ class ConfigController extends GetxController implements GetxService {
   String? _publicPath;
   String? get publicPath => _publicPath;
 
+  List<BannerModel>? _bannerList;
+  List<BannerModel>? get bannerList => _bannerList;
+
   bool _firstTimeConnectionCheck = true;
   bool get firstTimeConnectionCheck => _firstTimeConnectionCheck;
 
@@ -32,6 +37,12 @@ class ConfigController extends GetxController implements GetxService {
   List<MainMenu>? get mainMenusList => _mainMenusList;
   bool _hasConnection = true;
   bool get hasConnection => _hasConnection;
+  List<Product>? _featuredProductList;
+  List<Product>? get featuredProductList => _featuredProductList;
+  List<Product>? _mostPopularProductList;
+  List<Product>? get mostPopularProductList => _mostPopularProductList;
+  List<Product>? _recommendedProductList;
+  List<Product>? get recommendedProductList => _recommendedProductList;
 
   void setFirstTimeConnectionCheck(bool isChecked) {
     _firstTimeConnectionCheck = isChecked;
@@ -65,11 +76,53 @@ class ConfigController extends GetxController implements GetxService {
     return isSuccess;
   }
 
+  Future<void> getHomePageData() async {
+    Response response = await configRepo.getHomePageData();
+    if (response.statusCode == 200) {
+      _bannerList = [];
+      _featuredProductList = [];
+      _mostPopularProductList = [];
+      _recommendedProductList = [];
+      response.body['slider'].forEach((banner) {
+        _bannerList!.add(BannerModel.fromJson(banner));
+      });
+      response.body['featuredproducts'].forEach((featured) {
+        _featuredProductList!.add(Product.fromJson(featured));
+      });
+      response.body['mostpopularproducts'].forEach((featured) {
+        _mostPopularProductList!.add(Product.fromJson(featured));
+      });
+      response.body['recommendedproducts'].forEach((featured) {
+        _recommendedProductList!.add(Product.fromJson(featured));
+      });
+    } else {
+      ApiChecker.checkApi(response);
+    }
+    update();
+  }
+
+  int? _featuredDealSelectedIndex;
+  int? get featuredDealSelectedIndex => _featuredDealSelectedIndex;
+  void changeSelectedIndex(int selectedIndex) {
+    _featuredDealSelectedIndex = selectedIndex;
+    update();
+  }
+
   int _currentIndex = 0;
   int get currentIndex => _currentIndex;
 
   void setCurrentIndex(int index, bool notify) {
     _currentIndex = index;
+    if (notify) {
+      update();
+    }
+  }
+
+  int _mostPopularSeletedIndex = 0;
+  int get mostPopularSeletedIndex => _mostPopularSeletedIndex;
+
+  void changeMostPopIndex(int index, bool notify) {
+    _mostPopularSeletedIndex = index;
     if (notify) {
       update();
     }

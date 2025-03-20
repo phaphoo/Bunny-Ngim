@@ -13,4 +13,9 @@ class ConfigRepo {
     lang = localization.locale.languageCode;
     return await apiClient.getData('${AppConstants.configUri}?lang=$lang');
   }
+
+  Future<Response> getHomePageData() async {
+    lang = localization.locale.languageCode;
+    return await apiClient.getData('${AppConstants.homePageUri}?lang=$lang');
+  }
 }

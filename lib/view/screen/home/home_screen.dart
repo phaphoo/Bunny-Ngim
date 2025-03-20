@@ -1,3 +1,4 @@
+import 'package:bunny_ngim_app/config/config_controller.dart';
 import 'package:bunny_ngim_app/config/localization_controller.dart';
 import 'package:bunny_ngim_app/controller/cart_controller.dart';
 import 'package:bunny_ngim_app/controller/category_controller.dart';
@@ -34,6 +35,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   final ScrollController _scrollController = ScrollController();
   Future<void> load() async {
+    Get.find<ConfigController>().getHomePageData();
     Get.find<CategoryController>().getCategoryList();
     await Get.find<ProductController>().getAllProductList();
   }
@@ -225,7 +227,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 horizontal: Dimensions.paddingSizeSmall,
                               ),
                               child: TitleWidget(
-                                title: 'top_selling'.tr,
+                                title: 'most_popular_products'.tr,
                                 onTap: () {
                                   Get.to(() => AllProductScreen());
                                 },
@@ -234,7 +236,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             const SizedBox(
                               height: Dimensions.paddingSizeDefault,
                             ),
-                            const FlashDealsListWidget(),
+                            const MostPopularListWidget(),
                             const ProductListWidget(isHomePage: true),
                             Padding(
                               padding: const EdgeInsets.symmetric(

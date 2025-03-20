@@ -1,3 +1,4 @@
+import 'package:bunny_ngim_app/config/config_controller.dart';
 import 'package:bunny_ngim_app/controller/product_controller.dart';
 import 'package:bunny_ngim_app/helper/responsive_helper.dart';
 import 'package:bunny_ngim_app/model/response/product_model.dart';
@@ -9,17 +10,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:get/get.dart';
 
-class FlashDealsListWidget extends StatelessWidget {
+class MostPopularListWidget extends StatelessWidget {
   final bool isHomeScreen;
-  const FlashDealsListWidget({super.key, this.isHomeScreen = true});
+  const MostPopularListWidget({super.key, this.isHomeScreen = true});
 
   @override
   Widget build(BuildContext context) {
     return isHomeScreen
-        ? GetBuilder<ProductController>(
-          builder: (flashDealController) {
-            return flashDealController.productList != null
-                ? flashDealController.productList!.isNotEmpty
+        ? GetBuilder<ConfigController>(
+          builder: (mostPopularController) {
+            return mostPopularController.mostPopularProductList != null
+                ? mostPopularController.mostPopularProductList!.isNotEmpty
                     ? SizedBox(
                       height:
                           ResponsiveHelper.isTab()
@@ -36,18 +37,25 @@ class FlashDealsListWidget extends StatelessWidget {
                           pauseAutoPlayInFiniteScroll: true,
                           disableCenter: true,
                           onPageChanged:
-                              (index, reason) => flashDealController
-                                  .setCurrentIndex(index, true),
+                              (index, reason) => mostPopularController
+                                  .changeMostPopIndex(index, true),
                         ),
                         itemCount:
-                            flashDealController.productList!.isEmpty
+                            mostPopularController
+                                    .mostPopularProductList!
+                                    .isEmpty
                                 ? 1
-                                : flashDealController.productList!.length,
+                                : mostPopularController
+                                    .mostPopularProductList!
+                                    .length,
                         itemBuilder: (context, index, next) {
                           return SliderProductWidget(
-                            product: flashDealController.productList![index],
+                            product:
+                                mostPopularController
+                                    .mostPopularProductList![index],
                             isCurrentIndex:
-                                index == flashDealController.currentIndex,
+                                index ==
+                                mostPopularController.mostPopularSeletedIndex,
                           );
                         },
                       ),
@@ -56,16 +64,19 @@ class FlashDealsListWidget extends StatelessWidget {
                 : const FlashDealShimmer();
           },
         )
-        : GetBuilder<ProductController>(
-          builder: (flashDealController) {
-            return flashDealController.productList!.isNotEmpty
+        : GetBuilder<ConfigController>(
+          builder: (mostPopularController) {
+            return mostPopularController.mostPopularProductList!.isNotEmpty
                 ? RepaintBoundary(
                   child: MasonryGridView.count(
-                    itemCount: flashDealController.productList!.length,
+                    itemCount:
+                        mostPopularController.mostPopularProductList!.length,
                     padding: const EdgeInsets.all(0),
                     itemBuilder: (BuildContext context, int index) {
                       return ProductWidget(
-                        productModel: flashDealController.productList![index],
+                        productModel:
+                            mostPopularController
+                                .mostPopularProductList![index],
                       );
                     },
                     crossAxisCount: 2,

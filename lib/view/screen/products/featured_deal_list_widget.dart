@@ -1,4 +1,4 @@
-import 'package:bunny_ngim_app/controller/product_controller.dart';
+import 'package:bunny_ngim_app/config/config_controller.dart';
 import 'package:bunny_ngim_app/helper/responsive_helper.dart';
 import 'package:bunny_ngim_app/view/screen/products/widget/featured_deal_card_widget.dart';
 import 'package:bunny_ngim_app/view/screen/products/widget/find_what_you_need_shimmer.dart';
@@ -15,10 +15,10 @@ class FeaturedDealsListWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return isHomePage
-        ? GetBuilder<ProductController>(
-          builder: (featuredDealProvider) {
-            return featuredDealProvider.productList != null
-                ? featuredDealProvider.productList!.isNotEmpty
+        ? GetBuilder<ConfigController>(
+          builder: (featuredController) {
+            return featuredController.featuredProductList != null
+                ? featuredController.featuredProductList!.isNotEmpty
                     ? CarouselSlider.builder(
                       options: CarouselOptions(
                         aspectRatio: 2.5,
@@ -34,32 +34,34 @@ class FeaturedDealsListWidget extends StatelessWidget {
                         disableCenter: true,
                         onPageChanged:
                             (index, reason) =>
-                                featuredDealProvider.changeSelectedIndex(index),
+                                featuredController.changeSelectedIndex(index),
                       ),
-                      itemCount: featuredDealProvider.productList?.length,
+                      itemCount: featuredController.featuredProductList?.length,
                       itemBuilder:
                           (context, index, _) => FeaturedDealWidget(
                             isHomePage: isHomePage,
-                            product: featuredDealProvider.productList![index],
+                            product:
+                                featuredController.featuredProductList![index],
                             isCenterElement:
                                 index ==
-                                featuredDealProvider.featuredDealSelectedIndex,
+                                featuredController.featuredDealSelectedIndex,
                           ),
                     )
                     : const SizedBox()
                 : const FindWhatYouNeedShimmer();
           },
         )
-        : GetBuilder<ProductController>(
-          builder: (featuredDealProvider) {
+        : GetBuilder<ConfigController>(
+          builder: (featuredController) {
             return RepaintBoundary(
               child: MasonryGridView.count(
-                itemCount: featuredDealProvider.productList?.length,
+                itemCount: featuredController.featuredProductList?.length,
                 crossAxisCount: ResponsiveHelper.isTab() ? 3 : 2,
                 padding: const EdgeInsets.all(0),
                 itemBuilder:
                     (BuildContext context, int index) => ProductWidget(
-                      productModel: featuredDealProvider.productList![index],
+                      productModel:
+                          featuredController.featuredProductList![index],
                     ),
               ),
             );

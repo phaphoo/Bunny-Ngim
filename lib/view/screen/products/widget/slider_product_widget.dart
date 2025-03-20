@@ -144,7 +144,7 @@ class SliderProductWidget extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              '${product.priceformat!}/${product.unit}',
+                              '${product.pricing!}/${product.unit}',
                               style: titilliumBold.copyWith(
                                 color: Theme.of(context).primaryColor,
                                 fontSize: Dimensions.fontSizeLarge,

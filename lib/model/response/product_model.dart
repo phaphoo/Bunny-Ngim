@@ -177,7 +177,7 @@ class Product {
     costing = json['costing'];
     pricing = json['pricing'];
     xtraprice = json['xtraprice'];
-    discount = json['discount'];
+    discount = json['discount'].toString();
     pvat = json['pvat'];
     madewith = json['madewith'];
     productType = json['product_type'];

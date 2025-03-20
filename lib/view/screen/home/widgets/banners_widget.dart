@@ -1,3 +1,4 @@
+import 'package:bunny_ngim_app/config/config_controller.dart';
 import 'package:bunny_ngim_app/controller/banner_controller.dart';
 import 'package:bunny_ngim_app/util/dimensions.dart';
 import 'package:bunny_ngim_app/view/base/painter/custom_image.dart';
@@ -12,14 +13,14 @@ class BannersWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
-    return GetBuilder<BannerController>(
+    return GetBuilder<ConfigController>(
       builder: (bannerController) {
         return Column(
           children: [
             Stack(
               children: [
-                bannerController.mainBannerList != null
-                    ? bannerController.mainBannerList!.isNotEmpty
+                bannerController.bannerList != null
+                    ? bannerController.bannerList!.isNotEmpty
                         ? SizedBox(
                           height: width * 0.4,
                           width: width,
@@ -48,11 +49,9 @@ class BannersWidget extends StatelessWidget {
                                     },
                                   ),
                                   itemCount:
-                                      bannerController.mainBannerList!.isEmpty
+                                      bannerController.bannerList!.isEmpty
                                           ? 1
-                                          : bannerController
-                                              .mainBannerList
-                                              ?.length,
+                                          : bannerController.bannerList?.length,
                                   itemBuilder: (context, index, _) {
                                     return InkWell(
                                       onTap: () {},
@@ -71,7 +70,12 @@ class BannersWidget extends StatelessWidget {
                                           ),
                                           child: CustomImage(
                                             image:
-                                                '${bannerController.mainBannerList?[index]}',
+                                                bannerController
+                                                            .bannerList?[index]
+                                                            .imginfo !=
+                                                        null
+                                                    ? '${bannerController.bannerList?[index].imginfo!.filepath}'
+                                                    : "",
                                           ),
                                         ),
                                       ),
@@ -92,7 +96,7 @@ class BannersWidget extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: List.generate(
-                      bannerController.mainBannerList!.length,
+                      bannerController.bannerList!.length,
                       (index) => Container(
                         width: Dimensions.iconSizeSmall - 2,
                         height: Dimensions.iconSizeSmall - 2,

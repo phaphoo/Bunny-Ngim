@@ -112,7 +112,7 @@ class FeaturedDealWidget extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.end,
                                 children: [
                                   Text(
-                                    '${product.priceformat!}/${product.unit}',
+                                    '${product.pricing!}/${product.unit}',
 
                                     style: titilliumBold.copyWith(
                                       color: Theme.of(context).primaryColor,
