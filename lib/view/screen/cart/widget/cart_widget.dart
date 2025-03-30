@@ -141,7 +141,7 @@ class CartWidget extends StatelessWidget {
                                   Row(
                                     children: [
                                       Text(
-                                        '${cartModel!.product.priceformat!}/${cartModel!.product.unit!}',
+                                        '${cartModel!.product.pricing}/${cartModel!.product.barcode!}',
 
                                         maxLines: 1,
                                         overflow: TextOverflow.ellipsis,

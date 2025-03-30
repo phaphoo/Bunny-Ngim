@@ -36,10 +36,9 @@ class _CategoryProductsScreenState extends State<CategoryProductsScreen> {
   load() async {
     Future.delayed(Duration.zero, () async {
       if (widget.category != null) {
-        categoryIndex =
-            Get.find<CategoryController>().categoryList!.indexOf(
-              widget.category!,
-            ) +
+        categoryIndex = Get.find<CategoryController>().categoryList!.indexOf(
+                  widget.category!,
+                ) +
             1;
         await Get.find<CategoryController>().getProductByCateData(
           widget.category!.id.toString(),
@@ -93,7 +92,7 @@ class _CategoryProductsScreenState extends State<CategoryProductsScreen> {
                               BoxShadow(
                                 color: Theme.of(
                                   context,
-                                ).primaryColor.withValues(alpha: 0.2),
+                                ).primaryColor.withOpacity(0.2),
                                 spreadRadius: 0,
                                 blurRadius: 15,
                                 offset: const Offset(0, 4),
@@ -102,10 +101,9 @@ class _CategoryProductsScreenState extends State<CategoryProductsScreen> {
                             borderRadius: BorderRadius.circular(
                               Dimensions.paddingSizeExtraExtraSmall,
                             ),
-                            color:
-                                categoryIndex == 0
-                                    ? Theme.of(context).primaryColor
-                                    : Theme.of(context).cardColor,
+                            color: categoryIndex == 0
+                                ? Theme.of(context).primaryColor
+                                : Theme.of(context).cardColor,
                           ),
                           margin: EdgeInsets.symmetric(
                             horizontal: Dimensions.paddingSizeDefault - 11,
@@ -126,10 +124,9 @@ class _CategoryProductsScreenState extends State<CategoryProductsScreen> {
                                 child: Text(
                                   "all".tr,
                                   style: titilliumBold.copyWith(
-                                    color:
-                                        categoryIndex == 0
-                                            ? Colors.white
-                                            : null,
+                                    color: categoryIndex == 0
+                                        ? Colors.white
+                                        : null,
                                   ),
                                 ),
                               ),
@@ -145,10 +142,9 @@ class _CategoryProductsScreenState extends State<CategoryProductsScreen> {
                                 borderRadius: BorderRadius.circular(
                                   Dimensions.paddingSizeExtraExtraSmall,
                                 ),
-                                color:
-                                    categoryIndex == (index + 1)
-                                        ? Theme.of(context).primaryColor
-                                        : Theme.of(context).cardColor,
+                                color: categoryIndex == (index + 1)
+                                    ? Theme.of(context).primaryColor
+                                    : Theme.of(context).cardColor,
                               ),
                               margin: EdgeInsets.symmetric(
                                 horizontal: Dimensions.paddingSizeDefault - 11,
@@ -173,10 +169,9 @@ class _CategoryProductsScreenState extends State<CategoryProductsScreen> {
                                       Text(
                                         category.title!,
                                         style: titilliumBold.copyWith(
-                                          color:
-                                              categoryIndex == (index + 1)
-                                                  ? Colors.white
-                                                  : null,
+                                          color: categoryIndex == (index + 1)
+                                              ? Colors.white
+                                              : null,
                                         ),
                                       ),
                                     ],
@@ -200,36 +195,34 @@ class _CategoryProductsScreenState extends State<CategoryProductsScreen> {
                         } else {
                           categoryController.getProductByCateData(
                             categoryController
-                                .categoryList![categoryIndex - 1]
-                                .id!
+                                .categoryList![categoryIndex - 1].id!
                                 .toString(),
                           );
                         }
                         return;
                       },
-                      child:
-                          !categoryController.filterFirstLoading
-                              ? categoryController.productList!.isNotEmpty
-                                  ? SingleChildScrollView(
-                                    controller: _scrollController,
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(
-                                        Dimensions.paddingSizeSmall,
-                                      ),
-                                      child: CategoryProductView(
-                                        cateId: cateId,
-                                        isHomePage: false,
-                                        scrollController: _scrollController,
-                                      ),
+                      child: !categoryController.filterFirstLoading
+                          ? categoryController.productList!.isNotEmpty
+                              ? SingleChildScrollView(
+                                  controller: _scrollController,
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(
+                                      Dimensions.paddingSizeSmall,
                                     ),
-                                  )
-                                  : NoInternetOrDataScreenWidget(
-                                    isNoInternet: false,
-                                  )
-                              : ProductShimmer(
-                                isEnabled: true,
-                                isHomePage: false,
-                              ),
+                                    child: CategoryProductView(
+                                      cateId: cateId,
+                                      isHomePage: false,
+                                      scrollController: _scrollController,
+                                    ),
+                                  ),
+                                )
+                              : NoInternetOrDataScreenWidget(
+                                  isNoInternet: false,
+                                )
+                          : ProductShimmer(
+                              isEnabled: true,
+                              isHomePage: false,
+                            ),
                     ),
                   ),
                   SizedBox(height: Dimensions.paddingSizeDefault),

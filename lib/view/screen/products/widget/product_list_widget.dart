@@ -1,3 +1,4 @@
+import 'package:bunny_ngim_app/config/config_controller.dart';
 import 'package:bunny_ngim_app/controller/product_controller.dart';
 import 'package:bunny_ngim_app/util/dimensions.dart';
 import 'package:bunny_ngim_app/view/base/title_widget.dart';
@@ -13,7 +14,7 @@ class ProductListWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<ProductController>(
+    return GetBuilder<ConfigController>(
       builder: (productController) {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -28,8 +29,8 @@ class ProductListWidget extends StatelessWidget {
               ),
             ),
 
-            productController.productList != null &&
-                    productController.productList!.isNotEmpty
+            productController.recommendedProductList != null &&
+                    productController.recommendedProductList!.isNotEmpty
                 ? SizedBox(
                   height: MediaQuery.of(context).size.width / 1.6,
                   child: ListView.builder(
@@ -38,7 +39,7 @@ class ProductListWidget extends StatelessWidget {
                       vertical: Dimensions.paddingSizeSmall,
                     ),
                     scrollDirection: Axis.horizontal,
-                    itemCount: productController.productList!.length,
+                    itemCount: productController.recommendedProductList!.length,
                     shrinkWrap: true,
                     itemBuilder: (BuildContext context, int index) {
                       return InkWell(
@@ -51,7 +52,8 @@ class ProductListWidget extends StatelessWidget {
                           //     name: productController.categoryList[index].name)));
                         },
                         child: ProductListTileWidget(
-                          productModel: productController.productList![index],
+                          productModel:
+                              productController.recommendedProductList![index],
                         ),
                       );
                     },

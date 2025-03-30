@@ -150,7 +150,7 @@ class ProductWidget extends StatelessWidget {
                               Dimensions.paddingSizeExtraSmall,
                             ),
                             child: Text(
-                              '${productModel.priceformat!}/${productModel.unit}',
+                              '${productModel.pricing!}/${productModel.unit}',
 
                               style: titilliumBold.copyWith(
                                 color: Theme.of(context).primaryColor,

@@ -25,7 +25,11 @@ class _MiniProductBottomSheetState extends State<MiniProductBottomSheet> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    totalPrice = double.parse(widget.product.dfpricing.toString() ?? '0');
+    if (widget.product.dfpricing != null) {
+      totalPrice = double.parse(widget.product.dfpricing.toString() ?? '0');
+    } else {
+      totalPrice = 0;
+    }
   }
 
   @override
