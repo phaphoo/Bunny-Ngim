@@ -9,11 +9,11 @@ class ProductModel {
   ProductModel.fromJson(Map<String, dynamic> json) {
     productsource =
         json['productsource'] != null
-            ? new Productsource.fromJson(json['productsource'])
+            ? Productsource.fromJson(json['productsource'])
             : null;
     productrecordinfo =
         json['productrecordinfo'] != null
-            ? new Productrecordinfo.fromJson(json['productrecordinfo'])
+            ? Productrecordinfo.fromJson(json['productrecordinfo'])
             : null;
   }
 
@@ -185,17 +185,14 @@ class Product {
     // imginfo = json['imginfo'];
     if (json['imginfo'] != null) {
       if (json['imginfo'] is String) {
-        // If `imginfo` is a String, decode it
         List<dynamic> imgList = jsonDecode(json['imginfo']);
         imginfo = imgList.isNotEmpty ? ImageInfo.fromJson(imgList[0]) : null;
       } else if (json['imginfo'] is List) {
-        // If `imginfo` is already a List
         imginfo =
             json['imginfo'].isNotEmpty
                 ? ImageInfo.fromJson(json['imginfo'][0])
                 : null;
       } else if (json['imginfo'] is Map) {
-        // If `imginfo` is a single Map
         imginfo = ImageInfo.fromJson(json['imginfo']);
       }
     }
@@ -204,8 +201,13 @@ class Product {
     category = json['category'];
     unit = json['unit'];
     expireddate = json['expireddate'];
-
-    pricing = jsonDecode(json['dfpricing'].toString());
+    if (json['pricing'] != null) {
+      if (json['pricing'] is String) {
+        pricing = jsonDecode(json['pricing']);
+      } else {
+        pricing = json['pricing'];
+      }
+    }
 
     priceformat = json['priceformat'];
   }
@@ -238,11 +240,10 @@ class Product {
     data['category'] = category;
     data['unit'] = unit;
     data['expireddate'] = expireddate;
-    if (pricing != null && data['pricing'] is int) {
-      data['pricing'] = pricing;
-    } else {
-      data['pricing'] = pricing;
+    if (pricing != null) {
+      data['pricing'] = pricing!;
     }
+
     data['priceformat'] = priceformat;
     return data;
   }

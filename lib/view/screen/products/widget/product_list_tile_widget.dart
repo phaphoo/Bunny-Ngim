@@ -144,7 +144,7 @@ class ProductListTileWidget extends StatelessWidget {
                               Dimensions.paddingSizeExtraSmall,
                             ),
                             child: Text(
-                              '${productModel.pricing['dfpricing'] ?? 0}/${productModel.unit}',
+                              '${productModel.pricing != null ? productModel.pricing['dfpricing'] : 0}/${productModel.unit}',
 
                               style: titilliumBold.copyWith(
                                 color: Theme.of(context).primaryColor,

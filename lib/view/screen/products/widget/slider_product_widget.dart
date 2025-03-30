@@ -144,11 +144,7 @@ class SliderProductWidget extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              '${product.pricing != null
-                                  ? product.pricing is int
-                                      ? product.pricing
-                                      : product.pricing['dfpricing']!
-                                  : 0}/${product.unit}',
+                              '${product.pricing != null ? product.pricing['dfpricing'] : 0}/${product.unit}',
                               style: titilliumBold.copyWith(
                                 color: Theme.of(context).primaryColor,
                                 fontSize: Dimensions.fontSizeLarge,
