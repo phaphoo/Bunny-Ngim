@@ -88,30 +88,31 @@ class BannersWidget extends StatelessWidget {
                         )
                         : const SizedBox()
                     : const BannerShimmer(),
-
-                Positioned(
-                  bottom: 0,
-                  left: 0,
-                  right: 0,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: List.generate(
-                      bannerController.bannerList!.length,
-                      (index) => Container(
-                        width: Dimensions.iconSizeSmall - 2,
-                        height: Dimensions.iconSizeSmall - 2,
-                        margin: EdgeInsets.symmetric(horizontal: 2),
-                        decoration: BoxDecoration(
-                          color:
-                              bannerController.currentIndex == index
-                                  ? Theme.of(context).primaryColor
-                                  : Theme.of(context).hintColor,
-                          borderRadius: BorderRadius.circular(100),
+                if (bannerController.bannerList != null &&
+                    bannerController.bannerList!.isNotEmpty)
+                  Positioned(
+                    bottom: 0,
+                    left: 0,
+                    right: 0,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: List.generate(
+                        bannerController.bannerList!.length,
+                        (index) => Container(
+                          width: Dimensions.iconSizeSmall - 2,
+                          height: Dimensions.iconSizeSmall - 2,
+                          margin: EdgeInsets.symmetric(horizontal: 2),
+                          decoration: BoxDecoration(
+                            color:
+                                bannerController.currentIndex == index
+                                    ? Theme.of(context).primaryColor
+                                    : Theme.of(context).hintColor,
+                            borderRadius: BorderRadius.circular(100),
+                          ),
                         ),
                       ),
                     ),
                   ),
-                ),
               ],
             ),
             const SizedBox(height: Dimensions.paddingSizeExtraSmall),

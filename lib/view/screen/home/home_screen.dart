@@ -10,9 +10,11 @@ import 'package:bunny_ngim_app/util/dimensions.dart';
 import 'package:bunny_ngim_app/util/images.dart';
 import 'package:bunny_ngim_app/util/text_styles.dart';
 import 'package:bunny_ngim_app/view/base/painter/custom_image.dart';
+import 'package:bunny_ngim_app/view/base/product_type.dart';
 import 'package:bunny_ngim_app/view/base/title_widget.dart';
 import 'package:bunny_ngim_app/view/screen/cart/cart_screen.dart';
 import 'package:bunny_ngim_app/view/screen/category/widgets/category_list_widget.dart';
+import 'package:bunny_ngim_app/view/screen/home/event/event_list_widget.dart';
 import 'package:bunny_ngim_app/view/screen/home/widgets/banners_widget.dart';
 import 'package:bunny_ngim_app/view/screen/products/featured_deal_list_widget.dart';
 import 'package:bunny_ngim_app/view/screen/products/flash_deals_list_widget.dart';
@@ -211,7 +213,12 @@ class _HomeScreenState extends State<HomeScreen> {
                               child: TitleWidget(
                                 title: 'featured'.tr,
                                 onTap: () {
-                                  Get.to(() => AllProductScreen());
+                                  Get.to(
+                                    () => AllProductScreen(
+                                      productType: ProductType.featuredProduct,
+                                      appBarTitle: 'featured',
+                                    ),
+                                  );
                                 },
                               ),
                             ),
@@ -229,7 +236,12 @@ class _HomeScreenState extends State<HomeScreen> {
                               child: TitleWidget(
                                 title: 'most_popular_products'.tr,
                                 onTap: () {
-                                  Get.to(() => AllProductScreen());
+                                  Get.to(
+                                    () => AllProductScreen(
+                                      productType: ProductType.topProduct,
+                                      appBarTitle: 'most_popular_products',
+                                    ),
+                                  );
                                 },
                               ),
                             ),
@@ -237,7 +249,11 @@ class _HomeScreenState extends State<HomeScreen> {
                               height: Dimensions.paddingSizeDefault,
                             ),
                             const MostPopularListWidget(),
+                            const SizedBox(
+                              height: Dimensions.paddingSizeDefault,
+                            ),
                             const ProductListWidget(isHomePage: true),
+                            const EventListWidget(isHomePage: true),
                             Padding(
                               padding: const EdgeInsets.symmetric(
                                 horizontal: Dimensions.paddingSizeSmall,

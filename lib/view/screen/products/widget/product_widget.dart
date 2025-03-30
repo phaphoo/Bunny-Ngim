@@ -150,7 +150,7 @@ class ProductWidget extends StatelessWidget {
                               Dimensions.paddingSizeExtraSmall,
                             ),
                             child: Text(
-                              '${productModel.pricing!}/${productModel.unit}',
+                              '${productModel.pricing is int ? productModel.pricing : productModel.pricing['dfpricing']}/${productModel.unit}',
 
                               style: titilliumBold.copyWith(
                                 color: Theme.of(context).primaryColor,

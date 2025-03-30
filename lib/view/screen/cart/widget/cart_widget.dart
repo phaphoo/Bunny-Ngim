@@ -98,7 +98,9 @@ class CartWidget extends StatelessWidget {
                                     ),
                                     child: CustomImage(
                                       image:
-                                          '${cartModel?.product.imginfo!.filepath}',
+                                          cartModel?.product.imginfo != null
+                                              ? '${cartModel?.product.imginfo!.filepath}'
+                                              : '',
                                       height: 70,
                                       width: 70,
                                     ),
@@ -141,7 +143,7 @@ class CartWidget extends StatelessWidget {
                                   Row(
                                     children: [
                                       Text(
-                                        '${cartModel!.product.pricing}/${cartModel!.product.barcode!}',
+                                        '${cartModel!.product.pricing['dfpricing']}/${cartModel!.product.barcode!}',
 
                                         maxLines: 1,
                                         overflow: TextOverflow.ellipsis,

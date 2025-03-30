@@ -120,7 +120,7 @@ class Product {
   int? unitId;
   String? printerId;
   String? costing;
-  String? pricing;
+  dynamic pricing;
   String? xtraprice;
   String? discount;
   int? pvat;
@@ -175,7 +175,7 @@ class Product {
     unitId = json['unit_id'];
     printerId = json['printer_id'];
     costing = json['costing'];
-    pricing = json['pricing'];
+    dfpricing = json['dfpricing'];
     xtraprice = json['xtraprice'];
     discount = json['discount'].toString();
     pvat = json['pvat'];
@@ -204,7 +204,9 @@ class Product {
     category = json['category'];
     unit = json['unit'];
     expireddate = json['expireddate'];
-    dfpricing = json['dfpricing'].toString();
+
+    pricing = jsonDecode(json['dfpricing'].toString());
+
     priceformat = json['priceformat'];
   }
 
@@ -220,7 +222,7 @@ class Product {
     data['unit_id'] = unitId;
     data['printer_id'] = printerId;
     data['costing'] = costing;
-    data['pricing'] = pricing;
+    data['dfpricing'] = dfpricing;
     data['xtraprice'] = xtraprice;
     data['discount'] = discount;
     data['pvat'] = pvat;
@@ -236,7 +238,11 @@ class Product {
     data['category'] = category;
     data['unit'] = unit;
     data['expireddate'] = expireddate;
-    data['dfpricing'] = dfpricing;
+    if (pricing != null && data['pricing'] is int) {
+      data['pricing'] = pricing;
+    } else {
+      data['pricing'] = pricing;
+    }
     data['priceformat'] = priceformat;
     return data;
   }

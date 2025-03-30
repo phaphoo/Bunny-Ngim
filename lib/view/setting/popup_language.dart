@@ -1,3 +1,4 @@
+import 'package:bunny_ngim_app/config/config_controller.dart';
 import 'package:bunny_ngim_app/config/localization_controller.dart';
 import 'package:bunny_ngim_app/controller/category_controller.dart';
 import 'package:bunny_ngim_app/controller/product_controller.dart';
@@ -137,6 +138,7 @@ class _PopupLanguageState extends State<PopupLanguage> {
                               .countryCode!,
                         ),
                       );
+                      Get.find<ConfigController>().getHomePageData();
                       Get.find<CategoryController>().getCategoryList();
                       Get.find<ProductController>().getAllProductList();
                       Navigator.pop(context);

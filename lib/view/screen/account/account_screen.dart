@@ -11,6 +11,8 @@ import 'package:bunny_ngim_app/view/screen/auth/login_screen.dart';
 import 'package:bunny_ngim_app/view/screen/cart/cart_screen.dart';
 import 'package:bunny_ngim_app/view/screen/contactus/contact_us_screen.dart';
 import 'package:bunny_ngim_app/view/screen/favorite/favorite_screen.dart';
+import 'package:bunny_ngim_app/view/screen/home/event/event_screen.dart';
+import 'package:bunny_ngim_app/view/screen/home/event/news_and_event_detail_screen.dart';
 import 'package:bunny_ngim_app/view/screen/order/order_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -76,6 +78,11 @@ class _AccountScreenState extends State<AccountScreen> {
                             navigateTo: const FavoriteScreen(
                               isBackToExit: true,
                             ),
+                          ),
+                          TitleButton(
+                            image: Images.event,
+                            title: 'new_and_event'.tr,
+                            navigateTo: const EventScreen(),
                           ),
                           TitleButton(
                             image: Images.noteIcon,

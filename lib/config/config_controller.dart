@@ -5,6 +5,7 @@ import 'package:bunny_ngim_app/model/response/company_model.dart';
 import 'package:bunny_ngim_app/model/response/config_model.dart';
 import 'package:bunny_ngim_app/model/response/contact_model.dart';
 import 'package:bunny_ngim_app/model/response/main_manu_model.dart';
+import 'package:bunny_ngim_app/model/response/new_event_model.dart';
 import 'package:bunny_ngim_app/model/response/product_model.dart';
 import 'package:bunny_ngim_app/model/response/province_model.dart';
 import 'package:bunny_ngim_app/repository/config_repo.dart';
@@ -43,6 +44,11 @@ class ConfigController extends GetxController implements GetxService {
   List<Product>? get mostPopularProductList => _mostPopularProductList;
   List<Product>? _recommendedProductList;
   List<Product>? get recommendedProductList => _recommendedProductList;
+  List<NewEventModel>? _newEvent;
+  List<NewEventModel>? get newEvent => _newEvent;
+
+  bool? _isLoading;
+  bool? get isLoading => _isLoading;
 
   void setFirstTimeConnectionCheck(bool isChecked) {
     _firstTimeConnectionCheck = isChecked;
@@ -77,27 +83,36 @@ class ConfigController extends GetxController implements GetxService {
   }
 
   Future<void> getHomePageData() async {
+    _isLoading = true;
     Response response = await configRepo.getHomePageData();
     if (response.statusCode == 200) {
       _bannerList = [];
       _featuredProductList = [];
       _mostPopularProductList = [];
       _recommendedProductList = [];
+      _newEvent = [];
       response.body['slider'].forEach((banner) {
         _bannerList!.add(BannerModel.fromJson(banner));
       });
-      response.body['featuredproducts'].forEach((featured) {
-        _featuredProductList!.add(Product.fromJson(featured));
+      response.body['featuredproducts'].forEach((value) {
+        _featuredProductList!.add(Product.fromJson(value));
       });
-      response.body['mostpopularproducts'].forEach((featured) {
-        _mostPopularProductList!.add(Product.fromJson(featured));
+      response.body['mostpopularproducts'].forEach((value) {
+        _mostPopularProductList!.add(Product.fromJson(value));
       });
-      response.body['recommendedproducts'].forEach((featured) {
-        _recommendedProductList!.add(Product.fromJson(featured));
+      response.body['recommendedproducts'].forEach((value) {
+        _recommendedProductList!.add(Product.fromJson(value));
       });
+
+      response.body['newevent'].forEach((value) {
+        _newEvent!.add(NewEventModel.fromJson(value));
+      });
+      _isLoading = false;
     } else {
+      _isLoading = false;
       ApiChecker.checkApi(response);
     }
+    _isLoading = false;
     update();
   }
 

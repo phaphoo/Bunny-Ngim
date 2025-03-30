@@ -132,7 +132,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                                                               Row(
                                                                 children: [
                                                                   Text(
-                                                                    '${widget.productDetailsModel.priceformat}/${widget.productDetailsModel.unit}',
+                                                                    '${widget.productDetailsModel.pricing['dfpricing']}/${widget.productDetailsModel.unit}',
                                                                     style: titilliumRegular.copyWith(
                                                                       fontSize:
                                                                           Dimensions
