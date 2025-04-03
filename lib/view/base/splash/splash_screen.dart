@@ -37,7 +37,7 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   Future loaddata() async {
-    await Get.find<ConfigController>().getConfigData();
+    // await Get.find<ConfigController>().getConfigData();
     await Get.find<CategoryController>().getCategoryList();
     // Get.find<AccountController>().getAccount();
   }
