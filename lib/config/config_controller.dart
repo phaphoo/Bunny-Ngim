@@ -60,10 +60,11 @@ class ConfigController extends GetxController implements GetxService {
     Response response = await configRepo.getConfigData();
     bool isSuccess = false;
     if (response.statusCode == 200) {
+      _provinceModel = ProvinceModel.fromJson(response.body['category_list']);
+      print('_provinceModel ${_provinceModel!.provinces}');
       _configModel = ConfigModel.fromJson(response.body['devconfig']);
       _companyProfile = CompanyProfileModel.fromJson(response.body['profile']);
       _contactModel = ContactModel.fromJson(response.body['contactus']);
-      _provinceModel = ProvinceModel.fromJson(response.body['provinces']);
       _mainMenusList = [];
       response.body['mainmenu'].forEach((menu) {
         _mainMenusList!.add(MainMenu.fromJson(menu));

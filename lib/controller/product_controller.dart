@@ -57,6 +57,8 @@ class ProductController extends GetxController implements GetxService {
           _productTotalPage = _productModel!.productsource!.lastPage!;
         }
 
+        print('_productList ${_productList!.first}');
+
         _filterFirstLoading = false;
         _filterIsLoading = false;
         _firstLoading = false;

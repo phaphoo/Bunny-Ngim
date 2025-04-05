@@ -17,6 +17,13 @@ class EventScreen extends StatefulWidget {
 
 class _EventScreenState extends State<EventScreen> {
   @override
+  void initState() {
+    Get.find<ConfigController>().getConfigData();
+    // TODO: implement initState
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(title: 'all_news_and_envent'.tr),
